@@ -3,6 +3,7 @@ version: "3.8"
 services:
 
   apigateway:
+    container_name: forum_learning-apigateway
     build: ./api-gateway/
     ports:
       - "8080:8080"
@@ -10,7 +11,19 @@ services:
       - GIN_MODE=release
   
   authentication:
+    container_name: forum_learning-authentication
     build: ./authentication/
+    environment: 
+      - GIN_MODE=release
+      - ORACLESQL_HOST=localhost
+      - ORACLESQL_PORT=1521
+      - ORACLESQL_USER=user
+      - ORACLESQL_PASSWORD=password
+      - ORACLESQL_DB=forum_learning
+  
+  authorization:
+    container_name: forum_learning-authorization
+    build: ./authorization/
     environment: 
       - GIN_MODE=release
       - ORACLESQL_HOST=localhost
