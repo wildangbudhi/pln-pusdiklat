@@ -8,3 +8,13 @@ services:
       - "8080:8080"
     environment: 
       - GIN_MODE=release
+  
+  authentication:
+    build: ./authentication/
+    environment: 
+      - GIN_MODE=release
+      - ORACLESQL_HOST=localhost
+      - ORACLESQL_PORT=1521
+      - ORACLESQL_USER=user
+      - ORACLESQL_PASSWORD=password
+      - ORACLESQL_DB=forum_learning
