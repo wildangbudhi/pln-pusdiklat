@@ -1,18 +1,21 @@
 version: "3.8"
 
+volumes:
+  mongodbdata:
+
 services:
 
   apigateway_internal_database:
     container_name: apigateway_internal_database
-    image: mongo
+    image: mongo:latest
     restart: always
     ports:
-      - "27017:27017"
+      - "27018:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: forumlearning123
     volumes:
-      - ./apigateway-internal-database-volume:/data/db
+      - /data/db:/data/db
 
   apigateway:
     container_name: forum_learning-apigateway
@@ -22,10 +25,10 @@ services:
       - "8080:8080"
     environment: 
       - GIN_MODE=release
-      - MONGODB_HOST=localhost
+      - MONGODB_HOST=apigateway_internal_database
       - MONGODB_PORT=27017
       - MONGOBD_USER=root
-      - MONGODB_PASSWORD=sekolah252
+      - MONGODB_PASSWORD=forumlearning123
       - MONGOBD_AUTH_SRC=admin
   
   authentication:
