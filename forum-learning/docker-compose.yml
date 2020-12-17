@@ -2,17 +2,36 @@ version: "3.8"
 
 services:
 
+  apigateway_internal_database:
+    container_name: apigateway_internal_database
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: forumlearning123
+    volumes:
+      - ./apigateway-internal-database-volume:/data/db
+
   apigateway:
     container_name: forum_learning-apigateway
     build: ./api-gateway/
+    restart: always
     ports:
       - "8080:8080"
     environment: 
       - GIN_MODE=release
+      - MONGODB_HOST=localhost
+      - MONGODB_PORT=27017
+      - MONGOBD_USER=root
+      - MONGODB_PASSWORD=sekolah252
+      - MONGOBD_AUTH_SRC=admin
   
   authentication:
     container_name: forum_learning-authentication
     build: ./authentication/
+    restart: always
     environment: 
       - GIN_MODE=release
       - ORACLESQL_HOST=localhost
@@ -24,6 +43,7 @@ services:
   authorization:
     container_name: forum_learning-authorization
     build: ./authorization/
+    restart: always
     environment: 
       - GIN_MODE=release
       - ORACLESQL_HOST=localhost
@@ -35,6 +55,7 @@ services:
   account_manager:
     container_name: forum_learning-account_manager
     build: ./account_manager/
+    restart: always
     environment: 
       - GIN_MODE=release
       - ORACLESQL_HOST=localhost
