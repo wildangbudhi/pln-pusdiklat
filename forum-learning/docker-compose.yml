@@ -1,7 +1,7 @@
 version: "3.8"
 
-volumes:
-  mongodbdata:
+# volumes:
+#   mongodbdata:
 
 services:
 
@@ -31,38 +31,38 @@ services:
       - MONGODB_PASSWORD=forumlearning123
       - MONGOBD_AUTH_SRC=admin
   
-  authentication:
-    container_name: forum_learning-authentication
-    build: ./authentication/
-    restart: always
-    environment: 
-      - GIN_MODE=release
-      - ORACLESQL_HOST=localhost
-      - ORACLESQL_PORT=1521
-      - ORACLESQL_USER=user
-      - ORACLESQL_PASSWORD=password
-      - ORACLESQL_DB=forum_learning
+  # authentication:
+  #   container_name: forum_learning-authentication
+  #   build: ./authentication/
+  #   restart: always
+  #   environment: 
+  #     - GIN_MODE=release
+  #     - ORACLESQL_HOST=localhost
+  #     - ORACLESQL_PORT=1521
+  #     - ORACLESQL_USER=user
+  #     - ORACLESQL_PASSWORD=password
+  #     - ORACLESQL_DB=forum_learning
   
-  authorization:
-    container_name: forum_learning-authorization
-    build: ./authorization/
-    restart: always
-    environment: 
-      - GIN_MODE=release
-      - ORACLESQL_HOST=localhost
-      - ORACLESQL_PORT=1521
-      - ORACLESQL_USER=user
-      - ORACLESQL_PASSWORD=password
-      - ORACLESQL_DB=forum_learning
+  # authorization:
+  #   container_name: forum_learning-authorization
+  #   build: ./authorization/
+  #   restart: always
+  #   environment: 
+  #     - GIN_MODE=release
+  #     - ORACLESQL_HOST=localhost
+  #     - ORACLESQL_PORT=1521
+  #     - ORACLESQL_USER=user
+  #     - ORACLESQL_PASSWORD=password
+  #     - ORACLESQL_DB=forum_learning
   
-  account_manager:
-    container_name: forum_learning-account_manager
-    build: ./account_manager/
-    restart: always
-    environment: 
-      - GIN_MODE=release
-      - ORACLESQL_HOST=localhost
-      - ORACLESQL_PORT=1521
-      - ORACLESQL_USER=user
-      - ORACLESQL_PASSWORD=password
-      - ORACLESQL_DB=forum_learning
+  # account_manager:
+  #   container_name: forum_learning-account_manager
+  #   build: ./account_manager/
+  #   restart: always
+  #   environment: 
+  #     - GIN_MODE=release
+  #     - ORACLESQL_HOST=localhost
+  #     - ORACLESQL_PORT=1521
+  #     - ORACLESQL_USER=user
+  #     - ORACLESQL_PASSWORD=password
+  #     - ORACLESQL_DB=forum_learning
