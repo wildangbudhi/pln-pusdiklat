@@ -24,4 +24,5 @@ type UserAuthRepository interface {
 	GetUserAuthByEmail(email string) (*UserAuth, error)
 	GetUserAuthByUsername(username string) (*UserAuth, error)
 	InsertUserAuth(userAuth *UserAuth) (int64, error)
+	CountRoleActivitiesPermission(method string, url string, roleIDList []int) (int, error)
 }

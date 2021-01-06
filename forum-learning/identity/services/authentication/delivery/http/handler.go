@@ -18,5 +18,6 @@ func NewAuthenticationHTTPHandler(router *gin.RouterGroup, authenticationUsecase
 	router.POST("/register", handler.Register)
 	router.POST("/authenticate", handler.Authenticate)
 	router.POST("/verify", handler.Verify)
+	router.POST("/endpoint/authorize", handler.EndpointAuthorize)
 
 }

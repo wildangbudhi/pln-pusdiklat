@@ -3,6 +3,7 @@ package mysql
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain/model"
 )
@@ -202,4 +203,41 @@ func (repo *userAuthRepository) InsertUserAuth(userAuth *model.UserAuth) (int64,
 	}
 
 	return userAuthID, nil
+}
+
+func (repo *userAuthRepository) CountRoleActivitiesPermission(method string, url string, roleIDList []int) (int, error) {
+
+	var err error
+	var queryString string
+
+	queryString = `SELECT COUNT(1) FROM role_activities ra JOIN activities a on ra.activities_id = a.id  
+	WHERE a.method = ? AND REGEXP_LIKE(?, a.url_regex ) AND ra.role_id in (`
+
+	for i := 0; i < len(roleIDList); i++ {
+		queryString += strconv.Itoa(roleIDList[i])
+
+		if i != len(roleIDList)-1 {
+			queryString += ","
+		} else {
+			queryString += ")"
+		}
+
+	}
+
+	userAuthQueryResult := repo.db.QueryRow(queryString, method, url)
+
+	var countPermission int
+
+	err = userAuthQueryResult.Scan(&countPermission)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return -1, fmt.Errorf("User Tidak Ditemukan")
+		}
+
+		return -1, err
+	}
+
+	return countPermission, nil
+
 }

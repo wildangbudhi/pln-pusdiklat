@@ -9,6 +9,7 @@ type AuthenticationUsecase interface {
 	Register(fullName string, email Email, username string, pasword string) (int64, error)
 	Authenticate(username string, password string) (string, error)
 	Verify(token string) (*VerifyUsecaseResponse, error)
+	EndpointAuthorize(userID int, method string, url string) (bool, error)
 }
 
 type VerifyUsecaseResponse struct {
