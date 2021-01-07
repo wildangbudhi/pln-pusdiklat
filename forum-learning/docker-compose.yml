@@ -6,17 +6,17 @@ volumes:
 
 services:
 
-  apigateway_internal_database:
-    container_name: apigateway_internal_database
-    image: mongo:latest
-    restart: always
-    ports:
-      - "27018:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: forumlearning123
-    volumes:
-      - forumlearning-mongodbdata:/data/db
+  # apigateway_internal_database:
+  #   container_name: apigateway_internal_database
+  #   image: mongo:latest
+  #   restart: always
+  #   ports:
+  #     - "27018:27017"
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: forumlearning123
+  #   volumes:
+  #     - forumlearning-mongodbdata:/data/db
   
   mysqldb:
     restart: always
@@ -36,8 +36,8 @@ services:
       - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
       - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
 
-    ports:
-      - "3306:3306"
+  #   ports:
+  #     - "3306:3306"
 
   # apigateway:
   #   container_name: forum_learning-apigateway
@@ -80,3 +80,10 @@ services:
   #     - ORACLESQL_USER=user
   #     - ORACLESQL_PASSWORD=password
   #     - ORACLESQL_DB=forum_learning
+
+  front-end_client:
+    container_name: forum_learning-front_end_client
+    build: ./front-end_client
+    restart: always
+    ports:
+      - "80:80"
