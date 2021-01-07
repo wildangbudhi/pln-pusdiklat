@@ -28,20 +28,11 @@ CREATE TABLE `activities` (
   `method` varchar(4) DEFAULT NULL,
   `url` varchar(100) DEFAULT NULL,
   `url_regex` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `activities`
---
-
-LOCK TABLES `activities` WRITE;
-/*!40000 ALTER TABLE `activities` DISABLE KEYS */;
-/*!40000 ALTER TABLE `activities` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `category`
@@ -54,17 +45,8 @@ CREATE TABLE `category` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `category_name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `category`
---
-
-LOCK TABLES `category` WRITE;
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion`
@@ -94,17 +76,8 @@ CREATE TABLE `discussion` (
   CONSTRAINT `discussion_FK` FOREIGN KEY (`discussion_request_id`) REFERENCES `discussion_requests` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `discussion_FK_1_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `discussion_FK_forum_id` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion`
---
-
-LOCK TABLES `discussion` WRITE;
-/*!40000 ALTER TABLE `discussion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion_expertises`
@@ -122,17 +95,8 @@ CREATE TABLE `discussion_expertises` (
   KEY `discussion_expertises_FK` (`discussion_id`),
   CONSTRAINT `discussion_expertises_FK` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `discussion_expertises_FK_expertise_id` FOREIGN KEY (`expertise_id`) REFERENCES `expertises` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_expertises`
---
-
-LOCK TABLES `discussion_expertises` WRITE;
-/*!40000 ALTER TABLE `discussion_expertises` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_expertises` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion_participants`
@@ -150,17 +114,8 @@ CREATE TABLE `discussion_participants` (
   KEY `discussion_participants_FK_discussion_id` (`discussion_id`),
   CONSTRAINT `discussion_participants_FK_discussion_id` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `discussion_participants_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_participants`
---
-
-LOCK TABLES `discussion_participants` WRITE;
-/*!40000 ALTER TABLE `discussion_participants` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_participants` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion_participants_waiting_list`
@@ -180,17 +135,8 @@ CREATE TABLE `discussion_participants_waiting_list` (
   KEY `discussion_participants_waiting_list_FK_1` (`user_id`),
   CONSTRAINT `discussion_participants_waiting_list_FK` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `discussion_participants_waiting_list_FK_1` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_participants_waiting_list`
---
-
-LOCK TABLES `discussion_participants_waiting_list` WRITE;
-/*!40000 ALTER TABLE `discussion_participants_waiting_list` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_participants_waiting_list` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion_reaction`
@@ -210,17 +156,8 @@ CREATE TABLE `discussion_reaction` (
   KEY `discussion_reaction_FK_discussion_id` (`discussion`),
   CONSTRAINT `discussion_reaction_FK_discussion_id` FOREIGN KEY (`discussion`) REFERENCES `discussion` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `discussion_reaction_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_reaction`
---
-
-LOCK TABLES `discussion_reaction` WRITE;
-/*!40000 ALTER TABLE `discussion_reaction` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_reaction` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion_request_expertise_sugestions`
@@ -236,17 +173,8 @@ CREATE TABLE `discussion_request_expertise_sugestions` (
   KEY `discussion_request_expertise_sugestions_FK` (`discussion_request_id`),
   CONSTRAINT `discussion_request_expertise_sugestions_FK` FOREIGN KEY (`discussion_request_id`) REFERENCES `discussion_requests` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `discussion_request_expertise_sugestions_FK_expertise_id` FOREIGN KEY (`expertise_id`) REFERENCES `expertises` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_request_expertise_sugestions`
---
-
-LOCK TABLES `discussion_request_expertise_sugestions` WRITE;
-/*!40000 ALTER TABLE `discussion_request_expertise_sugestions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_request_expertise_sugestions` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion_requests`
@@ -268,17 +196,8 @@ CREATE TABLE `discussion_requests` (
   KEY `discussion_requests_FK_1` (`reqeuster_user_id`),
   CONSTRAINT `discussion_requests_FK` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `discussion_requests_FK_1` FOREIGN KEY (`reqeuster_user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_requests`
---
-
-LOCK TABLES `discussion_requests` WRITE;
-/*!40000 ALTER TABLE `discussion_requests` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_requests` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `discussion_requests_start_datetime_sugestions`
@@ -292,17 +211,8 @@ CREATE TABLE `discussion_requests_start_datetime_sugestions` (
   `start_datetime` timestamp NULL DEFAULT NULL,
   KEY `discussion_requests_start_datetime_sugestions_FK` (`discussion_request_id`),
   CONSTRAINT `discussion_requests_start_datetime_sugestions_FK` FOREIGN KEY (`discussion_request_id`) REFERENCES `discussion_requests` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `discussion_requests_start_datetime_sugestions`
---
-
-LOCK TABLES `discussion_requests_start_datetime_sugestions` WRITE;
-/*!40000 ALTER TABLE `discussion_requests_start_datetime_sugestions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discussion_requests_start_datetime_sugestions` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `expertises`
@@ -330,15 +240,6 @@ CREATE TABLE `expertises` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `expertises`
---
-
-LOCK TABLES `expertises` WRITE;
-/*!40000 ALTER TABLE `expertises` DISABLE KEYS */;
-/*!40000 ALTER TABLE `expertises` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `forum`
 --
 
@@ -358,17 +259,8 @@ CREATE TABLE `forum` (
   KEY `forum_FK_category_id` (`category_id`),
   CONSTRAINT `forum_FK_author_user_id` FOREIGN KEY (`author_user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `forum_FK_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `forum`
---
-
-LOCK TABLES `forum` WRITE;
-/*!40000 ALTER TABLE `forum` DISABLE KEYS */;
-/*!40000 ALTER TABLE `forum` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `forum_reaction`
@@ -388,17 +280,8 @@ CREATE TABLE `forum_reaction` (
   KEY `forum_reaction_FK` (`forum_id`),
   CONSTRAINT `forum_reaction_FK` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `forum_reaction_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `forum_reaction`
---
-
-LOCK TABLES `forum_reaction` WRITE;
-/*!40000 ALTER TABLE `forum_reaction` DISABLE KEYS */;
-/*!40000 ALTER TABLE `forum_reaction` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `forum_replies`
@@ -419,17 +302,8 @@ CREATE TABLE `forum_replies` (
   KEY `forum_replies_FK` (`author_user_id`),
   CONSTRAINT `forum_replies_FK` FOREIGN KEY (`author_user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `forum_replies_FK_forum_id` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `forum_replies`
---
-
-LOCK TABLES `forum_replies` WRITE;
-/*!40000 ALTER TABLE `forum_replies` DISABLE KEYS */;
-/*!40000 ALTER TABLE `forum_replies` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `forum_replies_reactions`
@@ -454,17 +328,8 @@ CREATE TABLE `forum_replies_reactions` (
   CONSTRAINT `forum_replies_reactions_FK_forum_id` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `forum_replies_reactions_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `forum_replies_reactions_FKforum_replies_id` FOREIGN KEY (`forum_replies_id`) REFERENCES `forum_replies` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `forum_replies_reactions`
---
-
-LOCK TABLES `forum_replies_reactions` WRITE;
-/*!40000 ALTER TABLE `forum_replies_reactions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `forum_replies_reactions` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `posts`
@@ -490,17 +355,8 @@ CREATE TABLE `posts` (
   CONSTRAINT `posts_FK_author_user_id` FOREIGN KEY (`author_user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `posts_FK_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `posts_FK_discussion_id` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `posts`
---
-
-LOCK TABLES `posts` WRITE;
-/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `posts_reactions`
@@ -522,17 +378,8 @@ CREATE TABLE `posts_reactions` (
   KEY `posts_reactions_FK_posts_id` (`posts_id`),
   CONSTRAINT `posts_reactions_FK_posts_id` FOREIGN KEY (`posts_id`) REFERENCES `posts` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `posts_reactions_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `posts_reactions`
---
-
-LOCK TABLES `posts_reactions` WRITE;
-/*!40000 ALTER TABLE `posts_reactions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `posts_reactions` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `role_activities`
@@ -548,17 +395,8 @@ CREATE TABLE `role_activities` (
   KEY `role_activities_FK_1` (`activities_id`),
   CONSTRAINT `role_activities_FK` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `role_activities_FK_1` FOREIGN KEY (`activities_id`) REFERENCES `activities` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `role_activities`
---
-
-LOCK TABLES `role_activities` WRITE;
-/*!40000 ALTER TABLE `role_activities` DISABLE KEYS */;
-/*!40000 ALTER TABLE `role_activities` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `roles`
@@ -570,20 +408,11 @@ DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `roles_name` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `roles`
---
-
-LOCK TABLES `roles` WRITE;
-/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user_auth`
@@ -603,24 +432,15 @@ CREATE TABLE `user_auth` (
   `user_type_id` tinyint DEFAULT NULL,
   `user_entity_id` bigint DEFAULT NULL,
   `user_key` varchar(64) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `login_at` timestamp NULL DEFAULT NULL,
   `modified_by` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_auth_UN_email` (`email`),
   UNIQUE KEY `user_auth_UN_username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_auth`
---
-
-LOCK TABLES `user_auth` WRITE;
-/*!40000 ALTER TABLE `user_auth` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_auth` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user_roles`
@@ -636,17 +456,8 @@ CREATE TABLE `user_roles` (
   KEY `user_roles_FK_1` (`role_id`),
   CONSTRAINT `user_roles_FK` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `user_roles_FK_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_roles`
---
-
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -657,4 +468,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-05 19:41:48
+-- Dump completed on 2021-01-07  8:25:50
