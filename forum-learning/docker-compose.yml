@@ -21,9 +21,9 @@ services:
   mysqldb:
     restart: always
     image: mysql
-    hostname: mysqldb
+    container_name: mysqldb
 
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
 
     environment:
       MYSQL_DATABASE: forum_learning
@@ -34,6 +34,7 @@ services:
     volumes:
       - forumlearning-mysqldata:/var/lib/mysql
       - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
 
     ports:
       - "3306:3306"
@@ -52,29 +53,21 @@ services:
   #     - MONGODB_PASSWORD=forumlearning123
   #     - MONGOBD_AUTH_SRC=admin
   
-  # authentication:
-  #   container_name: forum_learning-authentication
-  #   build: ./authentication/
-  #   restart: always
-  #   environment: 
-  #     - GIN_MODE=release
-  #     - ORACLESQL_HOST=localhost
-  #     - ORACLESQL_PORT=1521
-  #     - ORACLESQL_USER=user
-  #     - ORACLESQL_PASSWORD=password
-  #     - ORACLESQL_DB=forum_learning
-  
-  # authorization:
-  #   container_name: forum_learning-authorization
-  #   build: ./authorization/
-  #   restart: always
-  #   environment: 
-  #     - GIN_MODE=release
-  #     - ORACLESQL_HOST=localhost
-  #     - ORACLESQL_PORT=1521
-  #     - ORACLESQL_USER=user
-  #     - ORACLESQL_PASSWORD=password
-  #     - ORACLESQL_DB=forum_learning
+  identity:
+    container_name: forum_learning-indentity
+    build: ./identity/
+    restart: always
+    environment: 
+      - GIN_MODE=debug
+      - MYSQL_HOST=mysqldb
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=forum_learning
+      - MYSQL_PASSWORD=forum_learning_123
+      - MYSQL_DATABASE=forum_learning
+    ports:
+      - "8081:8080"
+    depends_on: 
+      - mysqldb
   
   # account_manager:
   #   container_name: forum_learning-account_manager

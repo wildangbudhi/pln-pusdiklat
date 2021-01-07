@@ -29,11 +29,17 @@ func (gu *gatewayUsecase) Gateway(request *http.Request) (*http.Response, error)
 	proxy := httputil.NewSingleHostReverseProxy(remote)
 
 	proxy.Director = func(req *http.Request) {
-		req.Header = c.Request.Header
+		req.Header = req.Header
 		req.Host = remote.Host
 		req.URL.Scheme = remote.Scheme
 		req.URL.Host = remote.Host
-		req.URL.Path = c.Param("proxyPath")
+		req.URL.Path = request.Param("proxyPath")
 	}
+
+	req, err := http.NewRequest(request.Method, request.RequestURI, request.Body)
+
+	request.Header.
+
+	req.Header.
 
 }
