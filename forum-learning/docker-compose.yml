@@ -1,8 +1,8 @@
 version: "3.8"
 
-# volumes:
-#   forumlearning-mongodbdata:
-#   forumlearning-mysqldata:
+volumes:
+  forumlearning-mongodbdata:
+  forumlearning-mysqldata:
 
 services:
 
@@ -25,11 +25,11 @@ services:
 
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
 
-  #   environment:
-  #     MYSQL_DATABASE: forum_learning
-  #     MYSQL_USER: forum_learning
-  #     MYSQL_PASSWORD: forum_learning_123
-  #     MYSQL_ROOT_PASSWORD: root
+    environment:
+      MYSQL_DATABASE: forum_learning
+      MYSQL_USER: forum_learning
+      MYSQL_PASSWORD: forum_learning_123
+      MYSQL_ROOT_PASSWORD: root
 
     volumes:
       - forumlearning-mysqldata:/var/lib/mysql
@@ -85,3 +85,5 @@ services:
     container_name: forum_learning-front_end_client
     build: ./front-end_client
     restart: always
+    ports:
+      - "80:80"
