@@ -1,43 +1,41 @@
 version: "3.8"
 
 volumes:
-  forumlearning-mongodbdata:
   forumlearning-mysqldata:
+  forumlearning-rabbitmqdata:
 
 services:
-
-  # apigateway_internal_database:
-  #   container_name: apigateway_internal_database
-  #   image: mongo:latest
-  #   restart: always
-  #   ports:
-  #     - "27018:27017"
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: root
-  #     MONGO_INITDB_ROOT_PASSWORD: forumlearning123
-  #   volumes:
-  #     - forumlearning-mongodbdata:/data/db
   
   mysqldb:
     restart: always
     image: mysql
     container_name: mysqldb
-
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
-
     environment:
       MYSQL_DATABASE: forum_learning
       MYSQL_USER: forum_learning
       MYSQL_PASSWORD: forum_learning_123
       MYSQL_ROOT_PASSWORD: root
-
     volumes:
       - forumlearning-mysqldata:/var/lib/mysql
       - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
       - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
 
-  #   ports:
-  #     - "3306:3306"
+    ports:
+      - "3306:3306"     # Do Not Uncomment in Production
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: forum_learning-rabbitmq
+    volumes:
+      - forumlearning-rabbitmqdata:/var/lib/rabbitmq
+    ports:
+      - 5672:5672     # Do Not Uncomment in Production
+      - 15672:15672
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=123123
+      - RABBITMQ_DEFAULT_USER=forum_learning
+      - RABBITMQ_DEFAULT_PASS=forum_learning_123
 
   # apigateway:
   #   container_name: forum_learning-apigateway
@@ -64,22 +62,14 @@ services:
       - MYSQL_USERNAME=forum_learning
       - MYSQL_PASSWORD=forum_learning_123
       - MYSQL_DATABASE=forum_learning
+      - QUEUE_HOST=rabbitmq
+      - QUEUE_PORT=5672
+      - QUEUE_USERNAME=forum_learning
+      - QUEUE_PASSWORD=forumlearning123
     ports:
       - "8081:8080"
     depends_on: 
       - mysqldb
-  
-  # account_manager:
-  #   container_name: forum_learning-account_manager
-  #   build: ./account_manager/
-  #   restart: always
-  #   environment: 
-  #     - GIN_MODE=release
-  #     - ORACLESQL_HOST=localhost
-  #     - ORACLESQL_PORT=1521
-  #     - ORACLESQL_USER=user
-  #     - ORACLESQL_PASSWORD=password
-  #     - ORACLESQL_DB=forum_learning
 
   # post:
   #   container_name: forum_learning-post
