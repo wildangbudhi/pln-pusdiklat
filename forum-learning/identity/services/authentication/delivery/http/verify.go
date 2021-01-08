@@ -20,7 +20,7 @@ func (handler *AuthenticationHTTPHandler) Verify(c *gin.Context) {
 	c.BindJSON(requestBodyData)
 
 	if requestBodyData.Token == "" {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Token tidak boleh kosong"})
+		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Token Cannot Be Empty"})
 		return
 	}
 

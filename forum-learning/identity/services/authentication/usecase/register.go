@@ -30,19 +30,19 @@ func (usecase *authenticationUsecase) Register(fullName string, email domain.Ema
 	userAuthCheck, err = usecase.userAuthRepository.GetUserAuthByEmail(email.GetValue())
 
 	if userAuthCheck != nil {
-		return -1, fmt.Errorf("Email Sudah Digunakan")
+		return -1, fmt.Errorf("Email Has Been Used")
 	}
 
 	userAuthCheck, err = usecase.userAuthRepository.GetUserAuthByUsername(username)
 
 	if userAuthCheck != nil {
-		return -1, fmt.Errorf("Username Sudah Digunakan")
+		return -1, fmt.Errorf("Username Has Been Used")
 	}
 
 	hashedPassword, err := hashPassword(password)
 
 	if err != nil {
-		return -1, fmt.Errorf("Gagal Mengenkripsi Password")
+		return -1, fmt.Errorf("Failed To Encrypt Password")
 	}
 
 	userAuth := model.UserAuth{

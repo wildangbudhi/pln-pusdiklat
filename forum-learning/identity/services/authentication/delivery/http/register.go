@@ -29,17 +29,17 @@ func (handler *AuthenticationHTTPHandler) Register(c *gin.Context) {
 	c.BindJSON(requestBodyData)
 
 	if requestBodyData.Email == "" {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Email tidak boleh kosong"})
+		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Email Cannot Be Empty"})
 		return
 	}
 
 	if requestBodyData.Username == "" {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Username tidak boleh kosong"})
+		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Username Cannot Be Empty"})
 		return
 	}
 
 	if requestBodyData.Password == "" {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Password tidak boleh kosong"})
+		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Password Cannot Be Empty"})
 		return
 	}
 
