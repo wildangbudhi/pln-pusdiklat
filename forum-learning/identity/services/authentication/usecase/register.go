@@ -24,18 +24,17 @@ func hashPassword(password string) (string, error) {
 
 func (usecase *authenticationUsecase) Register(fullName string, email domain.Email, username string, password string) (int64, error) {
 
-	var userAuthCheck *model.UserAuth
 	var err error
 
-	userAuthCheck, err = usecase.userAuthRepository.GetUserAuthByEmail(email.GetValue())
+	_, err = usecase.userAuthRepository.GetUserAuthByEmail(email.GetValue())
 
-	if userAuthCheck != nil {
+	if err == nil {
 		return -1, fmt.Errorf("Email Has Been Used")
 	}
 
-	userAuthCheck, err = usecase.userAuthRepository.GetUserAuthByUsername(username)
+	_, err = usecase.userAuthRepository.GetUserAuthByUsername(username)
 
-	if userAuthCheck != nil {
+	if err == nil {
 		return -1, fmt.Errorf("Username Has Been Used")
 	}
 
@@ -54,6 +53,7 @@ func (usecase *authenticationUsecase) Register(fullName string, email domain.Ema
 			{ID: 1, RoleName: "Client"},
 		},
 	}
+
 	userAuthID, err := usecase.userAuthRepository.InsertUserAuth(&userAuth)
 
 	if err != nil {
