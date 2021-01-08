@@ -19,7 +19,7 @@ type Email struct {
 func NewEmail(email string) (*Email, error) {
 
 	if !validateEmail(email) {
-		return nil, fmt.Errorf("Format Email Tidak Sesuai")
+		return nil, fmt.Errorf("Email Format Invalid")
 	}
 
 	emailObj := &Email{

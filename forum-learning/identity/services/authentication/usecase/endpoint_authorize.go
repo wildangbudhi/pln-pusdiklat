@@ -10,7 +10,7 @@ func (usecase *authenticationUsecase) EndpointAuthorize(userID int, method strin
 	method = strings.ToUpper(method)
 
 	if method != "GET" && method != "POST" {
-		return false, fmt.Errorf("Method Tidak Izinkan")
+		return false, fmt.Errorf("Method Not Allowed")
 	}
 
 	userAuth, err := usecase.userAuthRepository.GetUserAuthByID(userID)

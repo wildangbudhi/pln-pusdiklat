@@ -34,7 +34,7 @@ func (repo *userAuthRepository) GetUserAuthByID(id int) (*model.UserAuth, error)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return nil, fmt.Errorf("User Tidak Ditemukan")
+			return nil, fmt.Errorf("User Not Found")
 		}
 
 		return nil, err
@@ -77,7 +77,7 @@ func (repo *userAuthRepository) GetUserAuthByEmail(email string) (*model.UserAut
 
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return nil, fmt.Errorf("User Tidak Ditemukan")
+			return nil, fmt.Errorf("User Not Found")
 		}
 
 		return nil, err
@@ -120,7 +120,7 @@ func (repo *userAuthRepository) GetUserAuthByUsername(username string) (*model.U
 
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return nil, fmt.Errorf("User Tidak Ditemukan")
+			return nil, fmt.Errorf("User Not Found")
 		}
 
 		return nil, err
@@ -232,7 +232,7 @@ func (repo *userAuthRepository) CountRoleActivitiesPermission(method string, url
 
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return -1, fmt.Errorf("User Tidak Ditemukan")
+			return -1, fmt.Errorf("Activities Data Now Found")
 		}
 
 		return -1, err

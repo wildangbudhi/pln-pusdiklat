@@ -2,7 +2,6 @@ package usecase
 
 import (
 	"fmt"
-	"log"
 	"strconv"
 
 	"github.com/dgrijalva/jwt-go"
@@ -13,7 +12,7 @@ func verifyToken(stringToken string, secretKey []byte) (*jwt.Token, error) {
 	token, err := jwt.Parse(stringToken, func(token *jwt.Token) (interface{}, error) {
 
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+			return nil, fmt.Errorf("Unexpected Signing Method")
 		}
 
 		return secretKey, nil
@@ -39,22 +38,19 @@ func (usecase *authenticationUsecase) Verify(token string) (*domain.VerifyUsecas
 	claims, ok := jwtTokenObject.Claims.(jwt.MapClaims)
 
 	if !ok || !jwtTokenObject.Valid {
-		return nil, fmt.Errorf("Token Tidak Valid")
+		return nil, fmt.Errorf("Token Invalid")
 	}
-
-	log.Println(claims)
-	log.Println(claims["id"])
 
 	userID, ok := claims["id"].(string)
 
 	if !ok {
-		return nil, fmt.Errorf("Metadata Token Tidak Ditemukan, Silahkan Coba Lagi")
+		return nil, fmt.Errorf("Token Metadata Not Found")
 	}
 
 	userIDInt, err := strconv.Atoi(userID)
 
 	if err != nil {
-		return nil, fmt.Errorf("Format ID Tidak Valid")
+		return nil, fmt.Errorf("ID Format Invalid")
 	}
 
 	userAuth, err := usecase.userAuthRepository.GetUserAuthByID(userIDInt)
