@@ -2,7 +2,6 @@ package usecase
 
 import (
 	"fmt"
-	"log"
 	"strconv"
 	"time"
 
@@ -48,8 +47,6 @@ func (usecase *authenticationUsecase) Authenticate(username string, password str
 	}
 
 	expirationDate := time.Now().Add(time.Hour * 24)
-
-	log.Println(userAuth.ID)
 
 	token, err := createJWTToken(userAuth.ID, userAuth.Email, expirationDate, usecase.secretKey)
 
