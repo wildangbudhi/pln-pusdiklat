@@ -65,11 +65,12 @@ services:
       - QUEUE_HOST=rabbitmq
       - QUEUE_PORT=5672
       - QUEUE_USERNAME=forum_learning
-      - QUEUE_PASSWORD=forumlearning123
+      - QUEUE_PASSWORD=forum_learning_123
     ports:
       - "8081:8080"
     depends_on: 
       - mysqldb
+      - rabbitmq
 
   # post:
   #   container_name: forum_learning-post
