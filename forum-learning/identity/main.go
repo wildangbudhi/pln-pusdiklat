@@ -21,4 +21,5 @@ func main() {
 
 func depedencyInjection(server *utils.Server) {
 	depedencyinjection.AuthenticationDI(server)
+	depedencyinjection.AccountManagerDI(server)
 }
