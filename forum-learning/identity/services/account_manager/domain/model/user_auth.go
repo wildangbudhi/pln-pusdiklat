@@ -14,4 +14,5 @@ type UserAuth struct {
 // UserAuthRepository Interface is a contract of Repository for User Auth Table
 type UserAuthRepository interface {
 	GetUserAuthByID(id int) (*UserAuth, error)
+	UpdateUserAuthByID(id int, fullName string) (int, error)
 }

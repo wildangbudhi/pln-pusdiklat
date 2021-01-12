@@ -3,6 +3,7 @@ package domain
 // AccountManagerUsecase is an Interface for Account Manager Usecase
 type AccountManagerUsecase interface {
 	GetUserData(userID int) (*GetUserDataUsecaseResponse, error)
+	UpdateUserData(userID int, fullName string, requestUserID int, requestUserRoles []string) (bool, error)
 }
 
 type GetUserDataUsecaseResponse struct {

@@ -16,3 +16,11 @@ func (repo *UserAuthRepositoryMock) GetUserAuthByID(id int) (*model.UserAuth, er
 	return result.(*model.UserAuth), args.Error(1)
 
 }
+
+func (repo *UserAuthRepositoryMock) UpdateUserAuthByID(id int, fullName string) (int, error) {
+
+	args := repo.Called()
+	result := args.Get(0)
+	return result.(int), args.Error(1)
+
+}

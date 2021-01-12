@@ -39,3 +39,29 @@ func (repo *userAuthRepository) GetUserAuthByID(id int) (*model.UserAuth, error)
 
 	return userAuth, nil
 }
+
+func (repo *userAuthRepository) UpdateUserAuthByID(id int, fullName string) (int, error) {
+
+	queryString := "UPDATE user_auth SET full_name=? WHERE id=?"
+
+	statement, err := repo.db.Prepare(queryString)
+
+	if err != nil {
+		return -1, err
+	}
+
+	res, err := statement.Exec(fullName, id)
+
+	if err != nil {
+		return -1, err
+	}
+
+	rowAffected, err := res.RowsAffected()
+
+	if err != nil {
+		return -1, err
+	}
+
+	return int(rowAffected), nil
+
+}

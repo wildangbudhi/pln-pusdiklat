@@ -16,5 +16,6 @@ func NewAccountManagerHTTPHandler(router *gin.RouterGroup, accountManagerUsecase
 	}
 
 	router.GET("/:id", handler.GetUserData)
+	router.POST("/update/:id", handler.UpdateUserData)
 
 }
