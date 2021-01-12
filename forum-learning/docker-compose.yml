@@ -12,14 +12,14 @@ services:
     container_name: mysqldb
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
     environment:
-      MYSQL_DATABASE: forum_learning
-      MYSQL_USER: forum_learning
-      MYSQL_PASSWORD: forum_learning_123
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - forumlearning-mysqldata:/var/lib/mysql
-      - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
+      # - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./mysqldump-folder/identity_schema.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./mysqldump-folder/identity_test_data.sql:/docker-entrypoint-initdb.d/3.sql
+      - ./mysqldump-folder/forum_schema.sql:/docker-entrypoint-initdb.d/4.sql
+      - ./mysqldump-folder/forum_test_data.sql:/docker-entrypoint-initdb.d/5.sql
 
     ports:
       - "3306:3306"     # Do Not Uncomment in Production
@@ -36,20 +36,6 @@ services:
       - RABBITMQ_ERLANG_COOKIE=123123
       - RABBITMQ_DEFAULT_USER=forum_learning
       - RABBITMQ_DEFAULT_PASS=forum_learning_123
-
-  # apigateway:
-  #   container_name: forum_learning-apigateway
-  #   build: ./api-gateway/
-  #   restart: always
-  #   ports:
-  #     - "8080:8080"
-  #   environment: 
-  #     - GIN_MODE=release
-  #     - MONGODB_HOST=apigateway_internal_database
-  #     - MONGODB_PORT=27017
-  #     - MONGOBD_USER=root
-  #     - MONGODB_PASSWORD=forumlearning123
-  #     - MONGOBD_AUTH_SRC=admin
   
   identity:
     container_name: forum_learning-indentity
@@ -59,9 +45,9 @@ services:
       - GIN_MODE=debug
       - MYSQL_HOST=mysqldb
       - MYSQL_PORT=3306
-      - MYSQL_USERNAME=forum_learning
-      - MYSQL_PASSWORD=forum_learning_123
-      - MYSQL_DATABASE=forum_learning
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=forum
       - QUEUE_HOST=rabbitmq
       - QUEUE_PORT=5672
       - QUEUE_USERNAME=forum_learning
