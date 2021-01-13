@@ -66,9 +66,7 @@ func (usecase *authenticationUsecase) Register(fullName string, email domain.Ema
 			ID:       int(userAuthID),
 			FullName: fullName,
 			Email:    email.GetValue(),
-			Roles: []event.Roles{
-				{ID: 1, RoleName: "Client"},
-			},
+			Username: username,
 		},
 	}
 

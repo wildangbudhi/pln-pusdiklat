@@ -13,8 +13,3 @@ type UserAuthEvent struct {
 	Action string    `json:"action"` // CREATE, UPDATE, DELETE
 	Data   *UserAuth `json:"data,omitempty"`
 }
-
-// UserAuthEventRepository is a contract of Repository for Message Queue UserAuthEvent
-type UserAuthEventRepository interface {
-	PublishDataChangesEvent(userAuthEvent *UserAuthEvent) error
-}

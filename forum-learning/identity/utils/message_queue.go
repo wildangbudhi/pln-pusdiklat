@@ -68,7 +68,7 @@ func (server *MessageQueueServer) consumeQueue(consumerFunc consumerFunction) {
 		log.Fatal("Failed to Create Channel : " + err.Error())
 	}
 
-	err = ch.ExchangeDeclare("event", "topic", true, false, false, false, nil)
+	err = ch.ExchangeDeclare(consumerFunc.exchangeName, consumerFunc.exchangeType, true, false, false, false, nil)
 
 	if err != nil {
 		log.Fatal("Failed to Declare Exchange : " + err.Error())
@@ -78,7 +78,7 @@ func (server *MessageQueueServer) consumeQueue(consumerFunc consumerFunction) {
 
 	queue, err := ch.QueueDeclare(consumerFunc.queueName, false, false, false, false, nil)
 
-	err = ch.QueueBind(queue.Name, consumerFunc.routingKey, "event", false, nil)
+	err = ch.QueueBind(queue.Name, consumerFunc.routingKey, consumerFunc.exchangeName, false, nil)
 
 	if err != nil {
 		log.Fatal("Failed to Bind Queue : " + err.Error())
@@ -92,7 +92,6 @@ func (server *MessageQueueServer) consumeQueue(consumerFunc consumerFunction) {
 
 	for msg := range consumer {
 		consumerFunc.function(msg)
-		msg.Ack(false)
 	}
 }
 
