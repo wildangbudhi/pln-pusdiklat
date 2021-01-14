@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@pln_forum_learning">
+    <meta name="twitter:creator" content="@pln_forum_learning">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PLN Forum Learning">
+    <meta name="twitter:description" content="PLN Forum Learning">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://pln_forum_learning.com">
+    <meta property="og:title" content="PLN Forum Learning">
+    <meta property="og:description" content="PLN Forum Learning">
+
+    <!-- Meta -->
+    <meta name="description" content="PLN Forum Learning">
+    <meta name="author" content="PLN">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+    {% block title %} {% endblock %}
+
+    <!-- vendor css -->
+    <link href="{{ url_for('static', filename='lib/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
+
+    <!-- DashForge CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.profile.css') }}">
+</head>
+
+{% block body %} {% endblock %}
+
+</html>

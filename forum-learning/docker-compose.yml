@@ -1,8 +1,8 @@
 version: "3.8"
 
-volumes:
-  forumlearning-mongodbdata:
-  forumlearning-mysqldata:
+# volumes:
+#   forumlearning-mongodbdata:
+#   forumlearning-mysqldata:
 
 services:
 
@@ -18,23 +18,23 @@ services:
   #   volumes:
   #     - forumlearning-mongodbdata:/data/db
   
-  mysqldb:
-    restart: always
-    image: mysql
-    container_name: mysqldb
+  # mysqldb:
+  #   restart: always
+  #   image: mysql
+  #   container_name: mysqldb
 
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
+  #   command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
 
-    environment:
-      MYSQL_DATABASE: forum_learning
-      MYSQL_USER: forum_learning
-      MYSQL_PASSWORD: forum_learning_123
-      MYSQL_ROOT_PASSWORD: root
+  #   environment:
+  #     MYSQL_DATABASE: forum_learning
+  #     MYSQL_USER: forum_learning
+  #     MYSQL_PASSWORD: forum_learning_123
+  #     MYSQL_ROOT_PASSWORD: root
 
-    volumes:
-      - forumlearning-mysqldata:/var/lib/mysql
-      - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
+  #   volumes:
+  #     - forumlearning-mysqldata:/var/lib/mysql
+  #     - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
+  #     - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
 
   #   ports:
   #     - "3306:3306"
@@ -53,21 +53,21 @@ services:
   #     - MONGODB_PASSWORD=forumlearning123
   #     - MONGOBD_AUTH_SRC=admin
   
-  identity:
-    container_name: forum_learning-indentity
-    build: ./identity/
-    restart: always
-    environment: 
-      - GIN_MODE=debug
-      - MYSQL_HOST=mysqldb
-      - MYSQL_PORT=3306
-      - MYSQL_USERNAME=forum_learning
-      - MYSQL_PASSWORD=forum_learning_123
-      - MYSQL_DATABASE=forum_learning
-    ports:
-      - "8081:8080"
-    depends_on: 
-      - mysqldb
+  # identity:
+  #   container_name: forum_learning-indentity
+  #   build: ./identity/
+  #   restart: always
+  #   environment: 
+  #     - GIN_MODE=debug
+  #     - MYSQL_HOST=mysqldb
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_USERNAME=forum_learning
+  #     - MYSQL_PASSWORD=forum_learning_123
+  #     - MYSQL_DATABASE=forum_learning
+  #   ports:
+  #     - "8081:8080"
+  #   depends_on: 
+  #     - mysqldb
   
   # account_manager:
   #   container_name: forum_learning-account_manager
@@ -85,5 +85,7 @@ services:
     container_name: forum_learning-front_end_client
     build: ./front-end_client
     restart: always
+    volumes: 
+      - "./front-end_client/app:/app/app"
     ports:
       - "80:80"
