@@ -28,6 +28,12 @@
     {% block title %} {% endblock %}
 
     <!-- vendor css -->
+    <style type="text/css">
+    html *
+        {
+           font-family: Segoe UI, Roboto, Helvetica Neue, sans-serif !important;
+        }
+    </style>
     <link href="{{ url_for('static', filename='lib/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
 
@@ -178,6 +184,7 @@
                                 <a href="/posts" class="nav-link"><i data-feather="twitter"></i> <span style="padding-right:5em">Posts</span></a>
                             </nav>
                         </div><!-- col -->
+                        <!-- category
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Electric Power Supply Business</label>
                             <nav class="nav nav-classic tx-13">
@@ -186,7 +193,7 @@
                                 <a href="" class="nav-link"><i data-feather="twitter"></i> <span>Distribution</span></a>
                                 <a href="" class="nav-link"><i data-feather="instagram"></i> <span>Commerce &amp; Customer Management</span></a>
                             </nav>
-                        </div><!-- col -->
+                        </div>
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label
                                 class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Electricity Support</label>
@@ -198,7 +205,7 @@
                                 <a href="" class="nav-link"><i data-feather="phone"></i> <span>Learning</span></a>
                                 <a href="" class="nav-link"><i data-feather="mail"></i> <span>Certification</span></a>
                                 </nav>
-                        </div><!-- col -->
+                        </div>
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label
                                 class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Corporate Support</label>
@@ -215,14 +222,14 @@
                                         Office Management</span></a>
                                 <a href="" class="nav-link"><i data-feather="calendar"></i> <span>Company Management</span></a>
                             </nav>
-                        </div><!-- col -->
+                        </div>
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label
                                 class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Additional</label>
                                 <nav class="nav nav-classic tx-13">
                                     <a href="" class="nav-link"><i data-feather="facebook"></i> <span style="padding-right:5em">Miscellaneous</span></a>
                                 </nav>
-                        </div><!-- col -->
+                        </div>-->
                     </div><!-- row -->
 
                 </div><!-- profile-sidebar -->
