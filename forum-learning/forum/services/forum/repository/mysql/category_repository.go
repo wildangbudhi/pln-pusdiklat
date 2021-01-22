@@ -1,4 +1,4 @@
-package mysq
+package mysql
 
 import (
 	"database/sql"

@@ -36,11 +36,12 @@ func (obj *Forum) MarshalJSON() ([]byte, error) {
 		AuthoFullName string `json:"author_full_name"`
 		AuthoUsername string `json:"author_username"`
 		Status        string `json:"status"`
+		CategoryID    int    `json:"category_id"`
 		CategoryName  string `json:"category_name"`
 		UpVote        int    `json:"up_vote"`
 		DownVote      int    `json:"down_vote"`
-		IsUpVote      bool   `json:"is_up_vote"`
-		IsDownVote    bool   `json:"is_down_vote"`
+		IsUpVoted     bool   `json:"is_up_voted"`
+		IsDownVoted   bool   `json:"is_down_voted"`
 		RepliesCount  int    `json:"replies_count"`
 	}{
 		ID:            obj.ID.GetValue(),
@@ -51,9 +52,10 @@ func (obj *Forum) MarshalJSON() ([]byte, error) {
 		AuthoUsername: obj.AuthoUsername,
 		UpVote:        obj.UpVote,
 		DownVote:      obj.DownVote,
-		IsUpVote:      obj.IsUpVoted,
-		IsDownVote:    obj.IsDownVoted,
+		IsUpVoted:     obj.IsUpVoted,
+		IsDownVoted:   obj.IsDownVoted,
 		Status:        obj.Status.String,
+		CategoryID:    obj.CategoryID,
 		CategoryName:  obj.CategoryName,
 		RepliesCount:  obj.RepliesCount,
 	}
@@ -64,12 +66,10 @@ func (obj *Forum) MarshalJSON() ([]byte, error) {
 
 // ForumRepository is a contract of ForumRepository
 type ForumRepository interface {
-	InsertForum(title string, question sql.NullString, authorUserID int, categoryID int, status string) (int, error)
-	GetForumByID(id domain.UUID) (*Forum, error)
+	InsertForum(id domain.UUID, title string, question sql.NullString, authorUserID int, categoryID int, status string) (int, error)
 	GetForumByIDWithUserReaction(id domain.UUID, userID int) (*Forum, error)
-	FetchForum(offset int, limit int) ([]Forum, error)
 	FetchForumWithUserReaction(offset int, limit int, userID int) ([]Forum, error)
-	FetchForumByAuthorID(authorID int, offset int, limit int) ([]Forum, error)
+	FetchForumByAuthorIDWithUserReaction(authorID int, offset int, limit int, userID int) ([]Forum, error)
 	DeleteForumByID(id domain.UUID) (int, error)
 	UpdateForumByID(id domain.UUID, title string, question sql.NullString, categoryID int) (int, error)
 	UpdateForumStatusByID(id domain.UUID, status string) (int, error)
