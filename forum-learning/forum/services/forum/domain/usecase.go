@@ -4,7 +4,7 @@ package domain
 type ForumUsecase interface {
 	UserAuthDataChangesEvent(eventAction string, id int, fullName string, email Email, username string) error
 	FetchCategory() ([]Category, error)
-	// CreateForum(title string, question string, requestUserID int, categoryID int) error
+	CreateForum(title string, question string, requestUserID int, categoryID int) (*UUID, error)
 	// GetForum(forumID UUID, requestUserID int) (*Forum, error)
 	// FetchWithPagination(requestUserID int, offset int, limit int, categoriID *int, topForumSort bool) ([]Forum, error)
 	// FetchWithPaginationByAuthorID(requestUserID int, authorID int, offset int, limit int, categoriID *int, topForumSort bool) ([]Forum, error)

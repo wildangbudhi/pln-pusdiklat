@@ -16,5 +16,6 @@ func NewForumHTTPHandler(router *gin.RouterGroup, forumUsecase domain.ForumUseca
 	}
 
 	router.GET("/category", handler.FetchCategory)
+	router.POST("/create", handler.CreateForum)
 
 }

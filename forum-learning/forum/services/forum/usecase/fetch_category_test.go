@@ -26,6 +26,8 @@ func TestFetchCategory(t *testing.T) {
 
 	categoryList, err := testService.FetchCategory()
 
+	categoryRepositoryMock.AssertExpectations(t)
+
 	// Test Usecase Error is Nil
 	assert.Nil(t, err)
 
