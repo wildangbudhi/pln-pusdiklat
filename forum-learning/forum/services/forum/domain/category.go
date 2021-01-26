@@ -1,4 +1,4 @@
-package model
+package domain
 
 // Category is Struct Mode for category table in database
 type Category struct {

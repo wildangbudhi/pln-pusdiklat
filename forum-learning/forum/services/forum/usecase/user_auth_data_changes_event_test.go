@@ -5,14 +5,14 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/event_consumer/domain"
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/event_consumer/domain/mocks/mysql"
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/event_consumer/usecase"
+	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain"
+	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain/mocks/mysql"
+	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/usecase"
 )
 
 func TestUserAuthDataChangesEventEventNotAllowed(t *testing.T) {
 
-	testService := usecase.NewEventConsumerUsecase(nil)
+	testService := usecase.NewForumUsecase(nil, nil, nil, nil, nil, nil)
 
 	eventAction := "PUT"
 	userID := 1
@@ -31,7 +31,7 @@ func TestUserAuthDataChangesEventCreateSuccess(t *testing.T) {
 
 	userAuthRepositoryMock := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewEventConsumerUsecase(userAuthRepositoryMock)
+	testService := usecase.NewForumUsecase(userAuthRepositoryMock, nil, nil, nil, nil, nil)
 
 	eventAction := "CREATE"
 	userID := 1
@@ -54,7 +54,7 @@ func TestUserAuthDataChangesEventCreateError(t *testing.T) {
 
 	userAuthRepositoryMock := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewEventConsumerUsecase(userAuthRepositoryMock)
+	testService := usecase.NewForumUsecase(userAuthRepositoryMock, nil, nil, nil, nil, nil)
 
 	eventAction := "CREATE"
 	userID := 1
@@ -77,7 +77,7 @@ func TestUserAuthDataChangesEventUpdateSuccess(t *testing.T) {
 
 	userAuthRepositoryMock := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewEventConsumerUsecase(userAuthRepositoryMock)
+	testService := usecase.NewForumUsecase(userAuthRepositoryMock, nil, nil, nil, nil, nil)
 
 	eventAction := "UPDATE"
 	userID := 1
@@ -100,7 +100,7 @@ func TestUserAuthDataChangesEventUpdateError(t *testing.T) {
 
 	userAuthRepositoryMock := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewEventConsumerUsecase(userAuthRepositoryMock)
+	testService := usecase.NewForumUsecase(userAuthRepositoryMock, nil, nil, nil, nil, nil)
 
 	eventAction := "UPDATE"
 	userID := 1

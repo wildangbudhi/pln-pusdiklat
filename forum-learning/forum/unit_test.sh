@@ -1,3 +1,3 @@
 #!/bin/sh
 
-go test ./services/event_consumer/usecase/
+go test ./services/forum/usecase/

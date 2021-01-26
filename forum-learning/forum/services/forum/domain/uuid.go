@@ -2,28 +2,31 @@ package domain
 
 import (
 	"fmt"
-	"regexp"
-)
 
-func validateUUID(uuid string) bool {
-	re := regexp.MustCompile("^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$")
-	return re.MatchString(uuid)
-}
+	"github.com/google/uuid"
+)
 
 // UUID is an Object to handle uuid format checking
 type UUID struct {
 	value string
 }
 
-// NewUUID is an Constructor for UUID Object
-func NewUUID(uuid string) (*UUID, error) {
-
-	if !validateUUID(uuid) {
-		return nil, fmt.Errorf("UUID Format Invalid")
+// NewUUID is an Constructor for UUID Object generating UUID from Google UUID
+func NewUUID() *UUID {
+	return &UUID{
+		value: uuid.New().String(),
 	}
+}
+
+// NewUUIDFromString is an Constructor for UUID Object from String
+func NewUUIDFromString(uuid string) (*UUID, error) {
 
 	uuidObj := &UUID{
 		value: uuid,
+	}
+
+	if uuidObj.validateUUID() {
+		return nil, fmt.Errorf("UUID Format Invalid")
 	}
 
 	return uuidObj, nil
@@ -33,4 +36,15 @@ func NewUUID(uuid string) (*UUID, error) {
 // GetValue is a Getter Function for Value
 func (obj *UUID) GetValue() string {
 	return obj.value
+}
+
+func (obj *UUID) validateUUID() bool {
+	_, err := uuid.Parse(obj.value)
+
+	if err != nil {
+		return false
+	}
+
+	return true
+
 }

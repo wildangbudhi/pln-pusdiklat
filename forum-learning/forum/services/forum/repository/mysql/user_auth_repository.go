@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/event_consumer/domain/model"
+	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain"
 )
 
 type userAuthRepository struct {
@@ -13,16 +13,16 @@ type userAuthRepository struct {
 
 // NewUserAuthRepository is a constructor of userAuthRepository
 // which implement UserAuthRepository Interface
-func NewUserAuthRepository(db *sql.DB) model.UserAuthRepository {
+func NewUserAuthRepository(db *sql.DB) domain.UserAuthRepository {
 	return &userAuthRepository{
 		db: db,
 	}
 }
 
-func (repo *userAuthRepository) GetUserAuthByID(id int) (*model.UserAuth, error) {
+func (repo *userAuthRepository) GetUserAuthByID(id int) (*domain.UserAuth, error) {
 	var err error
 	var queryString string
-	userAuth := &model.UserAuth{}
+	userAuth := &domain.UserAuth{}
 
 	queryString = "SELECT id, full_name, avatar_file, email, username FROM user_auth WHERE id=?"
 	userAuthQueryResult := repo.db.QueryRow(queryString, id)
@@ -66,7 +66,7 @@ func (repo *userAuthRepository) UpdateUserAuthByID(id int, fullName string) (int
 
 }
 
-func (repo *userAuthRepository) InsertUserAuth(userAuth *model.UserAuth) (int64, error) {
+func (repo *userAuthRepository) InsertUserAuth(userAuth *domain.UserAuth) (int64, error) {
 
 	var err error
 	var queryString string

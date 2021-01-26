@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain"
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain/model"
 )
 
 type forumReactionRepository struct {
@@ -14,13 +13,13 @@ type forumReactionRepository struct {
 
 // NewForumReactionRepository is a constructor of forumReactionRepository
 // which implement ForumReactionRepository Interface
-func NewForumReactionRepository(db *sql.DB) model.ForumReactionRepository {
+func NewForumReactionRepository(db *sql.DB) domain.ForumReactionRepository {
 	return &forumReactionRepository{
 		db: db,
 	}
 }
 
-func (repo *forumReactionRepository) InsertForumReaction(forumReaction *model.ForumReaction) (int, error) {
+func (repo *forumReactionRepository) InsertForumReaction(forumReaction *domain.ForumReaction) (int, error) {
 
 	var err error
 	var queryString string
@@ -61,7 +60,7 @@ func (repo *forumReactionRepository) InsertForumReaction(forumReaction *model.Fo
 
 }
 
-func (repo *forumReactionRepository) GetForumReactionByUserIDAndForumID(userID int, forumID domain.UUID) (*model.ForumReaction, error) {
+func (repo *forumReactionRepository) GetForumReactionByUserIDAndForumID(userID int, forumID domain.UUID) (*domain.ForumReaction, error) {
 
 	var err error
 	var queryString string
@@ -76,7 +75,7 @@ func (repo *forumReactionRepository) GetForumReactionByUserIDAndForumID(userID i
 	forumQueryResult := repo.db.QueryRow(queryString, userID, forumID.GetValue())
 
 	var forumIDString string
-	forumReactionData := &model.ForumReaction{}
+	forumReactionData := &domain.ForumReaction{}
 
 	err = forumQueryResult.Scan(&forumReactionData.UserID, &forumIDString, &upVote, &downVote)
 
@@ -96,13 +95,7 @@ func (repo *forumReactionRepository) GetForumReactionByUserIDAndForumID(userID i
 		forumReactionData.DownVote = true
 	}
 
-	forumIDUUID, err := domain.NewUUID(forumIDString)
-
-	if err != nil {
-		return nil, fmt.Errorf("Forum ID Format Invalid")
-	}
-
-	forumReactionData.ForumID = *forumIDUUID
+	forumReactionData.ForumID = forumID
 
 	return forumReactionData, nil
 

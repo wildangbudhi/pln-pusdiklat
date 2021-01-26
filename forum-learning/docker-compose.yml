@@ -52,6 +52,8 @@ services:
       - QUEUE_PORT=5672
       - QUEUE_USERNAME=forum_learning
       - QUEUE_PASSWORD=forum_learning_123
+    volumes: 
+      - ./log/identity/:/src/log/
     ports:
       - "8081:8080"
     depends_on: 
@@ -73,6 +75,8 @@ services:
       - QUEUE_PORT=5672
       - QUEUE_USERNAME=forum_learning
       - QUEUE_PASSWORD=forum_learning_123
+    volumes: 
+      - ./log/forum/:/src/log/
     ports:
       - "8082:8080"
     depends_on: 

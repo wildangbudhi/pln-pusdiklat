@@ -53,8 +53,8 @@ CREATE TABLE `role_activities` (
   `activities_id` bigint DEFAULT NULL,
   KEY `role_activities_FK` (`role_id`),
   KEY `role_activities_FK_1` (`activities_id`),
-  CONSTRAINT `role_activities_FK` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `role_activities_FK_1` FOREIGN KEY (`activities_id`) REFERENCES `activities` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `role_activities_FK` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `role_activities_FK_1` FOREIGN KEY (`activities_id`) REFERENCES `activities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `user_roles`;
@@ -64,6 +64,6 @@ CREATE TABLE `user_roles` (
   `role_id` bigint DEFAULT NULL,
   KEY `user_roles_FK` (`user_id`),
   KEY `user_roles_FK_1` (`role_id`),
-  CONSTRAINT `user_roles_FK` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `user_roles_FK_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `user_roles_FK` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_roles_FK_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

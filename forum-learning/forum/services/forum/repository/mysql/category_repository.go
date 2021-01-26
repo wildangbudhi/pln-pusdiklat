@@ -3,7 +3,7 @@ package mysql
 import (
 	"database/sql"
 
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain/model"
+	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain"
 )
 
 type categoryRepository struct {
@@ -12,13 +12,13 @@ type categoryRepository struct {
 
 // NewCategoryRepository is a constructor of categoryRepository
 // which implement CategoryRepository Interface
-func NewCategoryRepository(db *sql.DB) model.CategoryRepository {
+func NewCategoryRepository(db *sql.DB) domain.CategoryRepository {
 	return &categoryRepository{
 		db: db,
 	}
 }
 
-func (repo *categoryRepository) FetchCategory() ([]model.Category, error) {
+func (repo *categoryRepository) FetchCategory() ([]domain.Category, error) {
 
 	var err error
 	var queryString string
@@ -32,10 +32,10 @@ func (repo *categoryRepository) FetchCategory() ([]model.Category, error) {
 		return nil, err
 	}
 
-	categoryList := make([]model.Category, 0)
+	categoryList := make([]domain.Category, 0)
 
 	for categoryQueryResult.Next() {
-		category := model.Category{}
+		category := domain.Category{}
 		err := categoryQueryResult.Scan(&category.ID, &category.CategoryName)
 
 		if err != nil {

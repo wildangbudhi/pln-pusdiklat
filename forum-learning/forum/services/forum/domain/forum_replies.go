@@ -1,16 +1,14 @@
-package model
+package domain
 
 import (
 	"database/sql"
 	"encoding/json"
-
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain"
 )
 
 // ForumReplies is Struct Model for user_auth forum_replies in database
 type ForumReplies struct {
-	ID               domain.UUID
-	ForumID          domain.UUID
+	ID               UUID
+	ForumID          UUID
 	AuthorUserID     int
 	AuthoFullName    sql.NullString
 	AuthoUsername    string
@@ -66,8 +64,9 @@ func (obj *ForumReplies) MarshalJSON() ([]byte, error) {
 
 // ForumRepliesRepository is a contract of ForumRepliesRepository
 type ForumRepliesRepository interface {
-	InsertForumReplies(userID int, forumID domain.UUID, answer string) (int, error)
-	FetchForumReactionByForumIDWithUserReaction(offset int, limit int, userID int) ([]ForumReaction, error)
-	UpdateForumReactionByID(id domain.UUID, answer string) (int, error)
-	DeleteForumRepliesByID(id domain.UUID) (int, error)
+	InsertForumReplies(id UUID, userID int, forumID UUID, answer string) (int, error)
+	GetForumRepliesByIDWithUserReaction(id UUID, userID int) (*ForumReplies, error)
+	FetchForumRepliesByForumIDWithUserReaction(offset int, limit int, forumID UUID, userID int) ([]ForumReplies, error)
+	UpdateForumRepliesByID(id UUID, answer string) (int, error)
+	DeleteForumRepliesByID(id UUID) (int, error)
 }
