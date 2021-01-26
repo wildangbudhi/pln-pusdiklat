@@ -27,7 +27,9 @@ func (repo *userAuthRepository) GetUserAuthByID(id int) (*domain.UserAuth, error
 	queryString = "SELECT id, full_name, avatar_file, email, username FROM user_auth WHERE id=?"
 	userAuthQueryResult := repo.db.QueryRow(queryString, id)
 
-	err = userAuthQueryResult.Scan(&userAuth.ID, &userAuth.FullName, &userAuth.AvatarFile, &userAuth.Email, &userAuth.Username)
+	var emailString string
+
+	err = userAuthQueryResult.Scan(&userAuth.ID, &userAuth.FullName, &userAuth.AvatarFile, &emailString, &userAuth.Username)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -36,6 +38,14 @@ func (repo *userAuthRepository) GetUserAuthByID(id int) (*domain.UserAuth, error
 
 		return nil, err
 	}
+
+	email, err := domain.NewEmail(emailString)
+
+	if err != nil {
+		return nil, err
+	}
+
+	userAuth.Email = *email
 
 	return userAuth, nil
 }
@@ -79,7 +89,7 @@ func (repo *userAuthRepository) InsertUserAuth(userAuth *domain.UserAuth) (int64
 		return -1, err
 	}
 
-	res, err := statement.Exec(userAuth.ID, userAuth.FullName, userAuth.Email, userAuth.Username)
+	res, err := statement.Exec(userAuth.ID, userAuth.FullName, userAuth.Email.GetValue(), userAuth.Username)
 
 	if err != nil {
 		return -1, err

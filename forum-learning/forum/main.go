@@ -45,7 +45,7 @@ func main() {
 }
 
 func depedencyInjection(server *utils.Server) {
-	depedencyinjection.EventConsumerDI(server)
+	depedencyinjection.ForumDI(server)
 }
 
 func setLogToFile(filePath string, filePointer *os.File) {

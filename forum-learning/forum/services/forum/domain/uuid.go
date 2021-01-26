@@ -25,7 +25,7 @@ func NewUUIDFromString(uuid string) (*UUID, error) {
 		value: uuid,
 	}
 
-	if uuidObj.validateUUID() {
+	if !uuidObj.validateUUID() {
 		return nil, fmt.Errorf("UUID Format Invalid")
 	}
 

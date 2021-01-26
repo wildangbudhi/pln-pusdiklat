@@ -17,7 +17,7 @@ func NewEmail(email string) (*Email, error) {
 		value: email,
 	}
 
-	if emailObj.validateEmail() {
+	if !emailObj.validateEmail() {
 		return nil, fmt.Errorf("Email Format Invalid")
 	}
 

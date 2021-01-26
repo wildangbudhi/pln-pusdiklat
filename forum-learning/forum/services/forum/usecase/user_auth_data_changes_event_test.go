@@ -17,10 +17,10 @@ func TestUserAuthDataChangesEventEventNotAllowed(t *testing.T) {
 	eventAction := "PUT"
 	userID := 1
 	fullName := "Test Name"
-	email, _ := domain.NewEmail("test@gmail.com")
+	email, err := domain.NewEmail("test@gmail.com")
 	username := "05111740000184"
 
-	err := testService.UserAuthDataChangesEvent(eventAction, userID, fullName, *email, username)
+	err = testService.UserAuthDataChangesEvent(eventAction, userID, fullName, *email, username)
 
 	// Test Usecase Error is Nil
 	assert.NotNil(t, err)
