@@ -476,6 +476,8 @@ func (repo *forumRepository) SearchByTitleAndQuestionWithUserReaction(offset int
 
 	forumList := make([]domain.Forum, 0)
 
+	query = "%" + query + "%"
+
 	queryString = `
 		SELECT 
 			f.id,
@@ -511,7 +513,7 @@ func (repo *forumRepository) SearchByTitleAndQuestionWithUserReaction(offset int
 			GROUP BY fr.forum_id 
 		) ufr ON ufr.forum_id = f.id 
 		WHERE 
-			f.title LIKE '%?%' or f.question LIKE '%?%'
+			f.title LIKE ? or f.question LIKE ?
 		ORDER BY up_vote DESC, replies_count DESC, f.created_at DESC
 		LIMIT ? OFFSET ?
 	`
