@@ -12,5 +12,5 @@ type ForumReaction struct {
 type ForumReactionRepository interface {
 	InsertForumReaction(forumReaction *ForumReaction) (int, error)
 	GetForumReactionByUserIDAndForumID(userID int, forumID UUID) (*ForumReaction, error)
-	UpdateForumReactionByUserIDAndForumID(userID int, forumID UUID, upVote bool, downVote bool) (int, error)
+	UpdateForumReactionByUserIDAndForumID(userID int, forumID UUID, userReaction ForumReactionType) (int, error)
 }

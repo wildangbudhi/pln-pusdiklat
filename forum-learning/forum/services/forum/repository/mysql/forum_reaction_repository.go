@@ -101,7 +101,7 @@ func (repo *forumReactionRepository) GetForumReactionByUserIDAndForumID(userID i
 
 }
 
-func (repo *forumReactionRepository) UpdateForumReactionByUserIDAndForumID(userID int, forumID domain.UUID, upVote bool, downVote bool) (int, error) {
+func (repo *forumReactionRepository) UpdateForumReactionByUserIDAndForumID(userID int, forumID domain.UUID, userReaction domain.ForumReactionType) (int, error) {
 
 	var err error
 	var queryString string
@@ -119,11 +119,11 @@ func (repo *forumReactionRepository) UpdateForumReactionByUserIDAndForumID(userI
 
 	var upVoteNumeric, downVoteNumeric int
 
-	if upVote {
+	if userReaction.IsUpVoteToggled() {
 		upVoteNumeric = 1
 	}
 
-	if downVote {
+	if userReaction.IsDownVoteToggled() {
 		downVoteNumeric = 1
 	}
 

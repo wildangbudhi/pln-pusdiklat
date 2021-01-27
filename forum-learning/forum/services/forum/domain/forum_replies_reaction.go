@@ -14,5 +14,5 @@ type ForumRepliesReaction struct {
 type ForumRepliesReactionRepository interface {
 	InsertForumRepliesReaction(forumRepliesReaction *ForumRepliesReaction) (int, error)
 	GetForumRepliesReactionByUserIDAndForumRepliesID(userID int, forumRepliesID UUID) (*ForumRepliesReaction, error)
-	UpdateForumRepliesReactionByUserIDAndForumRepliesID(userID int, forumRepliesID UUID, upVote bool, downVote bool, agree bool, skeptic bool) (int, error)
+	UpdateForumRepliesReactionByUserIDAndForumRepliesID(userID int, forumRepliesID UUID, userReaction ForumRepliesReactionType) (int, error)
 }

@@ -17,10 +17,12 @@ func NewForumHTTPHandler(router *gin.RouterGroup, forumUsecase domain.ForumUseca
 
 	router.GET("/category", handler.FetchCategory)
 	router.POST("/create", handler.CreateForum)
-	router.GET("/forum", handler.FetchWithPagination)
-	router.GET("/forum/:forum_id", handler.GetForum)
+	router.GET("/data", handler.FetchWithPagination)
+	router.GET("/data/:forum_id", handler.GetForum)
 	router.GET("/author/:author_id", handler.FetchWithPaginationByAuthorID)
 	router.GET("/delete/:forum_id", handler.DeleteForum)
 	router.GET("/search", handler.SearchForum)
+	router.GET("/react/:forum_id", handler.ReactForum)
+	router.POST("/reply/:forum_id", handler.ReplyForum)
 
 }

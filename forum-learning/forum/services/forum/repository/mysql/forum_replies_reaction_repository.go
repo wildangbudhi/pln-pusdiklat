@@ -131,7 +131,7 @@ func (repo *forumRepliesReactionRepository) GetForumRepliesReactionByUserIDAndFo
 
 }
 
-func (repo *forumRepliesReactionRepository) UpdateForumRepliesReactionByUserIDAndForumRepliesID(userID int, forumRepliesID domain.UUID, upVote bool, downVote bool, agree bool, skeptic bool) (int, error) {
+func (repo *forumRepliesReactionRepository) UpdateForumRepliesReactionByUserIDAndForumRepliesID(userID int, forumRepliesID domain.UUID, userReaction domain.ForumRepliesReactionType) (int, error) {
 
 	var err error
 	var queryString string
@@ -151,19 +151,19 @@ func (repo *forumRepliesReactionRepository) UpdateForumRepliesReactionByUserIDAn
 
 	var upVoteNumeric, downVoteNumeric, agreeNumeric, skepticNumerik int
 
-	if upVote {
+	if userReaction.IsUpVoteToggled() {
 		upVoteNumeric = 1
 	}
 
-	if downVote {
+	if userReaction.IsDownVoteToggled() {
 		downVoteNumeric = 1
 	}
 
-	if agree {
+	if userReaction.IsAgreeToggled() {
 		agreeNumeric = 1
 	}
 
-	if skeptic {
+	if userReaction.IsSkepticToggled() {
 		skepticNumerik = 1
 	}
 
