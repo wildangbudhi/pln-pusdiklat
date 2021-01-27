@@ -20,5 +20,6 @@ func NewForumHTTPHandler(router *gin.RouterGroup, forumUsecase domain.ForumUseca
 	router.GET("/forum", handler.FetchWithPagination)
 	router.GET("/forum/:forum_id", handler.GetForum)
 	router.GET("/author/:author_id", handler.FetchWithPaginationByAuthorID)
+	router.GET("/delete/:forum_id", handler.DeleteForum)
 
 }

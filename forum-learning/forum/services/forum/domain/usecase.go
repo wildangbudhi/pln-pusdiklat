@@ -8,7 +8,7 @@ type ForumUsecase interface {
 	GetForum(forumID UUID, requestUserID int) (*Forum, error)
 	FetchWithPagination(requestUserID int, offset int, limit int, categoriID *int, topForumSort bool) ([]Forum, error)
 	FetchWithPaginationByAuthorID(requestUserID int, authorID int, offset int, limit int, topForumSort bool) ([]Forum, error)
-	// DeleteForum(forumID UUID) error
+	DeleteForum(forumID UUID, requestUserID int, requestUserRoles []string) error
 	// ReactForum(requestUserID int, forumID UUID, reactionType string) error
 	// SearchForum(requestUserID int, query string) ([]Forum, error)
 	// ReplyForum(requestUserID int, forumID UUID, answer string) error
