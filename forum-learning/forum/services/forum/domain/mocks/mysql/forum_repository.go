@@ -27,7 +27,7 @@ func (repo *ForumRepositoryMock) GetForumByIDWithUserReaction(id domain.UUID, us
 
 }
 
-func (repo *ForumRepositoryMock) FetchForumWithUserReaction(offset int, limit int, userID int) ([]domain.Forum, error) {
+func (repo *ForumRepositoryMock) FetchForumWithUserReaction(offset int, limit int, userID int, topForumSort bool) ([]domain.Forum, error) {
 
 	args := repo.Called()
 	result := args.Get(0)
@@ -35,7 +35,15 @@ func (repo *ForumRepositoryMock) FetchForumWithUserReaction(offset int, limit in
 
 }
 
-func (repo *ForumRepositoryMock) FetchForumByAuthorIDWithUserReaction(authorID int, offset int, limit int, userID int) ([]domain.Forum, error) {
+func (repo *ForumRepositoryMock) FetchForumByAuthorIDWithUserReaction(authorID int, offset int, limit int, userID int, topForumSort bool) ([]domain.Forum, error) {
+
+	args := repo.Called()
+	result := args.Get(0)
+	return result.([]domain.Forum), args.Error(1)
+
+}
+
+func (repo *ForumRepositoryMock) FetchForumByCategoryIDWithUserReaction(categoryID int, offset int, limit int, userID int, topForumSort bool) ([]domain.Forum, error) {
 
 	args := repo.Called()
 	result := args.Get(0)

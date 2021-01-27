@@ -66,8 +66,9 @@ func (obj *Forum) MarshalJSON() ([]byte, error) {
 type ForumRepository interface {
 	InsertForum(id UUID, title string, question sql.NullString, authorUserID int, categoryID int, status string) (int, error)
 	GetForumByIDWithUserReaction(id UUID, userID int) (*Forum, error)
-	FetchForumWithUserReaction(offset int, limit int, userID int) ([]Forum, error)
-	FetchForumByAuthorIDWithUserReaction(authorID int, offset int, limit int, userID int) ([]Forum, error)
+	FetchForumWithUserReaction(offset int, limit int, userID int, topForumSort bool) ([]Forum, error)
+	FetchForumByAuthorIDWithUserReaction(authorID int, offset int, limit int, userID int, topForumSort bool) ([]Forum, error)
+	FetchForumByCategoryIDWithUserReaction(categoryID int, offset int, limit int, userID int, topForumSort bool) ([]Forum, error)
 	SearchByTitleAndQuestionWithUserReaction(offset int, limit int, userID int, query string) ([]Forum, error)
 	DeleteForumByID(id UUID) (int, error)
 	UpdateForumByID(id UUID, title string, question sql.NullString, categoryID int) (int, error)

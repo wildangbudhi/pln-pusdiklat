@@ -145,7 +145,7 @@ func (repo *forumRepository) GetForumByIDWithUserReaction(id domain.UUID, userID
 
 }
 
-func (repo *forumRepository) FetchForumWithUserReaction(offset int, limit int, userID int) ([]domain.Forum, error) {
+func (repo *forumRepository) FetchForumWithUserReaction(offset int, limit int, userID int, topForumSort bool) ([]domain.Forum, error) {
 
 	var err error
 	var queryString string
@@ -154,42 +154,46 @@ func (repo *forumRepository) FetchForumWithUserReaction(offset int, limit int, u
 	forumList := make([]domain.Forum, 0)
 
 	queryString = `
-		SELECT 
-			f.id,
-			f.title,
-			f.question, 
-			f.author_user_id,
-			ua.full_name,
-			ua.username,
-			f.status,
-			f.category_id,
-			c.category_name,
-			IFNULL(fr.up_vote, 0) up_vote,
-			IFNULL(fr.down_vote, 0) down_vote,
-			IFNULL(frp.replies_count, 0) replies_count,
-			IFNULL(ufr.up_vote, 0) is_up_vote,
-			IFNULL(ufr.down_vote, 0) is_down_vote
-		FROM 
-			forum f
-		LEFT JOIN user_auth ua ON ua.id = f.author_user_id 
-		LEFT JOIN category c ON c.id = f.category_id 
-		LEFT JOIN (
-			SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
-			FROM forum_reaction fr 
-			GROUP BY fr.forum_id 
-		) fr ON fr.forum_id = f.id 
-		LEFT JOIN (
-			SELECT fr.forum_id, COUNT(1) replies_count FROM forum_replies fr GROUP BY fr.forum_id 
-		) frp ON frp.forum_id = f.id 
-		LEFT JOIN (
-			SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
-			FROM forum_reaction fr 
-			WHERE fr.user_id = ?
-			GROUP BY fr.forum_id 
-		) ufr ON ufr.forum_id = f.id 
-		ORDER BY f.created_at DESC
-		LIMIT ? OFFSET ?
-	`
+	SELECT 
+		f.id,
+		f.title,
+		f.question, 
+		f.author_user_id,
+		ua.full_name,
+		ua.username,
+		f.status,
+		f.category_id,
+		c.category_name,
+		IFNULL(fr.up_vote, 0) up_vote,
+		IFNULL(fr.down_vote, 0) down_vote,
+		IFNULL(frp.replies_count, 0) replies_count,
+		IFNULL(ufr.up_vote, 0) is_up_vote,
+		IFNULL(ufr.down_vote, 0) is_down_vote
+	FROM 
+		forum f
+	LEFT JOIN user_auth ua ON ua.id = f.author_user_id 
+	LEFT JOIN category c ON c.id = f.category_id 
+	LEFT JOIN (
+		SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
+		FROM forum_reaction fr 
+		GROUP BY fr.forum_id 
+	) fr ON fr.forum_id = f.id 
+	LEFT JOIN (
+		SELECT fr.forum_id, COUNT(1) replies_count FROM forum_replies fr GROUP BY fr.forum_id 
+	) frp ON frp.forum_id = f.id 
+	LEFT JOIN (
+		SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
+		FROM forum_reaction fr 
+		WHERE fr.user_id = ?
+		GROUP BY fr.forum_id 
+	) ufr ON ufr.forum_id = f.id 
+	ORDER BY f.created_at DESC`
+
+	if topForumSort {
+		queryString += `, up_vote DESC, replies_count DESC`
+	}
+
+	queryString += "\nLIMIT ? OFFSET ?"
 
 	forumQueryResult, err := repo.db.Query(queryString, userID, limit, offset)
 	defer forumQueryResult.Close()
@@ -216,7 +220,7 @@ func (repo *forumRepository) FetchForumWithUserReaction(offset int, limit int, u
 			&forumData.UpVote,
 			&forumData.DownVote,
 			&forumData.RepliesCount,
-			&isDownVoted,
+			&isUpVoted,
 			&isDownVoted,
 		)
 
@@ -248,7 +252,7 @@ func (repo *forumRepository) FetchForumWithUserReaction(offset int, limit int, u
 
 }
 
-func (repo *forumRepository) FetchForumByAuthorIDWithUserReaction(authorID int, offset int, limit int, userID int) ([]domain.Forum, error) {
+func (repo *forumRepository) FetchForumByAuthorIDWithUserReaction(authorID int, offset int, limit int, userID int, topForumSort bool) ([]domain.Forum, error) {
 
 	var err error
 	var queryString string
@@ -257,45 +261,157 @@ func (repo *forumRepository) FetchForumByAuthorIDWithUserReaction(authorID int, 
 	forumList := make([]domain.Forum, 0)
 
 	queryString = `
-		SELECT 
-			f.id,
-			f.title,
-			f.question, 
-			f.author_user_id,
-			ua.full_name,
-			ua.username,
-			f.status,
-			f.category_id,
-			c.category_name,
-			IFNULL(fr.up_vote, 0) up_vote,
-			IFNULL(fr.down_vote, 0) down_vote,
-			IFNULL(frp.replies_count, 0) replies_count,
-			IFNULL(ufr.up_vote, 0) is_up_vote,
-			IFNULL(ufr.down_vote, 0) is_down_vote
-		FROM 
-			forum f
-		LEFT JOIN user_auth ua ON ua.id = f.author_user_id 
-		LEFT JOIN category c ON c.id = f.category_id 
-		LEFT JOIN (
-			SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
-			FROM forum_reaction fr 
-			GROUP BY fr.forum_id 
-		) fr ON fr.forum_id = f.id 
-		LEFT JOIN (
-			SELECT fr.forum_id, COUNT(1) replies_count FROM forum_replies fr GROUP BY fr.forum_id 
-		) frp ON frp.forum_id = f.id 
-		LEFT JOIN (
-			SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
-			FROM forum_reaction fr 
-			WHERE fr.user_id = ?
-			GROUP BY fr.forum_id 
-		) ufr ON ufr.forum_id = f.id 
-		WHERE f.author_user_id = ?
-		ORDER BY f.created_at DESC
-		LIMIT ? OFFSET ?
-	`
+	SELECT 
+		f.id,
+		f.title,
+		f.question, 
+		f.author_user_id,
+		ua.full_name,
+		ua.username,
+		f.status,
+		f.category_id,
+		c.category_name,
+		IFNULL(fr.up_vote, 0) up_vote,
+		IFNULL(fr.down_vote, 0) down_vote,
+		IFNULL(frp.replies_count, 0) replies_count,
+		IFNULL(ufr.up_vote, 0) is_up_vote,
+		IFNULL(ufr.down_vote, 0) is_down_vote
+	FROM 
+		forum f
+	LEFT JOIN user_auth ua ON ua.id = f.author_user_id 
+	LEFT JOIN category c ON c.id = f.category_id 
+	LEFT JOIN (
+		SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
+		FROM forum_reaction fr 
+		GROUP BY fr.forum_id 
+	) fr ON fr.forum_id = f.id 
+	LEFT JOIN (
+		SELECT fr.forum_id, COUNT(1) replies_count FROM forum_replies fr GROUP BY fr.forum_id 
+	) frp ON frp.forum_id = f.id 
+	LEFT JOIN (
+		SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
+		FROM forum_reaction fr 
+		WHERE fr.user_id = ?
+		GROUP BY fr.forum_id 
+	) ufr ON ufr.forum_id = f.id 
+	WHERE f.author_user_id = ?
+	ORDER BY f.created_at DESC`
+
+	if topForumSort {
+		queryString += `, up_vote DESC, replies_count DESC`
+	}
+
+	queryString += "\nLIMIT ? OFFSET ?"
 
 	forumQueryResult, err := repo.db.Query(queryString, userID, authorID, limit, offset)
+	defer forumQueryResult.Close()
+
+	if err != nil {
+		return nil, err
+	}
+
+	for forumQueryResult.Next() {
+
+		var forumID string
+		forumData := domain.Forum{}
+
+		err = forumQueryResult.Scan(
+			&forumID,
+			&forumData.Title,
+			&forumData.Question,
+			&forumData.AuthorUserID,
+			&forumData.AuthoFullName,
+			&forumData.AuthoUsername,
+			&forumData.Status,
+			&forumData.CategoryID,
+			&forumData.CategoryName,
+			&forumData.UpVote,
+			&forumData.DownVote,
+			&forumData.RepliesCount,
+			&isUpVoted,
+			&isDownVoted,
+		)
+
+		if err != nil {
+			return nil, err
+		}
+
+		if isUpVoted > 0 {
+			forumData.IsUpVoted = true
+		}
+
+		if isDownVoted > 0 {
+			forumData.IsDownVoted = true
+		}
+
+		forumIDUUID, err := domain.NewUUIDFromString(forumID)
+
+		if err != nil {
+			return nil, fmt.Errorf("ID Format Invalid")
+		}
+
+		forumData.ID = *forumIDUUID
+
+		forumList = append(forumList, forumData)
+
+	}
+
+	return forumList, nil
+
+}
+
+func (repo *forumRepository) FetchForumByCategoryIDWithUserReaction(categoryID int, offset int, limit int, userID int, topForumSort bool) ([]domain.Forum, error) {
+
+	var err error
+	var queryString string
+	var isUpVoted, isDownVoted int
+
+	forumList := make([]domain.Forum, 0)
+
+	queryString = `
+	SELECT 
+		f.id,
+		f.title,
+		f.question, 
+		f.author_user_id,
+		ua.full_name,
+		ua.username,
+		f.status,
+		f.category_id,
+		c.category_name,
+		IFNULL(fr.up_vote, 0) up_vote,
+		IFNULL(fr.down_vote, 0) down_vote,
+		IFNULL(frp.replies_count, 0) replies_count,
+		IFNULL(ufr.up_vote, 0) is_up_vote,
+		IFNULL(ufr.down_vote, 0) is_down_vote
+	FROM 
+		forum f
+	LEFT JOIN user_auth ua ON ua.id = f.author_user_id 
+	LEFT JOIN category c ON c.id = f.category_id 
+	LEFT JOIN (
+		SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
+		FROM forum_reaction fr 
+		GROUP BY fr.forum_id 
+	) fr ON fr.forum_id = f.id 
+	LEFT JOIN (
+		SELECT fr.forum_id, COUNT(1) replies_count FROM forum_replies fr GROUP BY fr.forum_id 
+	) frp ON frp.forum_id = f.id 
+	LEFT JOIN (
+		SELECT fr.forum_id, SUM( fr.up_vote ) up_vote, SUM( fr.down_vote ) down_vote
+		FROM forum_reaction fr 
+		WHERE fr.user_id = ?
+		GROUP BY fr.forum_id 
+	) ufr ON ufr.forum_id = f.id 
+	WHERE f.category_id = ?
+	ORDER BY f.created_at DESC`
+
+	if topForumSort {
+		queryString += `, up_vote DESC, replies_count DESC`
+	}
+
+	queryString += "\nLIMIT ? OFFSET ?"
+
+	forumQueryResult, err := repo.db.Query(queryString, userID, categoryID, limit, offset)
 	defer forumQueryResult.Close()
 
 	if err != nil {

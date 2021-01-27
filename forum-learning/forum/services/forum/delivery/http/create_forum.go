@@ -2,7 +2,6 @@ package http
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain"
@@ -14,6 +13,10 @@ type createForumRequestBody struct {
 	CategoryID int    `json:"category_id" binding:"required"`
 }
 
+type createFroumRequestHeader struct {
+	XAuthID int `header:"X-Auth-Id" json:"X-Auth-Id" binding:"required"`
+}
+
 type createFroumResponseBody struct {
 	ForumID string `json:"forum_id"`
 }
@@ -22,6 +25,7 @@ func (handler *ForumHTTPHandler) CreateForum(c *gin.Context) {
 
 	c.Header("Content-Type", "application/json")
 
+	requestHeader := &createFroumRequestHeader{}
 	requestBodyData := &createForumRequestBody{}
 
 	err := c.BindJSON(requestBodyData)
@@ -31,21 +35,14 @@ func (handler *ForumHTTPHandler) CreateForum(c *gin.Context) {
 		return
 	}
 
-	requestUserIDSFromHeader, ok := c.Request.Header["X-Auth-Id"]
-
-	if !ok {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Request User ID Not Found"})
-		return
-	}
-
-	requestUserID, err := strconv.Atoi(requestUserIDSFromHeader[0])
+	err = c.BindHeader(requestHeader)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Request User ID Format Invalid"})
+		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
 		return
 	}
 
-	forumID, err := handler.forumUsecase.CreateForum(requestBodyData.Title, requestBodyData.Question, requestUserID, requestBodyData.CategoryID)
+	forumID, err := handler.forumUsecase.CreateForum(requestBodyData.Title, requestBodyData.Question, requestHeader.XAuthID, requestBodyData.CategoryID)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
