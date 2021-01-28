@@ -38,8 +38,31 @@ services:
       - RABBITMQ_DEFAULT_PASS=forum_learning_123
   
   identity:
-    container_name: forum_learning-indentity
+    container_name: forum_learning-identity
     build: ./identity/
+    restart: always
+    environment: 
+      - GIN_MODE=debug
+      - MYSQL_HOST=mysqldb
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=identity
+      - QUEUE_HOST=rabbitmq
+      - QUEUE_PORT=5672
+      - QUEUE_USERNAME=forum_learning
+      - QUEUE_PASSWORD=forum_learning_123
+    volumes: 
+      - ./log/identity/:/src/log/
+    ports:
+      - "8081:8080"
+    depends_on: 
+      - mysqldb
+      - rabbitmq
+
+  forum:
+    container_name: forum_learning-forum
+    build: ./forum/
     restart: always
     environment: 
       - GIN_MODE=debug
@@ -52,8 +75,10 @@ services:
       - QUEUE_PORT=5672
       - QUEUE_USERNAME=forum_learning
       - QUEUE_PASSWORD=forum_learning_123
+    volumes: 
+      - ./log/forum/:/src/log/
     ports:
-      - "8081:8080"
+      - "8082:8080"
     depends_on: 
       - mysqldb
       - rabbitmq

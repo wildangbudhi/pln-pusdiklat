@@ -2,11 +2,10 @@ package event
 
 // UserAuth is Struct Model for user_auth table in database
 type UserAuth struct {
-	ID         int    `json:"id"`
-	FullName   string `json:"full_name"`
-	AvatarFile string `json:"avatar_file"`
-	Email      string `json:"email"`
-	Username   string `json:"username"`
+	ID       int    `json:"id"`
+	FullName string `json:"full_name"`
+	Email    string `json:"email"`
+	Username string `json:"username"`
 }
 
 // UserAuthEvent is Struct for Event

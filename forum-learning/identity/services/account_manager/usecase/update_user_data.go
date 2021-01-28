@@ -36,11 +36,10 @@ func (usecase *accountManagerUsecase) UpdateUserData(userID int, fullName string
 	event := &event.UserAuthEvent{
 		Action: "UPDATE",
 		Data: &event.UserAuth{
-			ID:         userID,
-			FullName:   userAuthData.FullName.String,
-			AvatarFile: userAuthData.AvatarFile.String,
-			Email:      userAuthData.Email,
-			Username:   userAuthData.Username,
+			ID:       userID,
+			FullName: fullName,
+			Email:    userAuthData.Email,
+			Username: userAuthData.Username,
 		},
 	}
 
