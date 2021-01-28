@@ -116,7 +116,7 @@ func (repo *forumRepliesRepository) GetForumRepliesByIDWithUserReaction(id domai
 
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return nil, fmt.Errorf("Forum Not Found")
+			return nil, fmt.Errorf("Forum Replies Not Found")
 		}
 
 		return nil, err

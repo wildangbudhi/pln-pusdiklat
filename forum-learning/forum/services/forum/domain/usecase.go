@@ -12,7 +12,7 @@ type ForumUsecase interface {
 	SearchForum(offset int, limit int, requestUserID int, query string) ([]Forum, error)
 	ReactForum(requestUserID int, forumID UUID, userReaction ForumReactionType) error
 	ReplyForum(requestUserID int, forumID UUID, answer string) (*UUID, error)
-	// UpdateForumReplies(requestUserID int, forumRepliesID UUID, answer string) error
+	UpdateForumReplies(requestUserID int, forumRepliesID UUID, answer string, requestUserRoles []string) error
 	// DeleteForumReplies(requestUserID int, forumRepliesID UUID) error
 	// ReactForumReplies(requestUserID int, forumRepliesID UUID, reactionType string) error
 	// CloseForum(requestUserID int, forumID UUID) error
