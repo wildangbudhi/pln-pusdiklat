@@ -17,6 +17,7 @@ func NewForumHTTPHandler(router *gin.RouterGroup, forumUsecase domain.ForumUseca
 
 	router.GET("/category", handler.FetchCategory)
 	router.POST("/create", handler.CreateForum)
+	router.POST("/update/:forum_id", handler.UpdateForum)
 	router.GET("/fetch", handler.FetchWithPagination)
 	router.GET("/get/:forum_id", handler.GetForum)
 	router.GET("/author/:author_id", handler.FetchWithPaginationByAuthorID)
@@ -27,5 +28,6 @@ func NewForumHTTPHandler(router *gin.RouterGroup, forumUsecase domain.ForumUseca
 	router.POST("/reply/update/:forum_reply_id", handler.UpdateForumReplies)
 	router.GET("/reply/delete/:forum_reply_id", handler.DeleteForumReplies)
 	router.GET("/reply/react/:forum_reply_id", handler.ReactForumReplies)
+	router.GET("/get/:forum_id/replies", handler.FetchReplyByForumIDWithPagination)
 
 }

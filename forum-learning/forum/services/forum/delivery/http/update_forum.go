@@ -8,29 +8,31 @@ import (
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain"
 )
 
-type updateForumRepliesRequestHeader struct {
+type updateForumRequestHeader struct {
 	XAuthID    int      `header:"X-Auth-Id" json:"X-Auth-Id" binding:"required"`
 	XAuthRoles []string `header:"X-Auth-Roles" json:"X-Auth-Roles" binding:"required"`
 }
 
-type updateForumRepliesRequestBody struct {
-	Answer string `json:"answer" binding:"required"`
+type updateForumRequestBody struct {
+	Title      string `json:"title" binding:"required"`
+	Question   string `json:"question" binding:"required"`
+	CategoryID int    `json:"category_id" binding:"required"`
 }
 
-type updateForumRepliesResponseBody struct {
+type updateForumResponseBody struct {
 	Status string `json:"status"`
 }
 
-func (handler *ForumHTTPHandler) UpdateForumReplies(c *gin.Context) {
+func (handler *ForumHTTPHandler) UpdateForum(c *gin.Context) {
 
 	c.Header("Content-Type", "application/json")
 
-	requestHeader := &updateForumRepliesRequestHeader{}
-	requestBody := &updateForumRepliesRequestBody{}
+	requestHeader := &updateForumRequestHeader{}
+	requestBody := &updateForumRequestBody{}
 
-	forumRepliesIDString := c.Param("forum_reply_id")
+	forumIDString := c.Param("forum_id")
 
-	forumRepliesID, err := domain.NewUUIDFromString(forumRepliesIDString)
+	forumID, err := domain.NewUUIDFromString(forumIDString)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
@@ -58,13 +60,13 @@ func (handler *ForumHTTPHandler) UpdateForumReplies(c *gin.Context) {
 		return
 	}
 
-	err = handler.forumUsecase.UpdateForumReplies(requestHeader.XAuthID, *forumRepliesID, requestBody.Answer, requestHeader.XAuthRoles)
+	err = handler.forumUsecase.UpdateForum(requestHeader.XAuthID, *forumID, requestBody.Title, requestBody.Question, requestBody.CategoryID, requestHeader.XAuthRoles)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, updateForumRepliesResponseBody{Status: "Forum Reply Successfully Updated"})
+	c.JSON(http.StatusOK, updateForumResponseBody{Status: "Forum Successfully Updated"})
 
 }

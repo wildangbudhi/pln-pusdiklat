@@ -6,6 +6,7 @@ type ForumUsecase interface {
 	FetchCategory() ([]Category, error)
 	CreateForum(title string, question string, requestUserID int, categoryID int) (*UUID, error)
 	GetForum(forumID UUID, requestUserID int) (*Forum, error)
+	UpdateForum(requestUserID int, forumID UUID, title string, question string, categoriID int, requestUserRoles []string) error
 	DeleteForum(forumID UUID, requestUserID int, requestUserRoles []string) error
 	FetchWithPagination(requestUserID int, offset int, limit int, categoriID *int, topForumSort bool) ([]Forum, error)
 	FetchWithPaginationByAuthorID(requestUserID int, authorID int, offset int, limit int, topForumSort bool) ([]Forum, error)
@@ -15,6 +16,6 @@ type ForumUsecase interface {
 	UpdateForumReplies(requestUserID int, forumRepliesID UUID, answer string, requestUserRoles []string) error
 	DeleteForumReplies(requestUserID int, requestUserRoles []string, forumRepliesID UUID) error
 	ReactForumReplies(requestUserID int, forumRepliesID UUID, userReaction ForumRepliesReactionType) error
-	// FetchRepluWithPagination(requestUserID int, offset int, limit int, forumRepliesID UUID) ([]ForumReplies, error)
+	FetchReplyByForumIDWithPagination(requestUserID int, offset int, limit int, forumID UUID) ([]ForumReplies, error)
 	// CloseForum(requestUserID int, forumID UUID) error
 }
