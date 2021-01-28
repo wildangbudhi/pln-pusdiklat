@@ -26,7 +26,7 @@ func (repo *forumRepliesReactionRepository) InsertForumRepliesReaction(forumRepl
 	var upVote, downVote, agree, skeptic int
 
 	queryString = `
-	INSERT INTO forum_replies_reaction( user_id, forum_replies_id, up_vote, down_vote, agree, skeptic )
+	INSERT INTO forum_replies_reactions( user_id, forum_replies_id, up_vote, down_vote, agree, skeptic )
 	VALUES( ?, ?, ?, ?, ?, ? )
 	`
 	if forumRepliesReaction.UpVote {
@@ -81,7 +81,7 @@ func (repo *forumRepliesReactionRepository) GetForumRepliesReactionByUserIDAndFo
 
 	queryString = `
 		SELECT user_id, forum_replies_id, up_vote, down_vote, agree, skeptic 
-		FROM forum_replies_reaction
+		FROM forum_replies_reactions
 		WHERE user_id=? AND forum_replies_id=?
 	`
 
@@ -140,7 +140,7 @@ func (repo *forumRepliesReactionRepository) UpdateForumRepliesReactionByUserIDAn
 	var res sql.Result
 
 	queryString = `
-	UPDATE forum_replies_reaction SET up_vote=?, down_vote=?, agree=?, skeptic=?, updated_at=NOW() 
+	UPDATE forum_replies_reactions SET up_vote=?, down_vote=?, agree=?, skeptic=?, updated_at=NOW() 
 	WHERE user_id=? AND forum_replies_id=?`
 
 	statement, err = repo.db.Prepare(queryString)

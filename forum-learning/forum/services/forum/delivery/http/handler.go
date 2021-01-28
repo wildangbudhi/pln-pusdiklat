@@ -25,5 +25,7 @@ func NewForumHTTPHandler(router *gin.RouterGroup, forumUsecase domain.ForumUseca
 	router.GET("/react/:forum_id", handler.ReactForum)
 	router.POST("/reply/create/:forum_id", handler.ReplyForum)
 	router.POST("/reply/update/:forum_reply_id", handler.UpdateForumReplies)
+	router.GET("/reply/delete/:forum_reply_id", handler.DeleteForumReplies)
+	router.GET("/reply/react/:forum_reply_id", handler.ReactForumReplies)
 
 }

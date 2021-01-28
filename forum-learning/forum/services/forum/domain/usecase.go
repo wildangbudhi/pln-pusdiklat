@@ -13,7 +13,8 @@ type ForumUsecase interface {
 	ReactForum(requestUserID int, forumID UUID, userReaction ForumReactionType) error
 	ReplyForum(requestUserID int, forumID UUID, answer string) (*UUID, error)
 	UpdateForumReplies(requestUserID int, forumRepliesID UUID, answer string, requestUserRoles []string) error
-	// DeleteForumReplies(requestUserID int, forumRepliesID UUID) error
-	// ReactForumReplies(requestUserID int, forumRepliesID UUID, reactionType string) error
+	DeleteForumReplies(requestUserID int, requestUserRoles []string, forumRepliesID UUID) error
+	ReactForumReplies(requestUserID int, forumRepliesID UUID, userReaction ForumRepliesReactionType) error
+	// FetchRepluWithPagination(requestUserID int, offset int, limit int, forumRepliesID UUID) ([]ForumReplies, error)
 	// CloseForum(requestUserID int, forumID UUID) error
 }

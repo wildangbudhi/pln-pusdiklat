@@ -7,27 +7,27 @@ import (
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/domain"
 )
 
-type reactForumRequestQuery struct {
+type reactForumReactionRequestQuery struct {
 	ReactionKey     string `form:"reaction_key" json:"reaction_key" binding:"required"`
 	ReactionToggled *bool  `form:"reaction_toggled" json:"reaction_toggled" binding:"required"`
 }
 
-type reactForumRequestHeader struct {
+type reactForumReactionRequestHeader struct {
 	XAuthID int `header:"X-Auth-Id" json:"X-Auth-Id" binding:"required"`
 }
 
-type reactForumResponseBody struct {
+type reactForumReactionResponseBody struct {
 	Status string `json:"status" binding:"required"`
 }
 
-func (handler *ForumHTTPHandler) ReactForum(c *gin.Context) {
+func (handler *ForumHTTPHandler) ReactForumReplies(c *gin.Context) {
 
 	c.Header("Content-Type", "application/json")
 
 	var err error
 
-	requestHeader := &reactForumRequestHeader{}
-	requestQuery := &reactForumRequestQuery{}
+	requestHeader := &reactForumReactionRequestHeader{}
+	requestQuery := &reactForumReactionRequestQuery{}
 
 	err = c.BindHeader(requestHeader)
 
@@ -43,29 +43,29 @@ func (handler *ForumHTTPHandler) ReactForum(c *gin.Context) {
 		return
 	}
 
-	forumIDString := c.Param("forum_id")
+	forumRepliesIDString := c.Param("forum_reply_id")
 
-	forumID, err := domain.NewUUIDFromString(forumIDString)
-
-	if err != nil {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
-		return
-	}
-
-	forumReactionType, err := domain.NewForumReactionType(requestQuery.ReactionKey, *requestQuery.ReactionToggled)
+	forumRepliesID, err := domain.NewUUIDFromString(forumRepliesIDString)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
 		return
 	}
 
-	err = handler.forumUsecase.ReactForum(requestHeader.XAuthID, *forumID, *forumReactionType)
+	forumReactionType, err := domain.NewForumRepliesReactionType(requestQuery.ReactionKey, *requestQuery.ReactionToggled)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, reactForumResponseBody{Status: "Reaction Successfully Recorded"})
+	err = handler.forumUsecase.ReactForumReplies(requestHeader.XAuthID, *forumRepliesID, *forumReactionType)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, reactForumReactionResponseBody{Status: "Reaction Successfully Recorded"})
 
 }
