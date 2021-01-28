@@ -2,7 +2,6 @@ package usecase
 
 import (
 	"fmt"
-	"log"
 	"strconv"
 	"time"
 
@@ -44,17 +43,15 @@ func (usecase *authenticationUsecase) Authenticate(username string, password str
 	}
 
 	if !checkPasswordHash(password, userAuth.Password) {
-		return "", fmt.Errorf("Password Salah, Silahkan Coba Kembali")
+		return "", fmt.Errorf("Password Doesn't Match")
 	}
 
 	expirationDate := time.Now().Add(time.Hour * 24)
 
-	log.Println(userAuth.ID)
-
 	token, err := createJWTToken(userAuth.ID, userAuth.Email, expirationDate, usecase.secretKey)
 
 	if err != nil {
-		return "", fmt.Errorf("Gagal Membuat Authorization Key, Silahkan Coba Lagi")
+		return "", fmt.Errorf("Failed To Create Authentication Token")
 	}
 
 	return token, nil
