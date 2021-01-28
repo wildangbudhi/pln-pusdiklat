@@ -5,8 +5,8 @@ posts = Blueprint('posts', __name__, template_folder='templates', url_prefix='/p
 # default top timeline
 @posts.route('/')
 @posts.route('/timeline')
-def top_timeline():
-    return render_template("posts/top_timeline.html")
+def latest_timeline():
+    return render_template("posts/timeline.html")
 
 @posts.route('/<string:username>/<string:posts_id>')
 def user_post(username, posts_id):

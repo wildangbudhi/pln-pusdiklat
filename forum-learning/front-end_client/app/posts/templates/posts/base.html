@@ -27,35 +27,39 @@
 
     {% block title %} {% endblock %}
 
+    <!-- pln css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pln.css') }}">
+
     <!-- vendor css -->
-    <style type="text/css">
-        html *
-            {
-               font-family: Segoe UI, Roboto, Helvetica Neue, sans-serif !important;
-            }
-    </style>
     <link href="{{ url_for('static', filename='lib/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
-
+    <link href="{{ url_for('static', filename='lib/typicons.font/typicons.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/prismjs/themes/prism-vs.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/quill/quill.core.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/quill/quill.snow.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/quill/quill.bubble.css')}}" rel="stylesheet">
+    
     <!-- DashForge CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.demo.css') }}">
 </head>
 
 <body class="page-profile">
 
     {% block header %}
-    <header class="navbar navbar-header navbar-header-fixed">
+    <header class="navbar navbar-header navbar-header-fixed pos-fixed z-index-200">
         <a href="" id="mainMenuOpen" class="burger-menu"><i data-feather="menu"></i></a>
         <div class="navbar-brand">
             <a href="/qna" class="df-logo">PLN<span>Forum Learning</span></a>
         </div><!-- navbar-brand -->
-        <div id="navbarMenu" class="navbar-menu-wrapper">
+        <!-- <div id="navbarMenu" class="navbar-menu-wrapper">
             <div class="navbar-menu-header">
                 <a href="/qna" class="df-logo">PLN<span>Forum Learning</span></a>
                 <a id="mainMenuClose" href=""><i data-feather="x"></i></a>
-            </div><!-- navbar-menu-header -->
-        </div><!-- navbar-menu-wrapper -->
+            </div>
+        </div> -->
+        <!-- navbar-menu-wrapper -->
         <div class="navbar-right">
             <a id="navbarSearch" href="" class="search-link"><i data-feather="search"></i></a>
             <div class="dropdown dropdown-notification">
@@ -67,41 +71,23 @@
                     <div class="dropdown-header">Notifications</div>
                     <a href="" class="dropdown-item">
                         <div class="media">
-                            <div class="avatar avatar-sm avatar-online"><img src="https://via.placeholder.com/350"
-                                    class="rounded-circle" alt=""></div>
+                            <div class="avatar avatar-sm">
+                                <i data-feather="user" class="wd-md-100p ht-auto rounded-circle bg-gray-100"></i>
+                            </div>
                             <div class="media-body mg-l-15">
-                                <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
+                                <p>Your could join <strong>"Mengapa orang enggan divaksin?"</strong> discussion now</p>
                                 <span>Mar 15 12:32pm</span>
                             </div><!-- media-body -->
                         </div><!-- media -->
                     </a>
                     <a href="" class="dropdown-item">
                         <div class="media">
-                            <div class="avatar avatar-sm avatar-online"><img src="https://via.placeholder.com/500"
-                                    class="rounded-circle" alt=""></div>
+                            <div class="avatar avatar-sm">
+                                <i data-feather="user" class="wd-md-100p ht-auto rounded-circle bg-gray-100"></i>
+                            </div>
                             <div class="media-body mg-l-15">
-                                <p><strong>Joyce Chua</strong> just created a new blog post</p>
+                                <p>Your could join <strong>"Mengapa orang enggan divaksin?"</strong> discussion now</p>
                                 <span>Mar 13 04:16am</span>
-                            </div><!-- media-body -->
-                        </div><!-- media -->
-                    </a>
-                    <a href="" class="dropdown-item">
-                        <div class="media">
-                            <div class="avatar avatar-sm avatar-online"><img src="https://via.placeholder.com/600"
-                                    class="rounded-circle" alt=""></div>
-                            <div class="media-body mg-l-15">
-                                <p><strong>Althea Cabardo</strong> just created a new blog post</p>
-                                <span>Mar 13 02:56am</span>
-                            </div><!-- media-body -->
-                        </div><!-- media -->
-                    </a>
-                    <a href="" class="dropdown-item">
-                        <div class="media">
-                            <div class="avatar avatar-sm avatar-online"><img src="https://via.placeholder.com/500"
-                                    class="rounded-circle" alt=""></div>
-                            <div class="media-body mg-l-15">
-                                <p><strong>Adrian Monino</strong> added new comment on your photo</p>
-                                <span>Mar 12 10:40pm</span>
                             </div><!-- media-body -->
                         </div><!-- media -->
                     </a>
@@ -109,13 +95,13 @@
                 </div><!-- dropdown-menu -->
             </div><!-- dropdown -->
             <div class="dropdown dropdown-profile">
-                <a href="" class="dropdown-link" data-toggle="dropdown" data-display="static">
-                    <div class="avatar avatar-sm"><img src="https://via.placeholder.com/500" class="rounded-circle"
-                            alt=""></div>
+                <a href="" class="dropdown-link gr1" data-toggle="dropdown" data-display="static">
+                    <i data-feather="user" class="rounded-circle bg-gray-100"></i>
                 </a><!-- dropdown-link -->
                 <div class="dropdown-menu dropdown-menu-right tx-13">
-                    <div class="avatar avatar-lg mg-b-15"><img src="https://via.placeholder.com/500"
-                            class="rounded-circle" alt=""></div>
+                    <div class="avatar avatar-lg mg-b-15">
+                        <i data-feather="user" class="wd-70 ht-auto rounded-circle bg-gray-100"></i>
+                    </div>
                     <h6 class="tx-semibold mg-b-5">Katherine Pechon</h6>
                     <p class="mg-b-25 tx-12 tx-color-03">User</p>
 
@@ -132,7 +118,7 @@
                 <button class="btn"><i data-feather="search"></i></button>
                 <a id="navbarSearchClose" href="" class="link-03 mg-l-5 mg-lg-l-10"><i data-feather="x"></i></a>
             </div><!-- navbar-search-header -->
-            <div class="navbar-search-body">
+            <!-- <div class="navbar-search-body">
                 <label
                     class="tx-10 tx-medium tx-uppercase tx-spacing-1 tx-color-03 mg-b-10 d-flex align-items-center">Recent
                     Searches</label>
@@ -142,20 +128,18 @@
                     <li><a href="">modal examples</a></li>
                     <li><a href="">avatar</a></li>
                 </ul>
-
                 <hr class="mg-y-30 bd-0">
-
                 <label
                     class="tx-10 tx-medium tx-uppercase tx-spacing-1 tx-color-03 mg-b-10 d-flex align-items-center">Search
                     Suggestions</label>
-
                 <ul class="list-unstyled">
                     <li><a href="">cryptocurrency</a></li>
                     <li><a href="">button groups</a></li>
                     <li><a href="">form elements</a></li>
                     <li><a href="">contact app</a></li>
                 </ul>
-            </div><!-- navbar-search-body -->
+            </div> -->
+            <!-- navbar-search-body -->
         </div><!-- navbar-search -->
     </header><!-- navbar -->
     {% endblock %}
@@ -168,8 +152,9 @@
                 <div class="profile-sidebar pd-lg-r-25">
                     <div class="row">
                         <div class="col-sm-3 col-md-2 col-lg">
-                            <div class="avatar avatar-xxl avatar-online"><img src="https://via.placeholder.com/500"
-                                    class="rounded-circle" alt=""></div>
+                            <div class="avatar avatar-xxl">
+                                <i data-feather="user" class="wd-100 ht-auto rounded-circle bg-gray-100"></i>
+                            </div>
                         </div><!-- col -->
                         <div class="col-sm-8 col-md-7 col-lg mg-t-20 mg-sm-t-0 mg-lg-t-25">
                             <h5 class="mg-b-2 tx-spacing--1">Katherine Pechon</h5>
@@ -179,11 +164,12 @@
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Menu</label>
                             <nav class="nav nav-classic tx-13">
-                                <a href="/qna" class="nav-link"><i data-feather="globe"></i> <span style="padding-right:5em">QnA</span></a>
-                                <a href="/discussions" class="nav-link"><i data-feather="github"></i> <span style="padding-right:5em">Discussions</span></a>
-                                <a href="/posts" class="nav-link"><i data-feather="twitter"></i> <span style="padding-right:5em">Posts</span></a>
+                                <a href="/qna" class="nav-link"><i data-feather="globe"></i> <span>QnA</span></a>
+                                <a href="/discussions" class="nav-link"><i data-feather="github"></i> <span>Discussions</span></a>
+                                <a href="/posts" class="nav-link active"><i data-feather="twitter"></i> <span>Posts</span></a>
                             </nav>
                         </div><!-- col -->
+                        <!-- category
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Electric Power Supply Business</label>
                             <nav class="nav nav-classic tx-13">
@@ -192,7 +178,7 @@
                                 <a href="" class="nav-link"><i data-feather="twitter"></i> <span>Distribution</span></a>
                                 <a href="" class="nav-link"><i data-feather="instagram"></i> <span>Commerce &amp; Customer Management</span></a>
                             </nav>
-                        </div><!-- col -->
+                        </div>
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label
                                 class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Electricity Support</label>
@@ -204,7 +190,7 @@
                                 <a href="" class="nav-link"><i data-feather="phone"></i> <span>Learning</span></a>
                                 <a href="" class="nav-link"><i data-feather="mail"></i> <span>Certification</span></a>
                                 </nav>
-                        </div><!-- col -->
+                        </div>
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label
                                 class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Corporate Support</label>
@@ -221,14 +207,14 @@
                                         Office Management</span></a>
                                 <a href="" class="nav-link"><i data-feather="calendar"></i> <span>Company Management</span></a>
                             </nav>
-                        </div><!-- col -->
+                        </div>
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label
                                 class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Additional</label>
                                 <nav class="nav nav-classic tx-13">
                                     <a href="" class="nav-link"><i data-feather="facebook"></i> <span style="padding-right:5em">Miscellaneous</span></a>
                                 </nav>
-                        </div><!-- col -->
+                        </div>-->
                     </div><!-- row -->
 
                 </div><!-- profile-sidebar -->
@@ -238,6 +224,9 @@
             </div><!-- media -->
         </div><!-- container -->
     </div><!-- content -->
+    {% endblock %}
+
+    {% block modal %}
     {% endblock %}
 
     {% block footer %}
@@ -255,7 +244,8 @@
     <script src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/feather-icons/feather.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-
+    <script src="{{ url_for('static', filename='lib/prismjs/prism.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/quill/quill.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dashforge.js') }}"></script>
 
     <!-- append theme customizer -->
@@ -288,6 +278,8 @@
             }
         })
     </script>
+    {% block jscript %}
+    {% endblock %}
 </body>
 
 </html>

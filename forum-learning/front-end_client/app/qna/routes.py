@@ -5,8 +5,8 @@ qna = Blueprint('qna', __name__, template_folder='templates', url_prefix='/qna')
 # default top timeline
 @qna.route('/')
 @qna.route('/timeline')
-def top_timeline():
-    return render_template("qna/top_timeline.html")
+def latest_timeline():
+    return render_template("qna/timeline.html")
 
 @qna.route('/<string:username>/<string:qna_id>')
 def user_question(username, qna_id):
