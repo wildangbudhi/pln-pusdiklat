@@ -17,5 +17,5 @@ type ForumUsecase interface {
 	DeleteForumReplies(requestUserID int, requestUserRoles []string, forumRepliesID UUID) error
 	ReactForumReplies(requestUserID int, forumRepliesID UUID, userReaction ForumRepliesReactionType) error
 	FetchReplyByForumIDWithPagination(requestUserID int, offset int, limit int, forumID UUID) ([]ForumReplies, error)
-	// CloseForum(requestUserID int, forumID UUID) error
+	CloseForum(requestUserID int, requestUserRoles []string, forumID UUID) error
 }
