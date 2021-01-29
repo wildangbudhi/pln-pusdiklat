@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@pln_forum_learning">
+    <meta name="twitter:creator" content="@pln_forum_learning">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PLN Forum Learning">
+    <meta name="twitter:description" content="PLN Forum Learning">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://pln_forum_learning.com">
+    <meta property="og:title" content="PLN Forum Learning">
+    <meta property="og:description" content="PLN Forum Learning">
+
+    <!-- Meta -->
+    <meta name="description" content="PLN Forum Learning">
+    <meta name="author" content="PLN">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+    {% block title %} {% endblock %}
+
+    <!-- pln css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pln.css') }}">
+
+    <!-- vendor css -->
+    <link href="{{ url_for('static', filename='lib/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/typicons.font/typicons.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/prismjs/themes/prism-vs.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/quill/quill.core.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/quill/quill.snow.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/quill/quill.bubble.css')}}" rel="stylesheet">
+    
+    <!-- DashForge CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.demo.css') }}">
+</head>
+
+<body class="page-profile">
+
+    {% block header %}
+    <header class="navbar navbar-header navbar-header-fixed pos-fixed z-index-200">
+        <a href="" id="mainMenuOpen" class="burger-menu"><i data-feather="menu"></i></a>
+        <div class="navbar-brand">
+            <a href="/qna" class="df-logo">PLN<span>Forum Learning</span></a>
+        </div><!-- navbar-brand -->
+        <!-- <div id="navbarMenu" class="navbar-menu-wrapper">
+            <div class="navbar-menu-header">
+                <a href="/qna" class="df-logo">PLN<span>Forum Learning</span></a>
+                <a id="mainMenuClose" href=""><i data-feather="x"></i></a>
+            </div>
+        </div> -->
+        <!-- navbar-menu-wrapper -->
+        <div class="navbar-right">
+            <a id="navbarSearch" href="" class="search-link"><i data-feather="search"></i></a>
+            <div class="dropdown dropdown-notification">
+                <a href="" class="dropdown-link new-indicator" data-toggle="dropdown">
+                    <i data-feather="bell"></i>
+                    <span>2</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-header">Notifications</div>
+                    <a href="" class="dropdown-item">
+                        <div class="media">
+                            <div class="avatar avatar-sm">
+                                <i data-feather="user" class="wd-md-100p ht-auto rounded-circle bg-gray-100"></i>
+                            </div>
+                            <div class="media-body mg-l-15">
+                                <p>Your could join <strong>"Mengapa orang enggan divaksin?"</strong> discussion now</p>
+                                <span>Mar 15 12:32pm</span>
+                            </div><!-- media-body -->
+                        </div><!-- media -->
+                    </a>
+                    <a href="" class="dropdown-item">
+                        <div class="media">
+                            <div class="avatar avatar-sm">
+                                <i data-feather="user" class="wd-md-100p ht-auto rounded-circle bg-gray-100"></i>
+                            </div>
+                            <div class="media-body mg-l-15">
+                                <p>Your could join <strong>"Mengapa orang enggan divaksin?"</strong> discussion now</p>
+                                <span>Mar 13 04:16am</span>
+                            </div><!-- media-body -->
+                        </div><!-- media -->
+                    </a>
+                    <div class="dropdown-footer"><a href="">View all Notifications</a></div>
+                </div><!-- dropdown-menu -->
+            </div><!-- dropdown -->
+            <div class="dropdown dropdown-profile">
+                <a href="" class="dropdown-link gr1" data-toggle="dropdown" data-display="static">
+                    <i data-feather="user" class="rounded-circle bg-gray-100"></i>
+                </a><!-- dropdown-link -->
+                <div class="dropdown-menu dropdown-menu-right tx-13">
+                    <div class="avatar avatar-lg mg-b-15">
+                        <i data-feather="user" class="wd-70 ht-auto rounded-circle bg-gray-100"></i>
+                    </div>
+                    <h6 class="tx-semibold mg-b-5">Katherine Pechon</h6>
+                    <p class="mg-b-25 tx-12 tx-color-03">User</p>
+
+                    <a href="" class="dropdown-item"><i data-feather="edit-3"></i> Edit Profile</a>
+                    <a href="" class="dropdown-item"><i data-feather="user"></i> View Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/" class="dropdown-item"><i data-feather="log-out"></i>Sign Out</a>
+                </div><!-- dropdown-menu -->
+            </div><!-- dropdown -->
+        </div><!-- navbar-right -->
+        <div class="navbar-search">
+            <div class="navbar-search-header">
+                <input type="search" class="form-control" placeholder="Type and hit enter to search...">
+                <button class="btn"><i data-feather="search"></i></button>
+                <a id="navbarSearchClose" href="" class="link-03 mg-l-5 mg-lg-l-10"><i data-feather="x"></i></a>
+            </div><!-- navbar-search-header -->
+            <!-- <div class="navbar-search-body">
+                <label
+                    class="tx-10 tx-medium tx-uppercase tx-spacing-1 tx-color-03 mg-b-10 d-flex align-items-center">Recent
+                    Searches</label>
+                <ul class="list-unstyled">
+                    <li><a href="">modern dashboard</a></li>
+                    <li><a href="">calendar app</a></li>
+                    <li><a href="">modal examples</a></li>
+                    <li><a href="">avatar</a></li>
+                </ul>
+                <hr class="mg-y-30 bd-0">
+                <label
+                    class="tx-10 tx-medium tx-uppercase tx-spacing-1 tx-color-03 mg-b-10 d-flex align-items-center">Search
+                    Suggestions</label>
+                <ul class="list-unstyled">
+                    <li><a href="">cryptocurrency</a></li>
+                    <li><a href="">button groups</a></li>
+                    <li><a href="">form elements</a></li>
+                    <li><a href="">contact app</a></li>
+                </ul>
+            </div> -->
+            <!-- navbar-search-body -->
+        </div><!-- navbar-search -->
+    </header><!-- navbar -->
+    {% endblock %}
+
+    {% block content %}
+    <div class="content content-fixed content-profile">
+        <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+            <div class="media d-block d-lg-flex">
+                {% block sidebar %}
+                <div class="profile-sidebar pd-lg-r-25">
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 col-lg">
+                            <div class="avatar avatar-xxl">
+                                <i data-feather="user" class="wd-100 ht-auto rounded-circle bg-gray-100"></i>
+                            </div>
+                        </div><!-- col -->
+                        <div class="col-sm-8 col-md-7 col-lg mg-t-20 mg-sm-t-0 mg-lg-t-25">
+                            <h5 class="mg-b-2 tx-spacing--1">Katherine Pechon</h5>
+                            <p class="tx-color-03 mg-b-25">@KatherinePechon</p>
+                        </div><!-- col -->
+                        
+                        <div class="col-sm-6 col-md-5 col-lg mg-t-40">
+                            <label class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Menu</label>
+                            <nav class="nav nav-classic tx-13">
+                                <a href="/qna" class="nav-link"><i data-feather="globe"></i> <span>QnA</span></a>
+                                <a href="/discussions" class="nav-link"><i data-feather="github"></i> <span>Discussions</span></a>
+                                <a href="/posts" class="nav-link active"><i data-feather="twitter"></i> <span>Posts</span></a>
+                            </nav>
+                        </div><!-- col -->
+                        <!-- category
+                        <div class="col-sm-6 col-md-5 col-lg mg-t-40">
+                            <label class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Electric Power Supply Business</label>
+                            <nav class="nav nav-classic tx-13">
+                                <a href="" class="nav-link"><i data-feather="globe"></i> <span>Generation</span></a>
+                                <a href="" class="nav-link"><i data-feather="github"></i> <span>Transmission</span></a>
+                                <a href="" class="nav-link"><i data-feather="twitter"></i> <span>Distribution</span></a>
+                                <a href="" class="nav-link"><i data-feather="instagram"></i> <span>Commerce &amp; Customer Management</span></a>
+                            </nav>
+                        </div>
+                        <div class="col-sm-6 col-md-5 col-lg mg-t-40">
+                            <label
+                                class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Electricity Support</label>
+                            <nav class="nav nav-classic tx-13">
+                                <a href="" class="nav-link"><i data-feather="facebook"></i> <span>Electricity Equipment Production</span></a>
+                                <a href="" class="nav-link"><i data-feather="briefcase"></i> <span>Electric Safety, OHS, Security &amp; Environment</span></a>
+                                <a href="" class="nav-link"><i data-feather="home"></i> <span>Project Management, Engineering &amp; Construction</span></a>
+                                <a href="" class="nav-link"><i data-feather="smartphone"></i> <span>Research &amp; Development</span></a>
+                                <a href="" class="nav-link"><i data-feather="phone"></i> <span>Learning</span></a>
+                                <a href="" class="nav-link"><i data-feather="mail"></i> <span>Certification</span></a>
+                                </nav>
+                        </div>
+                        <div class="col-sm-6 col-md-5 col-lg mg-t-40">
+                            <label
+                                class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Corporate Support</label>
+                            <nav class="nav nav-classic tx-13">
+                                <a href="" class="nav-link"><i data-feather="users"></i> <span>Supply Chain
+                                        Management</span></a>
+                                <a href="" class="nav-link"><i data-feather="calendar"></i> <span>Regulatory &amp;
+                                        Compliance</span></a>
+                                <a href="" class="nav-link"><i data-feather="briefcase"></i> <span>Information Technology</span></a>
+                                <a href="" class="nav-link"><i data-feather="globe"></i> <span>HR</span></a>
+                                <a href="" class="nav-link"><i data-feather="shopping-bag"></i>
+                                    <span>Finance</span></a>
+                                <a href="" class="nav-link"><i data-feather="users"></i> <span>Communication, CSR &amp;
+                                        Office Management</span></a>
+                                <a href="" class="nav-link"><i data-feather="calendar"></i> <span>Company Management</span></a>
+                            </nav>
+                        </div>
+                        <div class="col-sm-6 col-md-5 col-lg mg-t-40">
+                            <label
+                                class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Additional</label>
+                                <nav class="nav nav-classic tx-13">
+                                    <a href="" class="nav-link"><i data-feather="facebook"></i> <span style="padding-right:5em">Miscellaneous</span></a>
+                                </nav>
+                        </div>-->
+                    </div><!-- row -->
+
+                </div><!-- profile-sidebar -->
+                {% endblock %}
+                {% block timeline %}
+                {% endblock %}
+            </div><!-- media -->
+        </div><!-- container -->
+    </div><!-- content -->
+    {% endblock %}
+
+    {% block modal %}
+    {% endblock %}
+
+    {% block footer %}
+    <footer class="footer">
+        <div>
+            <span>&copy; 2020 PLN Forum Learning</span>
+            <span>Created with 💞 by PMMB PLN 2020</span>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <!-- script -->
+
+    <script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/prismjs/prism.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/quill/quill.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashforge.js') }}"></script>
+
+    <!-- append theme customizer -->
+    <script src="{{ url_for('static', filename='lib/js-cookie/js.cookie.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashforge.settings.js') }}"></script>
+
+    <script>
+        $(function () {
+            'use script'
+
+            $('[data-toggle="tooltip"]').tooltip()
+
+            window.darkMode = function () {
+                $('.btn-white').addClass('btn-dark').removeClass('btn-white');
+                $('.bg-white').addClass('bg-gray-900').removeClass('bg-white');
+                $('.bg-gray-50').addClass('bg-dark').removeClass('bg-gray-50');
+            }
+
+            window.lightMode = function () {
+                $('.btn-dark').addClass('btn-white').removeClass('btn-dark');
+                $('.bg-gray-900').addClass('bg-white').removeClass('bg-gray-900');
+                $('.bg-dark').addClass('bg-gray-50').removeClass('bg-dark');
+            }
+
+            var hasMode = Cookies.get('df-mode');
+            if (hasMode === 'dark') {
+                darkMode();
+            } else {
+                lightMode();
+            }
+        })
+    </script>
+    {% block jscript %}
+    {% endblock %}
+</body>
+
+</html>

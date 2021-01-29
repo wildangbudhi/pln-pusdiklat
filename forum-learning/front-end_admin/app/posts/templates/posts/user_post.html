@@ -1,0 +1,265 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}
+<title>Post by {{username}} | PLN Forum Learning</title>
+{% endblock %}
+
+{% block timeline %}
+<div class="media-body mg-t-40 mg-lg-t-0 pd-lg-x-10">
+    <div class="card mg-b-20 mg-lg-b-25">
+        <img src="{{ url_for('static', filename='img/placehold.jpg') }}" class="card-img-top" alt="...">
+        <div class="card-header pd-y-15 pd-x-20 d-flex align-items-center justify-content-between pln-vr-lb">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                  <a class="nav-link" href="#modalWriting"  data-toggle="modal" data-animation="effect-fall"><button type="button" class="btn btn-primary btn-block btn-pln-b">Edit</button></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#modalDelete"  data-toggle="modal" data-animation="effect-fall"><button type="button" class="btn btn-danger btn-block">Delete</button></a>
+                </li>
+            </ul>
+            <div class="wd-150 bd-l d-flex align-items-center justify-content-center">
+                <span class="d-none d-sm-inline"><strong>#Generation</strong></span>
+            </div>
+        </div><!-- card-header -->
+        <div class="card-body pd-20 pd-lg-25">
+            <h3 class="card-title">Vaksin efektif</h5>
+            <div class="media align-items-center mg-b-20">
+                <div class="avatar avatar-sm">
+                    <i data-feather="user" class="wd-30 ht-auto rounded-circle bg-gray-100"></i>
+                </div>
+                <div class="media-body pd-l-15">
+                    <h6 class="mg-b-3">Rangga Kusuma</h6>
+                    <span class="d-block tx-13 tx-color-03">@ranggakusumad</span>
+                </div>
+                <span class="d-none d-sm-block tx-12 tx-color-03 align-self-start">5 hours ago</span>
+            </div><!-- media -->
+            <p class="card-text">
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                <hr>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                <hr>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            </p>
+        </div>
+        <div class="card-footer bg-transparent pd-y-10 pd-sm-y-15 pd-x-10 pd-sm-x-20">
+            <nav class="nav nav-with-icon tx-13">
+                <a href="" class="nav-link"><i data-feather="thumbs-up"></i> 40</a>
+                <a href="" class="nav-link"><i data-feather="thumbs-down"></i> 12</a>
+                <a href="" class="nav-link">🙏 30</a>
+                <a href="" class="nav-link">🤔 2</a>
+            </nav>
+        </div><!-- card-footer -->
+    </div><!-- card -->
+</div><!-- media-body -->
+{% endblock %}
+
+{% block modal %}
+<div class="modal fade" id="modalWriting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content tx-14">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel6">Edit a post</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Choose Discussion You Refer To</label>
+                <select class="custom-select">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="">Mengapa masyarakat enggan divaksin?</option>
+                    <option disabled value="">Mengapa masyarakat mau divaksin?</option>
+                    <option value="">Mengapa vaksin didistribusi?</option>
+                </select>
+                <div class="mg-t-20">
+                    <label>Post's Title</label>
+                    <input type="text" class="form-control" value="Vaksin Efektif">
+                </div>
+                <div class="mg-t-20">
+                    <label>Category</label>
+                    <input type="text" class="form-control" value="Generation" disabled>
+                </div>
+                <div class="mg-t-20">
+                    <label>Post Privacy Setting</label>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                        <label class="custom-control-label" for="customCheck1">All</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck2">
+                        <label class="custom-control-label" for="customCheck2">Generation</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck3">
+                        <label class="custom-control-label" for="customCheck3">Transmission</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck4">
+                        <label class="custom-control-label" for="customCheck4">Distribution</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck5">
+                        <label class="custom-control-label" for="customCheck5">Commerce & Customer Management</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck6">
+                        <label class="custom-control-label" for="customCheck6">Electricity Equipment Production</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck7">
+                        <label class="custom-control-label" for="customCheck7">Electric Safety, OHS, Security & Environment</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck8">
+                        <label class="custom-control-label" for="customCheck8">Project Management, Engineering &amp; Construction</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck9">
+                        <label class="custom-control-label" for="customCheck9">Research &amp; Development</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck10">
+                        <label class="custom-control-label" for="customCheck10">Learning</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck11">
+                        <label class="custom-control-label" for="customCheck11">Certification</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck12">
+                        <label class="custom-control-label" for="customCheck12">Supply Chain Management</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck13">
+                        <label class="custom-control-label" for="customCheck13">Regulatory &amp; Compliance</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck14">
+                        <label class="custom-control-label" for="customCheck14">Information Technology</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck15">
+                        <label class="custom-control-label" for="customCheck15">HR</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck16">
+                        <label class="custom-control-label" for="customCheck16">Finance</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck17">
+                        <label class="custom-control-label" for="customCheck17">Communication, CSR &amp; Office Management</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck18">
+                        <label class="custom-control-label" for="customCheck18">Company Management</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck19">
+                        <label class="custom-control-label" for="customCheck19">Miscellaneous</label>
+                    </div>
+                </div>
+                <div class="mg-t-20">
+                    <label>Description</label>
+                    <div class="d-flex flex-column ht-500">
+                        <div id="quillEditorModal" class="flex-1 overflow-y-auto">
+                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                        </div>
+                    </div>
+                    <!-- <textarea class="form-control" rows="4" placeholder="Mengapa banyak OTG di Jawa Timur?"></textarea> -->
+                </div>
+                <div class="mg-t-20">
+                    <label>Media Thumbnail</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose image file (jpg/png)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn tx-13 btn-pln-gr" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary tx-13 btn-pln-b">Edit</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content tx-14">
+        <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel6">Delete a post</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h5>Are you sure to delete this post?</h5>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary tx-13">Yes</button>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jscript %}
+<script>
+    $(function(){
+        'use strict'
+
+        // Editor in Modal
+        var quillModal = new Quill('#quillEditorModal', {
+        modules: {
+            toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'header': 1 }, { 'header': 2 }, 'blockquote'],
+            ['link', 'image', 'code-block'],
+            ]
+        },
+        theme: 'snow'
+        });
+        
+        var quillModal2 = new Quill('#quillEditorModal2', {
+        modules: {
+            toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'header': 1 }, { 'header': 2 }, 'blockquote'],
+            ['link', 'image', 'code-block'],
+            ]
+        },
+        theme: 'snow'
+        });
+
+    });
+</script>
+<script>
+    $(function(){
+      'use strict'
+
+      $('#modalWriting').on('show.bs.modal', function (event) {
+
+        var animation = $(event.relatedTarget).data('animation');
+        $(this).addClass(animation);
+      })
+
+      // hide modal with effect
+      $('#modalWriting').on('hidden.bs.modal', function (e) {
+        $(this).removeClass (function (index, className) {
+            return (className.match (/(^|\s)effect-\S+/g) || []).join(' ');
+        });
+      });
+
+    });
+</script>
+{% endblock %}
