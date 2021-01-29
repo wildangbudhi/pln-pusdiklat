@@ -46,3 +46,9 @@ html *
     background-color: #d9d9d9 !important;
     border-color: #d9d9d9 !important;
 }
+
+/* card qna */
+.mg-hr-t
+{
+    margin-top: 0 !important;
+}
