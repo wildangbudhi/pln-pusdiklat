@@ -26,12 +26,12 @@ func (handler *AuthenticationHTTPHandler) EndpointAuthorize(c *gin.Context) {
 	c.BindJSON(requestBodyData)
 
 	if requestBodyData.Method == "" {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Method tidak boleh kosong"})
+		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Method Cannot Be Empty"})
 		return
 	}
 
 	if requestBodyData.URL == "" {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "URL tidak boleh kosong"})
+		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "URL Cannot Be Empty"})
 		return
 	}
 
