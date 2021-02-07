@@ -38,7 +38,10 @@
     <link href="{{ url_for('static', filename='lib/quill/quill.core.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='lib/quill/quill.snow.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='lib/quill/quill.bubble.css')}}" rel="stylesheet">
-    
+    <link href="{{ url_for('static', filename='lib/datatables.net-dt/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/select2/css/select2.min.css')}}" rel="stylesheet">
+
     <!-- DashForge CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashforge.profile.css') }}">
@@ -48,7 +51,7 @@
 <body class="page-profile">
 
     {% block header %}
-    <header class="navbar navbar-header navbar-header-fixed pos-fixed z-index-200">
+    <header class="navbar navbar-header navbar-header-fixed pos-fixed z-index-200 pln-vr-lb">
         <a href="" id="mainMenuOpen" class="burger-menu"><i data-feather="menu"></i></a>
         <div class="navbar-brand">
             <a href="/qna" class="df-logo">PLN<span>Forum Learning</span></a>
@@ -160,15 +163,24 @@
                             <h5 class="mg-b-2 tx-spacing--1">Katherine Pechon</h5>
                             <p class="tx-color-03 mg-b-25">@KatherinePechon</p>
                         </div><!-- col -->
-                        
-                        <div class="col-sm-6 col-md-5 col-lg mg-t-40">
+                        <div class="sidebar-body">
                             <label class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Menu</label>
-                            <nav class="nav nav-classic tx-13">
-                                <a href="/qna" class="nav-link"><i data-feather="globe"></i> <span>QnA</span></a>
-                                <a href="/discussions" class="nav-link"><i data-feather="github"></i> <span>Discussions</span></a>
-                                <a href="/posts" class="nav-link active"><i data-feather="twitter"></i> <span>Posts</span></a>
-                            </nav>
-                        </div><!-- col -->
+                            <ul class="sidebar-nav">
+                                <li class="nav-item show">
+                                    <a href="/qna" class="nav-link"><i data-feather="globe"></i> <span>QnA Management</span></a>
+                                </li>
+                                <li class="nav-item show">
+                                    <a class="nav-link"><i data-feather="layers"></i>Discussions Management</a>
+                                    <nav class="nav nav-classic tx-13">
+                                        <a href="/discussions">Admin</a>
+                                        <a href="/discussions/request">Request</a>
+                                    </nav>
+                                </li>
+                                <li class="nav-item show">
+                                    <a href="/posts" class="nav-link active"><i data-feather="twitter"></i> <span>Posts Management</span></a>
+                                </li>
+                            </ul>
+                        </div><!-- sidebar-body -->
                         <!-- category
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Electric Power Supply Business</label>
@@ -239,7 +251,6 @@
     {% endblock %}
 
     <!-- script -->
-
     <script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/feather-icons/feather.min.js') }}"></script>
@@ -247,6 +258,11 @@
     <script src="{{ url_for('static', filename='lib/prismjs/prism.js') }}"></script>
     <script src="{{ url_for('static', filename='lib/quill/quill.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dashforge.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/select2/js/select2.min.js') }}"></script>
 
     <!-- append theme customizer -->
     <script src="{{ url_for('static', filename='lib/js-cookie/js.cookie.js') }}"></script>
@@ -278,6 +294,57 @@
             }
         })
     </script>
+        <script>
+            $(function(){
+              'use strict'
+      
+              $('#example1').DataTable({
+                language: {
+                  searchPlaceholder: 'Search...',
+                  sSearch: '',
+                  lengthMenu: '_MENU_ items/page',
+                }
+              });
+      
+              $('#example2').DataTable({
+                responsive: true,
+                language: {
+                  searchPlaceholder: 'Search...',
+                  sSearch: '',
+                  lengthMenu: '_MENU_ items/page',
+                }
+              });
+      
+              $('#example3').DataTable({
+                'ajax': '../assets/data/datatable-arrays.txt',
+                language: {
+                  searchPlaceholder: 'Search...',
+                  sSearch: '',
+                  lengthMenu: '_MENU_ items/page',
+                }
+              });
+      
+              $('#example4').DataTable({
+                'ajax': '../assets/data/datatable-objects.txt',
+                "columns": [
+                  { "data": "name" },
+                  { "data": "position" },
+                  { "data": "office" },
+                  { "data": "extn" },
+                  { "data": "salary" }
+                ],
+                language: {
+                  searchPlaceholder: 'Search...',
+                  sSearch: '',
+                  lengthMenu: '_MENU_ items/page',
+                }
+              });
+      
+              // Select2
+              $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+      
+            });
+          </script>
     {% block jscript %}
     {% endblock %}
 </body>

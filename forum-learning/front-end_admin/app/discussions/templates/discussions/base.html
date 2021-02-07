@@ -157,15 +157,26 @@
                             <h5 class="mg-b-2 tx-spacing--1">Katherine Pechon</h5>
                             <p class="tx-color-03 mg-b-25">@KatherinePechon</p>
                         </div><!-- col -->
-                        
-                        <div class="col-sm-6 col-md-5 col-lg mg-t-40">
+                        <div class="sidebar-body">
                             <label class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Menu</label>
-                            <nav class="nav nav-classic tx-13">
-                                <a href="/qna" class="nav-link"><i data-feather="globe"></i> <span>QnA</span></a>
-                                <a href="/discussions" class="nav-link active"><i data-feather="github"></i> <span>Discussions</span></a>
-                                <a href="/posts" class="nav-link"><i data-feather="twitter"></i> <span>Posts</span></a>
-                            </nav>
-                        </div><!-- col -->
+                            <ul class="sidebar-nav">
+                                <li class="nav-item show">
+                                    <a href="/qna" class="nav-link"><i data-feather="globe"></i> <span>QnA Management</span></a>
+                                </li>
+                                {% block nav %}                                
+                                <li class="nav-item show">
+                                    <a class="nav-link"><i data-feather="layers"></i>Discussions Management</a>
+                                    <nav class="nav nav-classic tx-13">
+                                        <a href="/discussions" class="active">Admin</a>
+                                        <a href="/discussions/request">Request</a>
+                                    </nav>
+                                </li>
+                                {% endblock %}
+                                <li class="nav-item show">
+                                    <a href="/posts" class="nav-link"><i data-feather="twitter"></i> <span>Posts Management</span></a>
+                                </li>
+                            </ul>
+                        </div><!-- sidebar-body -->
                         <!-- category
                         <div class="col-sm-6 col-md-5 col-lg mg-t-40">
                             <label class="tx-sans tx-10 tx-semibold tx-uppercase tx-color-01 tx-spacing-1 mg-b-15">Electric Power Supply Business</label>

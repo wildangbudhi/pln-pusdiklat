@@ -1,0 +1,1521 @@
+{% extends 'discussions/base.html' %}
+
+{% block title %}
+<title>Discussions Request Management | PLN Forum Learning</title>
+{% endblock %}
+
+{% block nav %}                                
+<li class="nav-item show">
+    <a class="nav-link"><i data-feather="layers"></i>Discussions Management</a>
+    <nav class="nav nav-classic tx-13">
+        <a href="/discussions">Admin</a>
+        <a href="/discussions/request" class="active">Request</a>
+    </nav>
+</li>
+{% endblock %}
+
+{% block timeline %}
+<div class="media-body mg-t-40 mg-lg-t-0 pd-lg-x-10">
+    <div class="profile-update-option bg-white ht-50 bd d-flex justify-content-end mg-b-20 mg-lg-b-25 rounded">
+        <div class="d-flex align-items-center pd-x-20 mg-r-auto">
+            <span class="d-none d-sm-inline tx-lg-20"><strong>Discussions Request Management</strong></span>
+        </div>
+    </div>
+    <div class="profile-update-option bg-white ht-50 bd d-flex justify-content-end mg-b-20 mg-lg-b-25 rounded">
+        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
+            <a href=""><span class="nav-link d-none d-sm-inline active">Latest</span></a>
+        </div>
+        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
+            <a href=""><span class="nav-link d-none d-sm-inline">Week</span></a>
+        </div>
+        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
+            <a href=""><span class="nav-link d-none d-sm-inline">Month</span></a>
+        </div>
+        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
+            <a href=""><span class="nav-link d-none d-sm-inline">Year</span></a>
+        </div>
+        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
+            <a href=""><span class="nav-link d-none d-sm-inline">Top</span></a>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <!-- <div class="d-flex align-items-center pd-x-20 mg-r-auto"> -->
+            <div class="col-sm"></div>
+            <div class="col-sm"></div>
+            <div class="dropdown col-sm">
+                <button class="btn btn-block btn-secondary dropdown-toggle mg-b-40  tx-black btn-pln-lb" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter
+                </button>
+                <div class="dropdown-menu tx-13">
+                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electric Power Supply Business</h6>
+                  <a class="dropdown-item active" href="#">Generation</a>
+                  <a class="dropdown-item" href="#">Transmission</a>
+                  <a class="dropdown-item" href="#">Distribution</a>
+                  <a class="dropdown-item" href="#">Commerce &amp; Customer Management</a>
+                  <div class="dropdown-divider"></div>
+                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Corporate Support</h6>
+                  <a class="dropdown-item" href="#">Electricity Equipment Production</a>
+                  <a class="dropdown-item" href="#">Electric Safety, OHS, Security &amp; Environment</a>
+                  <a class="dropdown-item" href="#">Project Management, Engineering &amp; Construction</a>
+                  <a class="dropdown-item" href="#">Research &amp; Development</a>
+                  <a class="dropdown-item" href="#">Learning</a>
+                  <a class="dropdown-item" href="#">Certification</a>
+                  <div class="dropdown-divider"></div>
+                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electricity Support</h6>
+                  <a class="dropdown-item" href="#">Supply Chain Management</a>
+                  <a class="dropdown-item" href="#">Regulatory &amp; Compliance</a>
+                  <a class="dropdown-item" href="#">Information Technology</a>
+                  <a class="dropdown-item" href="#">HR</a>
+                  <a class="dropdown-item" href="#">Finance</a>
+                  <a class="dropdown-item" href="#">Communication, CSR &amp; Office Management</a>
+                  <a class="dropdown-item" href="#">Company Management</a>
+                  <div class="dropdown-divider"></div>
+                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Additional</h6>
+                  <a class="dropdown-item" href="#">Miscellaneous</a>
+                </div>
+            </div>
+            <!-- <a href="" class="link-03 mg-l-10"><span class="d-none d-sm-inline">Write</span> a question</a> -->
+        <!-- </div> -->
+    </div>
+
+    <table id="example2" class="table">
+        <thead>
+          <tr>
+            <th class="wd-20p">Notulent</th>
+            <th class="wd-25p">Category</th>
+            <th class="wd-10p">Rate</th>
+            <th class="wd-20p">Time</th>
+            <th class="wd-15p">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tiger Nixon</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>                
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Garrett Winters</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Ashton Cox</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Cedric Kelly</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Airi Satou</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Brielle Williamson</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Herrod Chandler</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Rhona Davidson</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Colleen Hurst</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Sonya Frost</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jena Gaines</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Quinn Flynn</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Charde Marshall</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Haley Kennedy</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Tatyana Fitzpatrick</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Michael Silva</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Paul Byrd</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Gloria Little</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Bradley Greer</td>
+            <td>Generation</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Dai Rios</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jenette Caldwell</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yuri Berry</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Caesar Vance</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Doris Wilder</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Angelica Ramos</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Gavin Joyce</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jennifer Chang</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Brenden Wagner</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Fiona Green</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Shou Itou</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Michelle House</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Suki Burks</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Prescott Bartlett</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Gavin Cortez</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Martena Mccray</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Unity Butler</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Howard Hatfield</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Hope Fuentes</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Vivian Harrell</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Timothy Mooney</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jackson Bradshaw</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Olivia Liang</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Bruno Nash</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Sakura Yamamoto</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Thor Walton</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Finn Camacho</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Serge Baldwin</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Zenaida Frank</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Zorita Serrano</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jennifer Acosta</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Cara Stevens</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Hermione Butler</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Lael Greer</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jonas Alexander</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Shad Decker</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Michael Bruce</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Donna Snider</td>
+            <td>Distribution</td>
+            <td>100</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</div><!-- media-body -->
+{% endblock %}
+
+{% block modal %}
+<div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content tx-14">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel6">Show details</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" value="Mengapa ini XYZ?" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Notulent</label>
+                    <input type="text" class="form-control" value="Rachel V @rachelv?" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Expert User</label>
+                    <input type="text" class="form-control" value="Tria Nexon (@trianexon)" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" class="form-control" value="Generation" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <input type="text" class="form-control" value="Open" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Rate</label>
+                    <input type="text" class="form-control" value="100" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="text" class="form-control" value="2 hours" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="text" class="form-control" value="Yes" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Join Meeting before Host</label>
+                    <input type="text" class="form-control" value="Yes" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Start Video when Host Join</label>
+                    <input type="text" class="form-control" value="Yes" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Start Video when Participant Join</label>
+                    <input type="text" class="form-control" value="Yes" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Opsi Audio</label>
+                    <input type="text" class="form-control" value="VoIP and Telephony" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn tx-13 btn-pln-gr" data-dismiss="modal">Back</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content tx-14">
+        <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel6">Delete the request</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h5>Are you sure to delete this request?</h5>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary tx-13">Yes</button>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jscript %}
+<script>
+    $(function(){
+      'use strict'
+
+      $('#modalWriting').on('show.bs.modal', function (event) {
+
+        var animation = $(event.relatedTarget).data('animation');
+        $(this).addClass(animation);
+      })
+
+      // hide modal with effect
+      $('#modalWriting').on('hidden.bs.modal', function (e) {
+        $(this).removeClass (function (index, className) {
+            return (className.match (/(^|\s)effect-\S+/g) || []).join(' ');
+        });
+      });
+
+    });
+</script>
+{% endblock %}

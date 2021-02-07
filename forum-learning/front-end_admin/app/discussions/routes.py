@@ -4,10 +4,10 @@ discussions = Blueprint('discussions', __name__, template_folder='templates', ur
 
 # default top timeline
 @discussions.route('/')
-@discussions.route('/timeline')
-def latest_timeline():
-    return render_template("discussions/timeline.html")
+@discussions.route('/management')
+def get_management():
+    return render_template("discussions/management.html")
 
-@discussions.route('/discussion/<string:discussions_id>')
-def user_discussion(discussions_id):
-    return render_template('/discussions/user_discussion.html', discussions_id=discussions_id)
+@discussions.route('/request')
+def get_request_management():
+    return render_template('/discussions/request.html')
