@@ -21,61 +21,39 @@
             <span class="d-none d-sm-inline tx-lg-20"><strong>Discussions Request Management</strong></span>
         </div>
     </div>
-    <div class="profile-update-option bg-white ht-50 bd d-flex justify-content-end mg-b-20 mg-lg-b-25 rounded">
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline active">Latest</span></a>
-        </div>
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline">Week</span></a>
-        </div>
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline">Month</span></a>
-        </div>
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline">Year</span></a>
-        </div>
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline">Top</span></a>
-        </div>
-    </div>
     <div class="row no-gutters">
-        <!-- <div class="d-flex align-items-center pd-x-20 mg-r-auto"> -->
-            <div class="col-sm"></div>
-            <div class="col-sm"></div>
-            <div class="dropdown col-sm">
-                <button class="btn btn-block btn-secondary dropdown-toggle mg-b-40  tx-black btn-pln-lb" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Filter
-                </button>
-                <div class="dropdown-menu tx-13">
-                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electric Power Supply Business</h6>
-                  <a class="dropdown-item active" href="#">Generation</a>
-                  <a class="dropdown-item" href="#">Transmission</a>
-                  <a class="dropdown-item" href="#">Distribution</a>
-                  <a class="dropdown-item" href="#">Commerce &amp; Customer Management</a>
-                  <div class="dropdown-divider"></div>
-                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Corporate Support</h6>
-                  <a class="dropdown-item" href="#">Electricity Equipment Production</a>
-                  <a class="dropdown-item" href="#">Electric Safety, OHS, Security &amp; Environment</a>
-                  <a class="dropdown-item" href="#">Project Management, Engineering &amp; Construction</a>
-                  <a class="dropdown-item" href="#">Research &amp; Development</a>
-                  <a class="dropdown-item" href="#">Learning</a>
-                  <a class="dropdown-item" href="#">Certification</a>
-                  <div class="dropdown-divider"></div>
-                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electricity Support</h6>
-                  <a class="dropdown-item" href="#">Supply Chain Management</a>
-                  <a class="dropdown-item" href="#">Regulatory &amp; Compliance</a>
-                  <a class="dropdown-item" href="#">Information Technology</a>
-                  <a class="dropdown-item" href="#">HR</a>
-                  <a class="dropdown-item" href="#">Finance</a>
-                  <a class="dropdown-item" href="#">Communication, CSR &amp; Office Management</a>
-                  <a class="dropdown-item" href="#">Company Management</a>
-                  <div class="dropdown-divider"></div>
-                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Additional</h6>
-                  <a class="dropdown-item" href="#">Miscellaneous</a>
-                </div>
+        <div class="dropdown col-sm offset-sm-8">
+            <button class="btn btn-block btn-secondary dropdown-toggle mg-b-40  tx-black btn-pln-lb" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filter
+            </button>
+            <div class="dropdown-menu tx-13">
+                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electric Power Supply Business</h6>
+                <a class="dropdown-item active" href="#">Generation</a>
+                <a class="dropdown-item" href="#">Transmission</a>
+                <a class="dropdown-item" href="#">Distribution</a>
+                <a class="dropdown-item" href="#">Commerce &amp; Customer Management</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Corporate Support</h6>
+                <a class="dropdown-item" href="#">Electricity Equipment Production</a>
+                <a class="dropdown-item" href="#">Electric Safety, OHS, Security &amp; Environment</a>
+                <a class="dropdown-item" href="#">Project Management, Engineering &amp; Construction</a>
+                <a class="dropdown-item" href="#">Research &amp; Development</a>
+                <a class="dropdown-item" href="#">Learning</a>
+                <a class="dropdown-item" href="#">Certification</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electricity Support</h6>
+                <a class="dropdown-item" href="#">Supply Chain Management</a>
+                <a class="dropdown-item" href="#">Regulatory &amp; Compliance</a>
+                <a class="dropdown-item" href="#">Information Technology</a>
+                <a class="dropdown-item" href="#">HR</a>
+                <a class="dropdown-item" href="#">Finance</a>
+                <a class="dropdown-item" href="#">Communication, CSR &amp; Office Management</a>
+                <a class="dropdown-item" href="#">Company Management</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Additional</h6>
+                <a class="dropdown-item" href="#">Miscellaneous</a>
             </div>
-            <!-- <a href="" class="link-03 mg-l-10"><span class="d-none d-sm-inline">Write</span> a question</a> -->
-        <!-- </div> -->
+        </div>
     </div>
 
     <table id="example2" class="table">
@@ -1407,7 +1385,7 @@
 
 {% block modal %}
 <div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content tx-14">
         <div class="modal-header">
           <h6 class="modal-title" id="exampleModalLabel6">Show details</h6>
@@ -1423,7 +1401,7 @@
                 </div>
                 <div class="form-group mg-t-20">
                     <label>Notulent</label>
-                    <input type="text" class="form-control" value="Rachel V @rachelv?" disabled>
+                    <input type="text" class="form-control" value="Rachel V @rachelv" disabled>
                 </div>
                 <div class="form-group">
                     <label>Expert User</label>
@@ -1496,26 +1474,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block jscript %}
-<script>
-    $(function(){
-      'use strict'
-
-      $('#modalWriting').on('show.bs.modal', function (event) {
-
-        var animation = $(event.relatedTarget).data('animation');
-        $(this).addClass(animation);
-      })
-
-      // hide modal with effect
-      $('#modalWriting').on('hidden.bs.modal', function (e) {
-        $(this).removeClass (function (index, className) {
-            return (className.match (/(^|\s)effect-\S+/g) || []).join(' ');
-        });
-      });
-
-    });
-</script>
 {% endblock %}
