@@ -2,7 +2,7 @@ version: "3.8"
 
 volumes:
   forumlearning-mysqldata:
-  forumlearning-rabbitmqdata:
+  # forumlearning-rabbitmqdata:
 
 services:
   
@@ -12,30 +12,28 @@ services:
     container_name: mysqldb
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      - MYSQL_DATABASE=forum_learning
+      - MYSQL_ROOT_PASSWORD=root
     volumes:
       - forumlearning-mysqldata:/var/lib/mysql
-      # - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./mysqldump-folder/identity_schema.sql:/docker-entrypoint-initdb.d/2.sql
-      - ./mysqldump-folder/identity_test_data.sql:/docker-entrypoint-initdb.d/3.sql
-      - ./mysqldump-folder/forum_schema.sql:/docker-entrypoint-initdb.d/4.sql
-      - ./mysqldump-folder/forum_test_data.sql:/docker-entrypoint-initdb.d/5.sql
+      - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
 
     ports:
       - "3306:3306"     # Do Not Uncomment in Production
   
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: forum_learning-rabbitmq
-    volumes:
-      - forumlearning-rabbitmqdata:/var/lib/rabbitmq
-    ports:
-      - 5672:5672     # Do Not Uncomment in Production
-      - 15672:15672
-    environment:
-      - RABBITMQ_ERLANG_COOKIE=123123
-      - RABBITMQ_DEFAULT_USER=forum_learning
-      - RABBITMQ_DEFAULT_PASS=forum_learning_123
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   container_name: forum_learning-rabbitmq
+  #   volumes:
+  #     - forumlearning-rabbitmqdata:/var/lib/rabbitmq
+  #   ports:
+  #     - 5672:5672     # Do Not Uncomment in Production
+  #     - 15672:15672
+  #   environment:
+  #     - RABBITMQ_ERLANG_COOKIE=123123
+  #     - RABBITMQ_DEFAULT_USER=forum_learning
+  #     - RABBITMQ_DEFAULT_PASS=forum_learning_123
   
   identity:
     container_name: forum_learning-identity
@@ -47,7 +45,7 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=identity
+      - MYSQL_DATABASE=forum_learning
       - QUEUE_HOST=rabbitmq
       - QUEUE_PORT=5672
       - QUEUE_USERNAME=forum_learning
@@ -70,7 +68,7 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=forum
+      - MYSQL_DATABASE=forum_learning
       - QUEUE_HOST=rabbitmq
       - QUEUE_PORT=5672
       - QUEUE_USERNAME=forum_learning

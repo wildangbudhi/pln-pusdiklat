@@ -34,11 +34,11 @@ func main() {
 		server.Router.Run(":8080")
 	}(server, &wg)
 
-	// Run RabbitMQ Consumer
-	go func(server *utils.Server, wg *sync.WaitGroup) {
-		defer wg.Done()
-		server.QueueServer.RunConsumerServer()
-	}(server, &wg)
+	// // Run RabbitMQ Consumer
+	// go func(server *utils.Server, wg *sync.WaitGroup) {
+	// 	defer wg.Done()
+	// 	server.QueueServer.RunConsumerServer()
+	// }(server, &wg)
 
 	wg.Wait()
 

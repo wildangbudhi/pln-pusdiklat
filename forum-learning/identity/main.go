@@ -33,10 +33,10 @@ func main() {
 		server.Router.Run(":8080")
 	}(server, &wg)
 
-	go func(server *utils.Server, wg *sync.WaitGroup) {
-		defer wg.Done()
-		server.QueueServer.RunConsumerServer()
-	}(server, &wg)
+	// go func(server *utils.Server, wg *sync.WaitGroup) {
+	// 	defer wg.Done()
+	// 	server.QueueServer.RunConsumerServer()
+	// }(server, &wg)
 
 	wg.Wait()
 }

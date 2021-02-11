@@ -8,7 +8,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain/mocks/mysql"
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain/mocks/rabbitmq"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain/model"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/usecase"
 )
@@ -16,15 +15,16 @@ import (
 func TestRegisterSuccess(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
-	mockUserAuthEventRepository := new(rabbitmq.UserAuthEventRepositoryMock)
+	// mockUserAuthEventRepository := new(rabbitmq.UserAuthEventRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, mockUserAuthEventRepository, nil)
+	// testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, mockUserAuthEventRepository, nil)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
 	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("InsertUserAuth").Return(int64(1), nil)
 
-	mockUserAuthEventRepository.On("PublishDataChangesEvent").Return(nil)
+	// mockUserAuthEventRepository.On("PublishDataChangesEvent").Return(nil)
 
 	fullName := "Test Name"
 	username := "test_username"
@@ -38,7 +38,7 @@ func TestRegisterSuccess(t *testing.T) {
 	userAuthID, err := testService.Register(fullName, *email, username, password)
 
 	mockUserAuthRepository.AssertExpectations(t)
-	mockUserAuthEventRepository.AssertExpectations(t)
+	// mockUserAuthEventRepository.AssertExpectations(t)
 
 	// Test Usecase Error is Nil
 	assert.Nil(t, err)
@@ -129,34 +129,34 @@ func TestRegisterFailedToInsert(t *testing.T) {
 
 }
 
-func TestRegisterFailedToPublishEvent(t *testing.T) {
+// func TestRegisterFailedToPublishEvent(t *testing.T) {
 
-	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
-	mockUserAuthEventRepository := new(rabbitmq.UserAuthEventRepositoryMock)
+// 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
+// 	mockUserAuthEventRepository := new(rabbitmq.UserAuthEventRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, mockUserAuthEventRepository, nil)
+// 	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, mockUserAuthEventRepository, nil)
 
-	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
-	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
-	mockUserAuthRepository.On("InsertUserAuth").Return(int64(1), nil)
+// 	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
+// 	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
+// 	mockUserAuthRepository.On("InsertUserAuth").Return(int64(1), nil)
 
-	mockUserAuthEventRepository.On("PublishDataChangesEvent").Return(fmt.Errorf("Failed to Publish Event"))
+// 	mockUserAuthEventRepository.On("PublishDataChangesEvent").Return(fmt.Errorf("Failed to Publish Event"))
 
-	fullName := "Test Name"
-	username := "test_username"
-	password := "password123"
-	email, err := domain.NewEmail("test@gmail.com")
+// 	fullName := "Test Name"
+// 	username := "test_username"
+// 	password := "password123"
+// 	email, err := domain.NewEmail("test@gmail.com")
 
-	if err != nil {
-		log.Fatal(err)
-	}
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
 
-	_, err = testService.Register(fullName, *email, username, password)
+// 	_, err = testService.Register(fullName, *email, username, password)
 
-	mockUserAuthRepository.AssertExpectations(t)
-	mockUserAuthEventRepository.AssertExpectations(t)
+// 	mockUserAuthRepository.AssertExpectations(t)
+// 	mockUserAuthEventRepository.AssertExpectations(t)
 
-	// Test Usecase Error is Nil
-	assert.NotNil(t, err)
+// 	// Test Usecase Error is Nil
+// 	assert.NotNil(t, err)
 
-}
+// }
