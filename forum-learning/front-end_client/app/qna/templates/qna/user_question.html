@@ -12,29 +12,64 @@
       </div><!-- card-header -->
         <div class="card-body pd-20 pd-lg-25">
             <div class="media align-items-center mg-b-20">
-                <div class="avatar avatar-online"><img src="https://via.placeholder.com/500"
-                        class="rounded-circle" alt=""></div>
+              <div class="avatar avatar-sm">
+                <i data-feather="user" class="wd-30 ht-auto rounded-circle bg-gray-100"></i>
+              </div>
                 <div class="media-body pd-l-15">
                     <h6 class="mg-b-3">Rangga Kusuma</h6>
                     <span class="d-block tx-13 tx-color-03">@ranggakusumad</span>
                 </div>
                 <span class="d-none d-sm-block tx-12 tx-color-03 align-self-start">5 hours ago</span>
             </div><!-- media -->
-            <a href="/qna/rangga/1234" style="color: inherit;" class="mg-b-20 mg-t-20">
-                <h5>
-                Mengapa masyarakat enggan divaksin?
-                </h5>
-            </a>
+            <div class="mg-b-20 mg-t-20">
+              <h5 class="mg-b-15 tx-inverse">Kapan pertumbuhan ekonomi membaik?</h5>
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            </div>
         </div>
+        <div class="row pd-l-25 pd-r-25">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" href="#modalRequest" data-toggle="modal" data-animation="effect-fall"><button type="button" class="btn btn-success btn-block">Ask Expert</button></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#modalClose" data-toggle="modal" data-animation="effect-fall"><button type="button" class="btn btn-secondary btn-block">Close</button></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#modalDelete" data-toggle="modal" data-animation="effect-fall"><button type="button" class="btn btn-danger btn-block">Delete</button></a>
+            </li>
+          </ul>
+          </div>  
         <div class="card-footer bg-transparent pd-y-10 pd-sm-y-15 pd-x-10 pd-sm-x-20">
             <nav class="nav nav-with-icon tx-13">
                 <a href="" class="nav-link"><i data-feather="thumbs-up"></i> 20</a>
                 <a href="" class="nav-link"><i data-feather="thumbs-down"></i> 1</a>
-                <a href="#modalRequest" data-toggle="modal" data-animation="effect-fall"><button type="button" class="btn btn-success btn-block mg-l-40">Request discussion</button></a>
-                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall"><button type="button" class="btn btn-secondary btn-block mg-l-60">Close question</button></a>
-                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall"><button type="button" class="btn btn-danger btn-block mg-l-80">Delete question</button></a>
             </nav>
         </div><!-- card-footer -->
+        <hr class="mg-hr-t">
+        <div class="card-body pd-20 pd-lg-25">
+          <h6 class="mg-b-20 tx-inverse">🌟 Top Answer</h4>
+          <div class="media align-items-center mg-b-20">
+            <div class="avatar avatar-sm">
+              <i data-feather="user" class="wd-30 ht-auto rounded-circle bg-gray-100"></i>
+            </div>
+              <div class="media-body pd-l-15">
+                  <h6 class="mg-b-3">Rangga Kusuma</h6>
+                  <span class="d-block tx-13 tx-color-03">@ranggakusumad</span>
+              </div>
+              <span class="d-none d-sm-block tx-12 tx-color-03 align-self-start">5 hours ago</span>
+          </div><!-- media -->
+          <div class="mg-b-20 mg-t-20">
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+          <nav class="nav nav-with-icon tx-13">
+            <a href="" class="nav-link"><i data-feather="thumbs-up"></i> 20</a>
+            <a href="" class="nav-link"><i data-feather="thumbs-down"></i> 1</a>
+            <a href="" class="nav-link">🙏 30</a>
+            <a href="" class="nav-link">🤔 2</a>
+          </nav>
+        </div>
+        <!-- <hr>
+        <h6>ok</h6> -->
     </div><!-- card -->
 </div><!-- media-body -->
 {% endblock %}
@@ -44,7 +79,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content tx-14">
         <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel6">Close a question</h6>
+          <h6 class="modal-title" id="exampleModalLabel6">Close the question</h6>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -63,7 +98,7 @@
 <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content tx-14">
     <div class="modal-header">
-        <h6 class="modal-title" id="exampleModalLabel6">Delete a question</h6>
+        <h6 class="modal-title" id="exampleModalLabel6">Delete the question</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -82,7 +117,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content tx-14">
       <div class="modal-header">
-        <h6 class="modal-title" id="exampleModalLabel6">Request a discussion</h6>
+        <h6 class="modal-title" id="exampleModalLabel6">Request an expert discussion</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -93,12 +128,12 @@
               <input type="text" class="form-control" placeholder="Generation" disabled>
               <div class="form-group mg-t-20">
                   <label>Title of Discussion</label>
-                  <textarea class="form-control" rows="4" placeholder="Alasan Mengapa banyak OTG di Jawa Timur?"></textarea>
+                  <input class="form-control" rows="4" value="Kapan pertumbuhan ekonomi membaik?"></input>
               </div>
               <div class="form-group mg-t-20">
                 <label>Choose your Expert Recommendation</label>
                 <select class="custom-select">
-                  <option selected>Open this select menu</option>
+                  <option selected disabled>Open this select menu</option>
                   <option value="Expert1">Expert1</option>
                   <option value="Expert2">Expert2</option>
                   <option value="Expert3">Expert3</option>
@@ -110,7 +145,7 @@
             </div>
             <div class="form-group mg-t-20">
               <label>Datetime</label>
-              <input type="text" class="form-control" placeholder="23 Februari 2020 23:23:56">
+              <input type="text" class="form-control" placeholder="23 Februari 2020 18:00:00">
             </div>
           </div>
       </div>

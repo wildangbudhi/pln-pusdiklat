@@ -11,4 +11,4 @@ if __name__ == "__main__":
     app.register_blueprint(qna)
     app.register_blueprint(discussions)
     app.register_blueprint(posts)
-    app.run(host="0.0.0.0",port=80, debug=True)
+    app.run(host="0.0.0.0",port=8000, debug=True)
