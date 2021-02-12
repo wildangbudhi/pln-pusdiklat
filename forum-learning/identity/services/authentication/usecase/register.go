@@ -59,22 +59,6 @@ func (usecase *authenticationUsecase) Register(fullName string, email domain.Ema
 		return -1, err
 	}
 
-	// userAuthEvent := event.UserAuthEvent{
-	// 	Action: "CREATE",
-	// 	Data: &event.UserAuth{
-	// 		ID:       int(userAuthID),
-	// 		FullName: fullName,
-	// 		Email:    email.GetValue(),
-	// 		Username: username,
-	// 	},
-	// }
-
-	// err = usecase.userAuthEventRepository.PublishDataChangesEvent(&userAuthEvent)
-
-	// if err != nil {
-	// 	return -1, err
-	// }
-
 	return userAuthID, nil
 
 }
