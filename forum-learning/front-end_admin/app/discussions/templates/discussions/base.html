@@ -23,7 +23,7 @@
     <meta name="author" content="PLN">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon_pln.png') }}">
 
     {% block title %} {% endblock %}
 
@@ -49,10 +49,10 @@
 <body class="page-profile">
 
     {% block header %}
-    <header class="navbar navbar-header navbar-header-fixed">
+    <header class="navbar navbar-header navbar-header-fixed pos-fixed z-index-200 pln-vr-lb">
         <a href="" id="mainMenuOpen" class="burger-menu"><i data-feather="menu"></i></a>
         <div class="navbar-brand">
-            <a href="/qna" class="df-logo">PLN<span>Forum Learning</span></a>
+            <a href="/qna"><img class="img-fluid wd-25p" src="{{ url_for('static', filename='img/OFL_SVGFileDF.svg') }}" alt="logo"></a>
         </div><!-- navbar-brand -->
         <!-- navbar-menu-wrapper -->
         <div class="navbar-right">
@@ -108,17 +108,20 @@
                                 <li class="nav-item show">
                                     <a href="/qna" class="nav-link"><i data-feather="globe"></i> <span>QnA Management</span></a>
                                 </li>
-                                {% block nav %}                                
                                 <li class="nav-item show">
-                                    <a class="nav-link"><i data-feather="layers"></i>Discussions Management</a>
+                                    <a class="nav-link active"><i data-feather="layers"></i>Discussions Management</a>
                                     <nav class="nav nav-classic tx-13">
+                                        {% block nav %}                                
                                         <a href="/discussions" class="active">Admin</a>
                                         <a href="/discussions/request">Request</a>
+                                        {% endblock %}
                                     </nav>
                                 </li>
-                                {% endblock %}
                                 <li class="nav-item show">
                                     <a href="/posts" class="nav-link"><i data-feather="twitter"></i> <span>Posts Management</span></a>
+                                </li>
+                                <li class="nav-item show">
+                                    <a href="/experts" class="nav-link"><i data-feather="globe"></i> <span>Experts Management</span></a>
                                 </li>
                             </ul>
                         </div><!-- sidebar-body -->

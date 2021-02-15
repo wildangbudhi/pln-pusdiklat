@@ -23,7 +23,7 @@
     <meta name="author" content="PLN">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon_pln.png') }}">
 
     {% block title %} {% endblock %}
 
@@ -54,7 +54,7 @@
     <header class="navbar navbar-header navbar-header-fixed pos-fixed z-index-200 pln-vr-lb">
         <a href="" id="mainMenuOpen" class="burger-menu"><i data-feather="menu"></i></a>
         <div class="navbar-brand">
-            <a href="/qna" class="df-logo">PLN<span>Forum Learning</span></a>
+            <a href="/qna"><img class="img-fluid wd-25p" src="{{ url_for('static', filename='img/OFL_SVGFileDF.svg') }}" alt="logo"></a>
         </div><!-- navbar-brand -->
         <!-- navbar-menu-wrapper -->
         <div class="navbar-right">
@@ -119,6 +119,9 @@
                                 <li class="nav-item show">
                                     <a href="/posts" class="nav-link active"><i data-feather="twitter"></i> <span>Posts Management</span></a>
                                 </li>
+                                <li class="nav-item show">
+                                    <a href="/experts" class="nav-link"><i data-feather="globe"></i> <span>Experts Management</span></a>
+                                </li>
                             </ul>
                         </div><!-- sidebar-body -->
                     </div><!-- row -->
@@ -164,6 +167,7 @@
     <script src="{{ url_for('static', filename='lib/js-cookie/js.cookie.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dashforge.settings.js') }}"></script>
 
+    <!-- dark mode -->
     <script>
         $(function () {
             'use script'
@@ -190,6 +194,7 @@
             }
         })
     </script>
+    <!-- data table -->
     <script>
         $(function(){
             'use strict'
@@ -241,8 +246,8 @@
     
         });
     </script>
+    <!-- typeahead -->
     <script>
-
         $(function(){
             'use strict'
     

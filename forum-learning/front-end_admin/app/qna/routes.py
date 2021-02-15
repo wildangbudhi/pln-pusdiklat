@@ -8,6 +8,6 @@ qna = Blueprint('qna', __name__, template_folder='templates', url_prefix='/qna')
 def get_management():
     return render_template("qna/management.html")
 
-@qna.route('/replies_management')
-def get_replies_management():
-    return render_template('/qna/user_replies.html')
+@qna.route('/replies/<string:qna_id>')
+def get_replies_management(qna_id):
+    return render_template('/qna/replies.html', qna_id=qna_id)
