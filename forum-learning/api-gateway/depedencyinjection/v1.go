@@ -2,15 +2,23 @@ package depedencyinjection
 
 import (
 	"github.com/gin-gonic/gin"
-	identityHTTPDelivery "github.com/wildangbudhi/pln-pusdiklat/forum-learning/api-gateway/services/v1/identity/authentication/delivery/http"
-	identityHTTPRepository "github.com/wildangbudhi/pln-pusdiklat/forum-learning/api-gateway/services/v1/identity/authentication/repository/http"
+	identityAuthenticationHTTPDelivery "github.com/wildangbudhi/pln-pusdiklat/forum-learning/api-gateway/services/v1/identity/authentication/delivery/http"
+	identityAuthenticationHTTPRepository "github.com/wildangbudhi/pln-pusdiklat/forum-learning/api-gateway/services/v1/identity/authentication/repository/http"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/api-gateway/utils"
 )
 
+func identityAuthentticationDI(router *gin.RouterGroup, server *utils.Server) {
+
+	authenticationRepository := identityAuthenticationHTTPRepository.NewAuthenticationRepository(server.HTTPClient, server.Config.EndpointsMap)
+	identityAuthenticationHTTPDelivery.NewAuthenticationHTTPHandler(router, authenticationRepository)
+
+}
+
 func identityDI(router *gin.RouterGroup, server *utils.Server) {
 
-	authenticationRepository := identityHTTPRepository.NewAuthenticationRepository(server.HTTPClient, server.Config.EndpointsMap)
-	identityHTTPDelivery.NewAuthenticationHTTPHandler(router, authenticationRepository)
+	authenticationRouter := router.Group("auth")
+
+	identityAuthentticationDI(authenticationRouter, server)
 
 }
 

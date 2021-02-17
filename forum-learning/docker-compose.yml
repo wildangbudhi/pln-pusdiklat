@@ -36,7 +36,7 @@ services:
     build: ./identity/
     restart: always
     environment: 
-      - GIN_MODE=debug
+      - GIN_MODE=release
       - MYSQL_HOST=mysqldb
       - MYSQL_PORT=3306
       - MYSQL_USERNAME=root
@@ -54,7 +54,7 @@ services:
     build: ./forum/
     restart: always
     environment: 
-      - GIN_MODE=debug
+      - GIN_MODE=release
       - MYSQL_HOST=mysqldb
       - MYSQL_PORT=3306
       - MYSQL_USERNAME=root
