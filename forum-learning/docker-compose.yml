@@ -2,7 +2,6 @@ version: "3.8"
 
 volumes:
   forumlearning-mysqldata:
-  forumlearning-redisdata:
 
 services:
   
@@ -20,16 +19,6 @@ services:
       - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
     ports:
       - "3306:3306"     # Do Not Uncomment in Production
-  
-  redis:
-    restart: always
-    image: redis
-    command: redis-server --requirepass root
-    container_name: redis_cache
-    volumes: 
-      - forumlearning-redisdata:/var/lib/redis
-    ports: 
-      - "6379:6379"     # Do Not Uncomment in Production
 
   identity:
     container_name: forum_learning-identity
@@ -73,9 +62,6 @@ services:
     restart: always
     environment: 
       - GIN_MODE=debug
-      - REDIS_HOST=redis
-      - REDIS_PORT=5
-      - REDIS_PASSWORD=root
     volumes: 
       - ./log/api_gateway/:/src/log/
       - ./api-gateway-config/:/src/config/
@@ -83,7 +69,6 @@ services:
       - "8083:8080"     # Do Not Uncomment in Production
     depends_on: 
       - mysqldb
-      - redis
       
   front-end_client:
     container_name: forum_learning-front_end_client
