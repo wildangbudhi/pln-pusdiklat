@@ -1,0 +1,14 @@
+{
+    "endpoints_map" : [
+        {
+            "prefix"    : "identity",
+            "host"      : "http://identity",
+            "port"      : "8080"
+        },
+        {
+            "prefix"    : "forum",
+            "host"      : "http://forum",
+            "port"      : "8080"
+        }
+    ]
+}

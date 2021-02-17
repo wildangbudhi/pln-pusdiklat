@@ -2,7 +2,7 @@ version: "3.8"
 
 volumes:
   forumlearning-mysqldata:
-  # forumlearning-rabbitmqdata:
+  forumlearning-redisdata:
 
 services:
   
@@ -18,23 +18,19 @@ services:
       - forumlearning-mysqldata:/var/lib/mysql
       - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
       - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
-
     ports:
       - "3306:3306"     # Do Not Uncomment in Production
   
-  # rabbitmq:
-  #   image: rabbitmq:3-management
-  #   container_name: forum_learning-rabbitmq
-  #   volumes:
-  #     - forumlearning-rabbitmqdata:/var/lib/rabbitmq
-  #   ports:
-  #     - 5672:5672     # Do Not Uncomment in Production
-  #     - 15672:15672
-  #   environment:
-  #     - RABBITMQ_ERLANG_COOKIE=123123
-  #     - RABBITMQ_DEFAULT_USER=forum_learning
-  #     - RABBITMQ_DEFAULT_PASS=forum_learning_123
-  
+  redis:
+    restart: always
+    image: redis
+    command: redis-server --requirepass root
+    container_name: redis_cache
+    volumes: 
+      - forumlearning-redisdata:/var/lib/redis
+    ports: 
+      - "6379:6379"     # Do Not Uncomment in Production
+
   identity:
     container_name: forum_learning-identity
     build: ./identity/
@@ -46,17 +42,12 @@ services:
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=forum_learning
-      # - QUEUE_HOST=rabbitmq
-      # - QUEUE_PORT=5672
-      # - QUEUE_USERNAME=forum_learning
-      # - QUEUE_PASSWORD=forum_learning_123
     volumes: 
       - ./log/identity/:/src/log/
     ports:
       - "8081:8080"     # Do Not Uncomment in Production
     depends_on: 
       - mysqldb
-      # - rabbitmq
 
   forum:
     container_name: forum_learning-forum
@@ -69,37 +60,30 @@ services:
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=forum_learning
-      # - QUEUE_HOST=rabbitmq
-      # - QUEUE_PORT=5672
-      # - QUEUE_USERNAME=forum_learning
-      # - QUEUE_PASSWORD=forum_learning_123
     volumes: 
       - ./log/forum/:/src/log/
     ports:
       - "8082:8080"     # Do Not Uncomment in Production
     depends_on: 
       - mysqldb
-      # - rabbitmq
-
-  # post:
-  #   container_name: forum_learning-post
-  #   build: ./post/
-  #   restart: always
-  #   command: "php artisan serve --host=0.0.0.0 --port=8000"
-  #   environment: 
-  #     - APP_NAME=forum_learning-post
-  #     - APP_ENV=local
-  #     - APP_KEY=
-  #     - APP_DEBUG=true
-  #     - APP_URL=http://localhost:8000
-  #     - DB_CONNECTION=mysql
-  #     - DB_HOST=db
-  #     - DB_PORT=3306
-  #     - DB_DATABASE=forum_learning
-  #     - DB_USERNAME=forum_learning
-  #     - DB_PASSWORD=forum_learning_123
-  #   ports:
-  #     - 8082:8000
+  
+  api_gateway:
+    container_name: forum_learning-api_gateway
+    build: ./api-gateway/
+    restart: always
+    environment: 
+      - GIN_MODE=debug
+      - REDIS_HOST=redis
+      - REDIS_PORT=5
+      - REDIS_PASSWORD=root
+    volumes: 
+      - ./log/api_gateway/:/src/log/
+      - ./api-gateway-config/:/src/config/
+    ports:
+      - "8083:8080"     # Do Not Uncomment in Production
+    depends_on: 
+      - mysqldb
+      - redis
       
   front-end_client:
     container_name: forum_learning-front_end_client
