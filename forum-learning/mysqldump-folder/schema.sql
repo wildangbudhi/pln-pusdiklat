@@ -31,7 +31,7 @@ CREATE TABLE `activities` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,7 +57,7 @@ DROP TABLE IF EXISTS `discussion`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `discussion` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `forum_id` bigint NOT NULL,
+  `forum_id` varchar(50) NOT NULL,
   `title` varchar(100) DEFAULT NULL,
   `zoom_invitation_url` varchar(100) DEFAULT NULL,
   `zoom_host_email` varchar(100) DEFAULT NULL,
@@ -185,7 +185,7 @@ DROP TABLE IF EXISTS `discussion_requests`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `discussion_requests` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `forum_id` bigint DEFAULT NULL,
+  `forum_id` varchar(50) DEFAULT NULL,
   `accepted` tinyint(1) DEFAULT NULL,
   `accepted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -249,8 +249,9 @@ DROP TABLE IF EXISTS `forum`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `forum` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` varchar(50) NOT NULL,
   `title` varchar(100) NOT NULL,
+  `question` text DEFAULT NULL,
   `author_user_id` bigint NOT NULL,
   `category_id` bigint NOT NULL,
   `status` varchar(100) DEFAULT NULL,
@@ -259,8 +260,8 @@ CREATE TABLE `forum` (
   PRIMARY KEY (`id`),
   KEY `forum_FK_author_user_id` (`author_user_id`),
   KEY `forum_FK_category_id` (`category_id`),
-  CONSTRAINT `forum_FK_author_user_id` FOREIGN KEY (`author_user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `forum_FK_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `forum_FK_author_user_id` FOREIGN KEY (`author_user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `forum_FK_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -272,16 +273,16 @@ DROP TABLE IF EXISTS `forum_reaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `forum_reaction` (
-  `user_id` bigint DEFAULT NULL,
-  `forum_id` bigint DEFAULT NULL,
+  `user_id` bigint NOT NULL,
+  `forum_id` varchar(50) NOT NULL,
   `up_vote` tinyint(1) DEFAULT NULL,
   `down_vote` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   KEY `forum_reaction_FK_user_id` (`user_id`),
   KEY `forum_reaction_FK` (`forum_id`),
-  CONSTRAINT `forum_reaction_FK` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `forum_reaction_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `forum_reaction_FK` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `forum_reaction_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -293,17 +294,17 @@ DROP TABLE IF EXISTS `forum_replies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `forum_replies` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `forum_id` bigint NOT NULL,
+  `id` varchar(50) NOT NULL,
+  `forum_id` varchar(50) NOT NULL,
   `author_user_id` bigint NOT NULL,
-  `answer` varchar(10000) DEFAULT NULL,
+  `answer` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `forum_replies_FK_forum_id` (`forum_id`),
   KEY `forum_replies_FK` (`author_user_id`),
-  CONSTRAINT `forum_replies_FK` FOREIGN KEY (`author_user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `forum_replies_FK_forum_id` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `forum_replies_FK` FOREIGN KEY (`author_user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `forum_replies_FK_forum_id` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -316,8 +317,7 @@ DROP TABLE IF EXISTS `forum_replies_reactions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `forum_replies_reactions` (
   `user_id` bigint NOT NULL,
-  `forum_id` bigint NOT NULL,
-  `forum_replies_id` bigint NOT NULL,
+  `forum_replies_id` varchar(50) NOT NULL,
   `up_vote` tinyint(1) DEFAULT NULL,
   `down_vote` tinyint(1) DEFAULT NULL,
   `agree` tinyint(1) DEFAULT NULL,
@@ -325,11 +325,9 @@ CREATE TABLE `forum_replies_reactions` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   KEY `forum_replies_reactions_FK_user_id` (`user_id`),
-  KEY `forum_replies_reactions_FK_forum_id` (`forum_id`),
   KEY `forum_replies_reactions_FKforum_replies_id` (`forum_replies_id`),
-  CONSTRAINT `forum_replies_reactions_FK_forum_id` FOREIGN KEY (`forum_id`) REFERENCES `forum` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `forum_replies_reactions_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `forum_replies_reactions_FKforum_replies_id` FOREIGN KEY (`forum_replies_id`) REFERENCES `forum_replies` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `forum_replies_reactions_FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `forum_replies_reactions_FKforum_replies_id` FOREIGN KEY (`forum_replies_id`) REFERENCES `forum_replies` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -395,8 +393,8 @@ CREATE TABLE `role_activities` (
   `activities_id` bigint DEFAULT NULL,
   KEY `role_activities_FK` (`role_id`),
   KEY `role_activities_FK_1` (`activities_id`),
-  CONSTRAINT `role_activities_FK` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `role_activities_FK_1` FOREIGN KEY (`activities_id`) REFERENCES `activities` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `role_activities_FK` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `role_activities_FK_1` FOREIGN KEY (`activities_id`) REFERENCES `activities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -413,7 +411,7 @@ CREATE TABLE `roles` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,7 +439,7 @@ CREATE TABLE `user_auth` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_auth_UN_email` (`email`),
   UNIQUE KEY `user_auth_UN_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -456,8 +454,8 @@ CREATE TABLE `user_roles` (
   `role_id` bigint DEFAULT NULL,
   KEY `user_roles_FK` (`user_id`),
   KEY `user_roles_FK_1` (`role_id`),
-  CONSTRAINT `user_roles_FK` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `user_roles_FK_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `user_roles_FK` FOREIGN KEY (`user_id`) REFERENCES `user_auth` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_roles_FK_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
