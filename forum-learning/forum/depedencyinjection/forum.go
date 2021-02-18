@@ -1,7 +1,6 @@
 package depedencyinjection
 
 import (
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/delivery/ampq"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/delivery/http"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/repository/mysql"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/forum/services/forum/usecase"
@@ -29,6 +28,5 @@ func ForumDI(server *utils.Server) {
 	)
 
 	http.NewForumHTTPHandler(forumRoute, usecase)
-	ampq.NewForumAMPQHandler(server.QueueServer, usecase)
 
 }

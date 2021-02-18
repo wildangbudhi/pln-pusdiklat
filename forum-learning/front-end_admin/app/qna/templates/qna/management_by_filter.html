@@ -1,0 +1,1499 @@
+{% extends 'qna/base.html' %}
+
+{% block title %}
+<title>QnA Management filter by {{filter}} | PLN Forum Learning</title>
+{% endblock %}
+
+{% block timeline %}
+<div class="media-body mg-t-40 mg-lg-t-0 pd-lg-x-10">
+    <div class="profile-update-option bg-white ht-50 bd d-flex justify-content-end mg-b-20 mg-lg-b-25 rounded">
+        <div class="d-flex align-items-center pd-x-20 mg-r-auto">
+            <span class="d-none d-sm-inline tx-lg-20"><strong>QnA Management</strong> filter by <strong>{{filter}}</strong></span>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="dropdown col-sm offset-sm-8">
+            <button class="btn btn-block btn-secondary dropdown-toggle mg-b-40 tx-black btn-pln-lb" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filter
+            </button>
+            <div class="dropdown-menu tx-13">
+                {% for c, uc in category_dict.items() %}
+                    {% if c == filter %}
+                        <a class="dropdown-item active" href="/qna/management/{{uc}}">{{c}}</a>
+                    {% else %}
+                        <a class="dropdown-item" href="/qna/management/{{uc}}">{{c}}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <table id="datatable" class="table">
+        <thead>
+          <tr>
+            <th class="wd-25p">Author</th>
+            <th class="wd-10p">Status</th>
+            <th class="wd-20p">Replies</th>
+            <th class="wd-25p">Time</th>
+            <th class="wd-20p">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tiger Nixon</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>                
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Garrett Winters</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Ashton Cox</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Cedric Kelly</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Airi Satou</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Brielle Williamson</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Herrod Chandler</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Rhona Davidson</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Colleen Hurst</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Sonya Frost</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jena Gaines</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Quinn Flynn</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Charde Marshall</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Haley Kennedy</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Tatyana Fitzpatrick</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Michael Silva</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Paul Byrd</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Gloria Little</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Bradley Greer</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Dai Rios</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jenette Caldwell</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yuri Berry</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Caesar Vance</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Doris Wilder</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Angelica Ramos</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Gavin Joyce</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jennifer Chang</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Brenden Wagner</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Fiona Green</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Shou Itou</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Michelle House</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Suki Burks</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Prescott Bartlett</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Gavin Cortez</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Martena Mccray</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Unity Butler</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Howard Hatfield</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Hope Fuentes</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Vivian Harrell</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Timothy Mooney</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jackson Bradshaw</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Olivia Liang</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Bruno Nash</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Sakura Yamamoto</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Thor Walton</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Finn Camacho</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Serge Baldwin</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Zenaida Frank</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Zorita Serrano</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jennifer Acosta</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Cara Stevens</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Hermione Butler</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Lael Greer</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jonas Alexander</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Shad Decker</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Michael Bruce</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Donna Snider</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</div><!-- media-body -->
+{% endblock %}
+
+{% block modal %}
+<div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content tx-14">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel6">Show details</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" value="Mengapa Xanax perlu di ekspor?" disabled>
+            </div>
+            <div class="form-group mg-t-20">
+                <label>Description</label>
+                <div class="d-flex flex-column ht-200">
+                    <div id="quillEditorModal" class="flex-1 overflow-y-auto">
+                        <p><strong>Xanax</strong> is a <a href="https://en.wikipedia.org/wiki/Alprazolam">drug</a> used in short-term management of anxiety disorders.</p>
+                    </div>
+                </div>
+                <!-- <textarea class="form-control" rows="4" placeholder="Mengapa banyak OTG di Jawa Timur?"></textarea> -->
+            </div>
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="form-control" value="Tria Nexon (@trianexon)" disabled>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" class="form-control" value="{{filter}}" disabled>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <input type="text" class="form-control" value="Open" disabled>
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md">
+                        <label>Upvote 👍</label>
+                        <input type="text" class="form-control" value="100" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Downvote 👎</label>
+                        <input type="text" class="form-control" value="10" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Replies</label>
+                        <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn tx-13 btn-pln-gr" data-dismiss="modal">Back</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="modalClose" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content tx-14">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel6">Close the question</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h5>Are you sure to close this question?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary tx-13">Yes</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content tx-14">
+    <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel6">Delete the question</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h5>Are you sure to delete this question?</h5>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary tx-13">Yes</button>
+    </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block jscript %}
+<!-- text editor -->
+<script>
+    $(function(){
+        'use strict'
+
+        // Editor in Modal
+        var quillModal = new Quill('#quillEditorModal', {
+        modules: {
+            toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'header': 1 }, { 'header': 2 }, 'blockquote'],
+            ['link', 'image', 'code-block'],
+            ]
+        },
+        theme: 'snow'
+        });
+
+        quillModal.enable(false);
+    });
+</script>
+<!-- datatable -->
+<script>
+    $(function(){
+        'use strict'
+
+        $('#datatable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search on this page',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        },
+        paging: false
+        });
+
+    });
+</script>
+{% endblock %}

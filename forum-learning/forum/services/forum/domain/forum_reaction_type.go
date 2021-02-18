@@ -39,6 +39,6 @@ func (obj *ForumReactionType) IsDownVoteToggled() bool {
 }
 
 // IsAllUntoggled is a Function to Check if All Untoggled
-func (obj *ForumReactionType) IsAllUntoggled() bool {
-	return obj.isUpVoteToggled && obj.isDownVoteToggled
-}
+// func (obj *ForumReactionType) IsAllUntoggled() bool {
+// 	return obj.isUpVoteToggled && obj.isDownVoteToggled
+// }

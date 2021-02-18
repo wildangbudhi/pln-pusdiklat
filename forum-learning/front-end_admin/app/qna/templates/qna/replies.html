@@ -1,0 +1,1318 @@
+{% extends 'qna/base.html' %}
+
+{% block title %}
+<title>Replies Management on {{qna_id}} | PLN Forum Learning</title>
+{% endblock %}
+
+{% block timeline %}
+<div class="media-body mg-t-40 mg-lg-t-0 pd-lg-x-10">
+  <div class="profile-update-option bg-white ht-50 bd d-flex justify-content-end mg-b-20 mg-lg-b-25 rounded">
+    <div class="d-flex align-items-center pd-x-20 mg-r-auto">
+        <span class="d-none d-sm-inline tx-lg-20"><strong>Replies Management - {{qna_id}}</strong></span>
+    </div>
+  </div>
+  <div class="card mg-b-20 mg-lg-b-25">
+    <div class="card-header pd-y-15 pd-x-20 d-flex align-items-center justify-content-between" style="background-color: #E7F6F9;">
+      <span class="d-none d-sm-inline"><strong>#Generation</strong></span>
+    </div><!-- card-header -->
+      <div class="card-body pd-20 pd-lg-25">
+          <div class="media align-items-center mg-b-20">
+            <div class="avatar avatar-sm">
+              <i data-feather="user" class="wd-30 ht-auto rounded-circle bg-gray-100"></i>
+            </div>
+              <div class="media-body pd-l-15">
+                  <h6 class="mg-b-3">Rangga Kusuma</h6>
+                  <span class="d-block tx-13 tx-color-03">@ranggakusumad</span>
+              </div>
+              <span class="d-none d-sm-block tx-12 tx-color-03 align-self-start">5 hours ago</span>
+          </div><!-- media -->
+          <div class="mg-b-20 mg-t-20">
+            <h5 class="mg-b-15 tx-inverse">Kapan pertumbuhan ekonomi membaik?</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+      </div>
+      <div class="card-footer bg-transparent pd-y-10 pd-sm-y-15 pd-x-10 pd-sm-x-20">
+          <nav class="nav nav-with-icon tx-13">
+              <a class="nav-link"><i data-feather="thumbs-up"></i> 20</a>
+              <a class="nav-link"><i data-feather="thumbs-down"></i> 1</a>
+          </nav>
+      </div><!-- card-footer -->
+  </div><!-- card -->
+  <table id="datatable" class="table">
+    <thead>
+      <tr>
+        <th class="wd-20p">Username</th>
+        <th class="wd-10p">Upvote</th>
+        <th class="wd-15p">Downvote</th>
+        <th class="wd-10p">Agree</th>
+        <th class="wd-10p">Skeptic</th>
+        <th class="wd-20p">Time</th>
+        <th class="wd-15p">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>@TigerNixon</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>                
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@GarrettWinters</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@AshtonCox</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@CedricKelly</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@AiriSatou</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@BrielleWilliamson</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@HerrodChandler</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@RhonaDavidson</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@ColleenHurst</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@SonyaFrost</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@JenaGaines</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@QuinnFlynn</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@ChardeMarshall</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@HaleyKennedy</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@TatyanaFitzpatrick</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@MichaelSilva</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@PaulByrd</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@GloriaLittle</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@BradleyGreer</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@DaiRios</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@JenetteCaldwell</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@YuriBerry</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@CaesarVance</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@DorisWilder</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@AngelicaRamos</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@GavinJoyce</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@JenniferChang</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@BrendenWagner</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@FionaGreen</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@ShouItou</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@MichelleHouse</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@SukiBurks</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@PrescottBartlett</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@GavinCortez</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@MartenaMccray</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@UnityButler</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@HowardHatfield</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@HopeFuentes</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@VivianHarrell</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@TimothyMooney</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@JacksonBradshaw</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@OliviaLiang</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@BrunoNash</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@SakuraYamamoto</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@ThorWalton</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@FinnCamacho</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@SergeBaldwin</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@ZenaidaFrank</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@ZoritaSerrano</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@JenniferAcosta</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@CaraStevens</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@HermioneButler</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@LaelGreer</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@JonasAlexander</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@ShadDecker</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@MichaelBruce</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+      <tr>
+        <td>@DonnaSnider</td>
+        <td>124</td>
+        <td>12</td>
+        <td>23</td>
+        <td>100</td>
+        <td>23 Feb 2021 13:30:00</td>
+        <td>
+            <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-info btn-icon">
+                    <i data-feather="search"></i>
+                </button>
+            </a>
+            <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                <button type="button" class="btn btn-danger btn-icon">
+                    <i data-feather="trash"></i>
+                </button>                
+            </a>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div><!-- media-body -->
+{% endblock %}
+
+{% block modal %}
+<div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content tx-14">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel6">Show details</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Reply</label>
+                <div class="d-flex flex-column ht-200">
+                    <div id="quillEditorModal" class="flex-1 overflow-y-auto">
+                        <p><strong>Xanax</strong> is a <a href="https://en.wikipedia.org/wiki/Alprazolam">drug</a> used in short-term management of anxiety disorders.</p>
+                    </div>
+                </div>
+                <!-- <textarea class="form-control" rows="4" placeholder="Mengapa banyak OTG di Jawa Timur?"></textarea> -->
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" value="Tria Nexon" disabled>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" value="@TriaNexon" disabled>
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md">
+                        <label>Upvote 👍</label>
+                        <input type="text" class="form-control" value="100" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Downvote 👎</label>
+                        <input type="text" class="form-control" value="10" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Agree 🙏</label>
+                        <input type="text" class="form-control" value="26" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Skeptic 🤔</label>
+                        <input type="text" class="form-control" value="23" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn tx-13 btn-pln-gr" data-dismiss="modal">Back</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content tx-14">
+    <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel6">Delete the reply</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h5>Are you sure to delete this reply?</h5>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary tx-13">Yes</button>
+    </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}
+
+{% block jscript %}
+<!-- text editor -->
+<script>
+    $(function(){
+        'use strict'
+
+        // Editor in Modal
+        var quillModal = new Quill('#quillEditorModal', {
+        modules: {
+            toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'header': 1 }, { 'header': 2 }, 'blockquote'],
+            ['link', 'image', 'code-block'],
+            ]
+        },
+        theme: 'snow'
+        });
+
+        quillModal.enable(false);
+    });
+</script>
+<!-- datatable -->
+<script>
+    $(function(){
+        'use strict'
+
+        $('#datatable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search on this page',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        },
+        paging: false
+        });
+
+    });
+</script>
+{% endblock %}
