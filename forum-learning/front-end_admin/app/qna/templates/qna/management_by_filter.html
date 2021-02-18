@@ -1,32 +1,27 @@
-{% extends 'discussions/base.html' %}
+{% extends 'qna/base.html' %}
 
 {% block title %}
-<title>Discussions Request Management | PLN Forum Learning</title>
-{% endblock %}
-
-{% block nav %}                                
-<a href="/discussions">Admin</a>
-<a href="/discussions/request" class="active">Request</a>
+<title>QnA Management filter by {{filter}} | PLN Forum Learning</title>
 {% endblock %}
 
 {% block timeline %}
 <div class="media-body mg-t-40 mg-lg-t-0 pd-lg-x-10">
     <div class="profile-update-option bg-white ht-50 bd d-flex justify-content-end mg-b-20 mg-lg-b-25 rounded">
         <div class="d-flex align-items-center pd-x-20 mg-r-auto">
-            <span class="d-none d-sm-inline tx-lg-20"><strong>Discussions Request Management</strong></span>
+            <span class="d-none d-sm-inline tx-lg-20"><strong>QnA Management</strong> filter by <strong>{{filter}}</strong></span>
         </div>
     </div>
     <div class="row no-gutters">
         <div class="dropdown col-sm offset-sm-8">
-            <button class="btn btn-block btn-secondary dropdown-toggle mg-b-40  tx-black btn-pln-lb" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-block btn-secondary dropdown-toggle mg-b-40 tx-black btn-pln-lb" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Filter
             </button>
             <div class="dropdown-menu tx-13">
                 {% for c, uc in category_dict.items() %}
-                    {% if loop.first %}
-                        <a class="dropdown-item active" href="/discussions/request/{{uc}}">{{c}}</a>
+                    {% if c == filter %}
+                        <a class="dropdown-item active" href="/qna/management/{{uc}}">{{c}}</a>
                     {% else %}
-                        <a class="dropdown-item" href="/discussions/request/{{uc}}">{{c}}</a>
+                        <a class="dropdown-item" href="/qna/management/{{uc}}">{{c}}</a>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -36,16 +31,18 @@
     <table id="datatable" class="table">
         <thead>
           <tr>
-            <th class="wd-25p">Notulent</th>
-            <th class="wd-25p">Category</th>
+            <th class="wd-25p">Author</th>
+            <th class="wd-10p">Status</th>
+            <th class="wd-20p">Replies</th>
             <th class="wd-25p">Time</th>
-            <th class="wd-15p">Actions</th>
+            <th class="wd-20p">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Tiger Nixon</td>
-            <td>Generation</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>                
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -53,9 +50,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -67,7 +64,8 @@
           </tr>
           <tr>
             <td>Garrett Winters</td>
-            <td>Generation</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -75,9 +73,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -89,7 +87,8 @@
           </tr>
           <tr>
             <td>Ashton Cox</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -97,9 +96,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -111,7 +110,8 @@
           </tr>
           <tr>
             <td>Cedric Kelly</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -119,9 +119,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -133,7 +133,8 @@
           </tr>
           <tr>
             <td>Airi Satou</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -141,9 +142,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -155,7 +156,8 @@
           </tr>
           <tr>
             <td>Brielle Williamson</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -163,9 +165,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -177,7 +179,8 @@
           </tr>
           <tr>
             <td>Herrod Chandler</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -185,9 +188,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -199,7 +202,8 @@
           </tr>
           <tr>
             <td>Rhona Davidson</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -207,9 +211,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -221,7 +225,8 @@
           </tr>
           <tr>
             <td>Colleen Hurst</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -229,9 +234,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -243,7 +248,8 @@
           </tr>
           <tr>
             <td>Sonya Frost</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -251,9 +257,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -265,7 +271,8 @@
           </tr>
           <tr>
             <td>Jena Gaines</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -273,9 +280,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -287,7 +294,8 @@
           </tr>
           <tr>
             <td>Quinn Flynn</td>
-            <td>Generation</td>
+            <td>Closed</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -295,9 +303,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -309,7 +317,8 @@
           </tr>
           <tr>
             <td>Charde Marshall</td>
-            <td>Generation</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -317,9 +326,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -331,7 +340,8 @@
           </tr>
           <tr>
             <td>Haley Kennedy</td>
-            <td>Generation</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -339,9 +349,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -353,7 +363,8 @@
           </tr>
           <tr>
             <td>Tatyana Fitzpatrick</td>
-            <td>Generation</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -361,9 +372,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -375,7 +386,8 @@
           </tr>
           <tr>
             <td>Michael Silva</td>
-            <td>Generation</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -383,9 +395,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -397,7 +409,8 @@
           </tr>
           <tr>
             <td>Paul Byrd</td>
-            <td>Generation</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -405,9 +418,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -419,7 +432,8 @@
           </tr>
           <tr>
             <td>Gloria Little</td>
-            <td>Generation</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -427,9 +441,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -441,7 +455,8 @@
           </tr>
           <tr>
             <td>Bradley Greer</td>
-            <td>Generation</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -449,9 +464,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -463,7 +478,8 @@
           </tr>
           <tr>
             <td>Dai Rios</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -471,9 +487,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -485,7 +501,8 @@
           </tr>
           <tr>
             <td>Jenette Caldwell</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -493,9 +510,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -507,7 +524,8 @@
           </tr>
           <tr>
             <td>Yuri Berry</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -515,9 +533,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -529,7 +547,8 @@
           </tr>
           <tr>
             <td>Caesar Vance</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -537,9 +556,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -551,7 +570,8 @@
           </tr>
           <tr>
             <td>Doris Wilder</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -559,9 +579,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -573,7 +593,8 @@
           </tr>
           <tr>
             <td>Angelica Ramos</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -581,9 +602,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -595,7 +616,8 @@
           </tr>
           <tr>
             <td>Gavin Joyce</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -603,9 +625,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -617,7 +639,8 @@
           </tr>
           <tr>
             <td>Jennifer Chang</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -625,9 +648,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -639,7 +662,8 @@
           </tr>
           <tr>
             <td>Brenden Wagner</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -647,9 +671,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -661,7 +685,8 @@
           </tr>
           <tr>
             <td>Fiona Green</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -669,9 +694,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -683,7 +708,8 @@
           </tr>
           <tr>
             <td>Shou Itou</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -691,9 +717,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -705,7 +731,8 @@
           </tr>
           <tr>
             <td>Michelle House</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -713,9 +740,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -727,7 +754,8 @@
           </tr>
           <tr>
             <td>Suki Burks</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -735,9 +763,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -749,7 +777,8 @@
           </tr>
           <tr>
             <td>Prescott Bartlett</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -757,9 +786,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -771,7 +800,8 @@
           </tr>
           <tr>
             <td>Gavin Cortez</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -779,9 +809,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -793,7 +823,8 @@
           </tr>
           <tr>
             <td>Martena Mccray</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -801,9 +832,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -815,7 +846,8 @@
           </tr>
           <tr>
             <td>Unity Butler</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -823,9 +855,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -837,7 +869,8 @@
           </tr>
           <tr>
             <td>Howard Hatfield</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -845,9 +878,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -859,7 +892,8 @@
           </tr>
           <tr>
             <td>Hope Fuentes</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -867,9 +901,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -881,7 +915,8 @@
           </tr>
           <tr>
             <td>Vivian Harrell</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -889,9 +924,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -903,7 +938,8 @@
           </tr>
           <tr>
             <td>Timothy Mooney</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -911,9 +947,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -925,7 +961,8 @@
           </tr>
           <tr>
             <td>Jackson Bradshaw</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -933,9 +970,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -947,7 +984,8 @@
           </tr>
           <tr>
             <td>Olivia Liang</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -955,9 +993,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -969,7 +1007,8 @@
           </tr>
           <tr>
             <td>Bruno Nash</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -977,9 +1016,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -991,7 +1030,8 @@
           </tr>
           <tr>
             <td>Sakura Yamamoto</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -999,9 +1039,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1013,7 +1053,8 @@
           </tr>
           <tr>
             <td>Thor Walton</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1021,9 +1062,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1035,7 +1076,8 @@
           </tr>
           <tr>
             <td>Finn Camacho</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1043,9 +1085,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1057,7 +1099,8 @@
           </tr>
           <tr>
             <td>Serge Baldwin</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1065,9 +1108,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1079,7 +1122,8 @@
           </tr>
           <tr>
             <td>Zenaida Frank</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1087,9 +1131,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1101,7 +1145,8 @@
           </tr>
           <tr>
             <td>Zorita Serrano</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1109,9 +1154,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1123,7 +1168,8 @@
           </tr>
           <tr>
             <td>Jennifer Acosta</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1131,9 +1177,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1145,7 +1191,8 @@
           </tr>
           <tr>
             <td>Cara Stevens</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1153,9 +1200,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1167,7 +1214,8 @@
           </tr>
           <tr>
             <td>Hermione Butler</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1175,9 +1223,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1189,7 +1237,8 @@
           </tr>
           <tr>
             <td>Lael Greer</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1197,9 +1246,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1211,7 +1260,8 @@
           </tr>
           <tr>
             <td>Jonas Alexander</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1219,9 +1269,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1233,7 +1283,8 @@
           </tr>
           <tr>
             <td>Shad Decker</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1241,9 +1292,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1255,7 +1306,8 @@
           </tr>
           <tr>
             <td>Michael Bruce</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1263,9 +1315,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1277,7 +1329,8 @@
           </tr>
           <tr>
             <td>Donna Snider</td>
-            <td>Distribution</td>
+            <td>Open</td>
+            <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1285,9 +1338,9 @@
                         <i data-feather="search"></i>
                     </button>
                 </a>
-                <a href="#">
-                    <button type="button" class="btn btn-success btn-icon">
-                        <i data-feather="check"></i>
+                <a href="#modalClose" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-warning btn-icon">
+                        <i data-feather="x"></i>
                     </button>
                 </a>
                 <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
@@ -1304,7 +1357,7 @@
 
 {% block modal %}
 <div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content tx-14">
         <div class="modal-header">
           <h6 class="modal-title" id="exampleModalLabel6">Show details</h6>
@@ -1314,65 +1367,48 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" value="Mengapa ini XYZ?" disabled>
-                </div>
-                <div class="form-group mg-t-20">
-                    <label>Notulent</label>
-                    <input type="text" class="form-control" value="Rachel V @rachelv" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Expert User</label>
-                    <input type="text" class="form-control" value="Tria Nexon (@trianexon)" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Category</label>
-                    <input type="text" class="form-control" value="Generation" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Status</label>
-                    <input type="text" class="form-control" value="Requested" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Time</label>
-                    <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md">
-                            <label>Upvote 👍</label>
-                            <input type="text" class="form-control" value="100" disabled>
-                        </div>
-                        <div class="col-md">
-                            <label>Downvote 👎</label>
-                            <input type="text" class="form-control" value="10" disabled>
-                        </div>
+                <label>Title</label>
+                <input type="text" class="form-control" value="Mengapa Xanax perlu di ekspor?" disabled>
+            </div>
+            <div class="form-group mg-t-20">
+                <label>Description</label>
+                <div class="d-flex flex-column ht-200">
+                    <div id="quillEditorModal" class="flex-1 overflow-y-auto">
+                        <p><strong>Xanax</strong> is a <a href="https://en.wikipedia.org/wiki/Alprazolam">drug</a> used in short-term management of anxiety disorders.</p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Duration</label>
-                    <input type="text" class="form-control" value="2 hours" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="text" class="form-control" value="Yes" disabled>
-                </div>
-                <div class="form-group mg-t-20">
-                    <label>Join Meeting before Host</label>
-                    <input type="text" class="form-control" value="Yes" disabled>
-                </div>
-                <div class="form-group mg-t-20">
-                    <label>Start Video when Host Join</label>
-                    <input type="text" class="form-control" value="Yes" disabled>
-                </div>
-                <div class="form-group mg-t-20">
-                    <label>Start Video when Participant Join</label>
-                    <input type="text" class="form-control" value="Yes" disabled>
-                </div>
-                <div class="form-group mg-t-20">
-                    <label>Opsi Audio</label>
-                    <input type="text" class="form-control" value="VoIP and Telephony" disabled>
+                <!-- <textarea class="form-control" rows="4" placeholder="Mengapa banyak OTG di Jawa Timur?"></textarea> -->
+            </div>
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="form-control" value="Tria Nexon (@trianexon)" disabled>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" class="form-control" value="{{filter}}" disabled>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <input type="text" class="form-control" value="Open" disabled>
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md">
+                        <label>Upvote 👍</label>
+                        <input type="text" class="form-control" value="100" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Downvote 👎</label>
+                        <input type="text" class="form-control" value="10" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Replies</label>
+                        <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1382,28 +1418,67 @@
       </div>
     </div>
 </div>
-<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+<div class="modal fade" id="modalClose" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content tx-14">
+      <div class="modal-content tx-14">
         <div class="modal-header">
-            <h6 class="modal-title" id="exampleModalLabel6">Delete the request</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h6 class="modal-title" id="exampleModalLabel6">Close the question</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-            </button>
+          </button>
         </div>
         <div class="modal-body">
-            <h5>Are you sure to delete this request?</h5>
+            <h5>Are you sure to close this question?</h5>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary tx-13">Yes</button>
+          <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary tx-13">Yes</button>
         </div>
-        </div>
+      </div>
     </div>
+</div>
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content tx-14">
+    <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel6">Delete the question</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h5>Are you sure to delete this question?</h5>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary tx-13">Yes</button>
+    </div>
+    </div>
+</div>
 </div>
 {% endblock %}
 
-{% block jscript%}
+{% block jscript %}
+<!-- text editor -->
+<script>
+    $(function(){
+        'use strict'
+
+        // Editor in Modal
+        var quillModal = new Quill('#quillEditorModal', {
+        modules: {
+            toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'header': 1 }, { 'header': 2 }, 'blockquote'],
+            ['link', 'image', 'code-block'],
+            ]
+        },
+        theme: 'snow'
+        });
+
+        quillModal.enable(false);
+    });
+</script>
 <!-- datatable -->
 <script>
     $(function(){

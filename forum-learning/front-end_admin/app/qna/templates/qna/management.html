@@ -17,44 +17,25 @@
                 Filter
             </button>
             <div class="dropdown-menu tx-13">
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electric Power Supply Business</h6>
-                <a class="dropdown-item active" href="#">Generation</a>
-                <a class="dropdown-item" href="#">Transmission</a>
-                <a class="dropdown-item" href="#">Distribution</a>
-                <a class="dropdown-item" href="#">Commerce &amp; Customer Management</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Corporate Support</h6>
-                <a class="dropdown-item" href="#">Electricity Equipment Production</a>
-                <a class="dropdown-item" href="#">Electric Safety, OHS, Security &amp; Environment</a>
-                <a class="dropdown-item" href="#">Project Management, Engineering &amp; Construction</a>
-                <a class="dropdown-item" href="#">Research &amp; Development</a>
-                <a class="dropdown-item" href="#">Learning</a>
-                <a class="dropdown-item" href="#">Certification</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electricity Support</h6>
-                <a class="dropdown-item" href="#">Supply Chain Management</a>
-                <a class="dropdown-item" href="#">Regulatory &amp; Compliance</a>
-                <a class="dropdown-item" href="#">Information Technology</a>
-                <a class="dropdown-item" href="#">HR</a>
-                <a class="dropdown-item" href="#">Finance</a>
-                <a class="dropdown-item" href="#">Communication, CSR &amp; Office Management</a>
-                <a class="dropdown-item" href="#">Company Management</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Additional</h6>
-                <a class="dropdown-item" href="#">Miscellaneous</a>
+                {% for c, uc in category_dict.items() %}
+                    {% if loop.first %}
+                        <a class="dropdown-item active" href="/qna/management/{{uc}}">{{c}}</a>
+                    {% else %}
+                        <a class="dropdown-item" href="/qna/management/{{uc}}">{{c}}</a>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
 
-    <table id="example2" class="table">
+    <table id="datatable" class="table">
         <thead>
           <tr>
-            <th class="wd-10p">Author</th>
-            <th class="wd-25p">Category</th>
+            <th class="wd-25p">Author</th>
+            <th class="wd-15p">Category</th>
             <th class="wd-10p">Status</th>
-            <th class="wd-10p">Rate</th>
             <th class="wd-10p">Replies</th>
-            <th class="wd-15p">Time</th>
+            <th class="wd-20p">Time</th>
             <th class="wd-20p">Actions</th>
           </tr>
         </thead>
@@ -63,7 +44,6 @@
             <td>Tiger Nixon</td>
             <td>Generation</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>                
@@ -88,7 +68,6 @@
             <td>Garrett Winters</td>
             <td>Generation</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -113,7 +92,6 @@
             <td>Ashton Cox</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -138,7 +116,6 @@
             <td>Cedric Kelly</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -163,7 +140,6 @@
             <td>Airi Satou</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -188,7 +164,6 @@
             <td>Brielle Williamson</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -213,7 +188,6 @@
             <td>Herrod Chandler</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -238,7 +212,6 @@
             <td>Rhona Davidson</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -263,7 +236,6 @@
             <td>Colleen Hurst</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -288,7 +260,6 @@
             <td>Sonya Frost</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -313,7 +284,6 @@
             <td>Jena Gaines</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -338,7 +308,6 @@
             <td>Quinn Flynn</td>
             <td>Generation</td>
             <td>Closed</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -363,7 +332,6 @@
             <td>Charde Marshall</td>
             <td>Generation</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -388,7 +356,6 @@
             <td>Haley Kennedy</td>
             <td>Generation</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -413,7 +380,6 @@
             <td>Tatyana Fitzpatrick</td>
             <td>Generation</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -438,7 +404,6 @@
             <td>Michael Silva</td>
             <td>Generation</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -463,7 +428,6 @@
             <td>Paul Byrd</td>
             <td>Generation</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -488,7 +452,6 @@
             <td>Gloria Little</td>
             <td>Generation</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -513,7 +476,6 @@
             <td>Bradley Greer</td>
             <td>Generation</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -538,7 +500,6 @@
             <td>Dai Rios</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -563,7 +524,6 @@
             <td>Jenette Caldwell</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -588,7 +548,6 @@
             <td>Yuri Berry</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -613,7 +572,6 @@
             <td>Caesar Vance</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -638,7 +596,6 @@
             <td>Doris Wilder</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -663,7 +620,6 @@
             <td>Angelica Ramos</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -688,7 +644,6 @@
             <td>Gavin Joyce</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -713,7 +668,6 @@
             <td>Jennifer Chang</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -738,7 +692,6 @@
             <td>Brenden Wagner</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -763,7 +716,6 @@
             <td>Fiona Green</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -788,7 +740,6 @@
             <td>Shou Itou</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -813,7 +764,6 @@
             <td>Michelle House</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -838,7 +788,6 @@
             <td>Suki Burks</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -863,7 +812,6 @@
             <td>Prescott Bartlett</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -888,7 +836,6 @@
             <td>Gavin Cortez</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -913,7 +860,6 @@
             <td>Martena Mccray</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -938,7 +884,6 @@
             <td>Unity Butler</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -963,7 +908,6 @@
             <td>Howard Hatfield</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -988,7 +932,6 @@
             <td>Hope Fuentes</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1013,7 +956,6 @@
             <td>Vivian Harrell</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1038,7 +980,6 @@
             <td>Timothy Mooney</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1063,7 +1004,6 @@
             <td>Jackson Bradshaw</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1088,7 +1028,6 @@
             <td>Olivia Liang</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1113,7 +1052,6 @@
             <td>Bruno Nash</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1138,7 +1076,6 @@
             <td>Sakura Yamamoto</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1163,7 +1100,6 @@
             <td>Thor Walton</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1188,7 +1124,6 @@
             <td>Finn Camacho</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1213,7 +1148,6 @@
             <td>Serge Baldwin</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1238,7 +1172,6 @@
             <td>Zenaida Frank</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1263,7 +1196,6 @@
             <td>Zorita Serrano</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1288,7 +1220,6 @@
             <td>Jennifer Acosta</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1313,7 +1244,6 @@
             <td>Cara Stevens</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1338,7 +1268,6 @@
             <td>Hermione Butler</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1363,7 +1292,6 @@
             <td>Lael Greer</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1388,7 +1316,6 @@
             <td>Jonas Alexander</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1413,7 +1340,6 @@
             <td>Shad Decker</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1438,7 +1364,6 @@
             <td>Michael Bruce</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1463,7 +1388,6 @@
             <td>Donna Snider</td>
             <td>Distribution</td>
             <td>Open</td>
-            <td>100</td>
             <td> <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a></td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
@@ -1530,12 +1454,20 @@
                 <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
             </div>
             <div class="form-group">
-                <label>Rate</label>
-                <input type="text" class="form-control" value="100" disabled>
-            </div>
-            <div class="form-group">
-                <label>Replies</label>
-                <input type="text" class="form-control" value="2" disabled>
+                <div class="row">
+                    <div class="col-md">
+                        <label>Upvote 👍</label>
+                        <input type="text" class="form-control" value="100" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Downvote 👎</label>
+                        <input type="text" class="form-control" value="10" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Replies</label>
+                        <a href="/qna/replies/qna12345"><button type="button" class="btn btn-secondary wd-100p">2</button></a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -1585,6 +1517,7 @@
 {% endblock %}
 
 {% block jscript %}
+<!-- text editor -->
 <script>
     $(function(){
         'use strict'
@@ -1602,6 +1535,23 @@
         });
 
         quillModal.enable(false);
+    });
+</script>
+<!-- datatable -->
+<script>
+    $(function(){
+        'use strict'
+
+        $('#datatable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search on this page',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        },
+        paging: false
+        });
+
     });
 </script>
 {% endblock %}

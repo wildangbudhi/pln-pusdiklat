@@ -6,49 +6,13 @@
 
 {% block body %}
 <body>
-    <div class="content content-fixed content-auth ht-100v">
-        <div class="container">
+    <div class="content content-fixed content-auth ht-100v" id="bg">
+        <div class="container pd-t-90">
             <div class="media align-items-stretch justify-content-center ht-100p pos-relative">
                 <div class="media-body align-items-center d-none d-lg-flex">
-                    <div id="carouselExample2" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                              <img src="{{ url_for('static', filename='img/pln_1.jpg') }}" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{ url_for('static', filename='img/pln_2.jpg') }}" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{ url_for('static', filename='img/pln_3.jpg') }}" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{ url_for('static', filename='img/pln_4.jpg') }}" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{ url_for('static', filename='img/pln_5.jpg') }}" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{ url_for('static', filename='img/pln_6.jpg') }}" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{ url_for('static', filename='img/pln_7.jpg') }}" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{ url_for('static', filename='img/pln_8.jpg') }}" class="d-block w-100" alt="...">
-                          </div>                                                    
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExample2" role="button" data-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"><i data-feather="chevron-left"></i></span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExample2" role="button" data-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"><i data-feather="chevron-right"></i></span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </div>
                 </div><!-- media-body -->
                 <div class="sign-wrapper mg-lg-l-50 mg-xl-l-60">
-                    <img class="img-fluid wd-25p float-right" src="{{ url_for('static', filename='img/OFL_SVGFileDF.svg') }}" class="img-fluid" alt="logo">
+                    <!-- <img class="img-fluid wd-25p float-right" src="{{ url_for('static', filename='img/OFL_SVGFileDF.svg') }}" class="img-fluid" alt="logo"> -->
                     <div class="wd-100p">
                         <h3 class="tx-color-01 mg-b-5">Sign In</h3>
                         <p class="tx-color-03 tx-16 mg-b-40">Selamat Datang di <strong>Forum Learning</strong>!<br>Masuk
@@ -56,14 +20,14 @@
 
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" placeholder="yourname@yourmail.com">
+                            <input type="email" class="form-control" placeholder="Enter your email here">
                         </div>
                         <div class="form-group">
                             <div class="d-flex justify-content-between mg-b-5">
                                 <label class="mg-b-0-f">Password</label>
                                 <a href="" class="tx-13">Lupa password?</a>
                             </div>
-                            <input type="password" class="form-control" placeholder="Enter your password">
+                            <input type="password" class="form-control" placeholder="Enter your password here">
                         </div>
                         <!-- rak placeholder -->
                         <a href="/qna">
@@ -111,6 +75,13 @@
             } else {
                 lightMode();
             }
+        })
+    </script>
+    <script>
+        $(function (){
+            var bg = "bg";
+            var x = Math.floor((Math.random() * 4) + 1);
+            $("div[id=bg]").attr('id', bg.concat(x));
         })
     </script>
 </body>

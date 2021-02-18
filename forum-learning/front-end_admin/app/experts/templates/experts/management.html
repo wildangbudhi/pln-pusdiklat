@@ -20,36 +20,18 @@
                 Filter
             </button>
             <div class="dropdown-menu tx-13">
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electric Power Supply Business</h6>
-                <a class="dropdown-item active" href="#">Generation</a>
-                <a class="dropdown-item" href="#">Transmission</a>
-                <a class="dropdown-item" href="#">Distribution</a>
-                <a class="dropdown-item" href="#">Commerce &amp; Customer Management</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Corporate Support</h6>
-                <a class="dropdown-item" href="#">Electricity Equipment Production</a>
-                <a class="dropdown-item" href="#">Electric Safety, OHS, Security &amp; Environment</a>
-                <a class="dropdown-item" href="#">Project Management, Engineering &amp; Construction</a>
-                <a class="dropdown-item" href="#">Research &amp; Development</a>
-                <a class="dropdown-item" href="#">Learning</a>
-                <a class="dropdown-item" href="#">Certification</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electricity Support</h6>
-                <a class="dropdown-item" href="#">Supply Chain Management</a>
-                <a class="dropdown-item" href="#">Regulatory &amp; Compliance</a>
-                <a class="dropdown-item" href="#">Information Technology</a>
-                <a class="dropdown-item" href="#">HR</a>
-                <a class="dropdown-item" href="#">Finance</a>
-                <a class="dropdown-item" href="#">Communication, CSR &amp; Office Management</a>
-                <a class="dropdown-item" href="#">Company Management</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Additional</h6>
-                <a class="dropdown-item" href="#">Miscellaneous</a>
+                {% for c, uc in category_dict.items() %}
+                    {% if loop.first %}
+                        <a class="dropdown-item active" href="/experts/management/{{uc}}">{{c}}</a>
+                    {% else %}
+                        <a class="dropdown-item" href="/experts/management/{{uc}}">{{c}}</a>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
 
-    <table id="example2" class="table">
+    <table id="datatable" class="table">
         <thead>
           <tr>
             <th class="wd-20p">Expert Name</th>
@@ -1418,24 +1400,9 @@
                 <label>Choose Category</label>
                 <select class="custom-select">
                     <option selected disabled>Open this select menu</option>
-                    <option value="Generation">Generation</option>
-                    <option value="Transmission">Transmission</option>
-                    <option value="Distribution">Distribution</option>
-                    <option value="Commerce & Customer Management">Commerce & Customer Management</option>
-                    <option value="Electricity Equipment Production">Electricity Equipment Production</option>
-                    <option value="Electric Safety, OHS, Security & Environment">Electric Safety, OHS, Security & Environment</option>
-                    <option value="Project Management, Engineering &amp; Construction">Project Management, Engineering &amp; Construction</option>
-                    <option value="Research &amp; Development">Research &amp; Development</option>
-                    <option value="Learning">Learning</option>
-                    <option value="Certification">Certification</option>
-                    <option value="Supply Chain Management">Supply Chain Management</option>
-                    <option value="Regulatory &amp; Compliance">Regulatory &amp; Compliance</option>
-                    <option value="Information Technology">Information Technology</option>
-                    <option value="HR">HR</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Communication, CSR &amp; Office Management">Communication, CSR &amp; Office Management</option>
-                    <option value="Company Management">Company Management</option>
-                    <option value="Miscellaneous">Miscellaneous</option>
+                    {% for c in category_dict %}
+                        <option value="{{c}}">{{c}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group mg-t-20">
@@ -1693,6 +1660,7 @@
 {% endblock %}
 
 {% block jscript %}
+<!-- modal -->
 <script>
     $(function(){
       'use strict'
@@ -1712,6 +1680,7 @@
 
     });
 </script>
+<!-- text editor -->
 <script>
     $(function(){
         'use strict'
@@ -1738,6 +1707,70 @@
             ]
         },
         theme: 'snow'
+        });
+
+    });
+</script>
+<!-- data table -->
+<script>
+    $(function(){
+        'use strict'
+
+        $('#datatable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search on this page',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        },
+        paging: false
+        });
+
+    });
+</script>
+<!-- typeahead -->
+<script>
+    $(function(){
+        'use strict'
+
+        // Basic Typeahead
+        var substringMatcher = function(strs) {
+        return function findMatches(q, cb) {
+            var matches, substrRegex;
+
+            // an array that will be populated with substring matches
+            matches = [];
+
+            // regex used to determine if a string contains the substring `q`
+            substrRegex = new RegExp(q, 'i');
+
+            // iterate through the pool of strings and for any string that
+            // contains the substring `q`, add it to the `matches` array
+            $.each(strs, function(i, str) {
+            if (substrRegex.test(str)) {
+                matches.push(str);
+            }
+            });
+
+            cb(matches);
+        };
+        };
+
+        var notulent = [
+            'Rangga K D (@ranggakd)',
+            'Wildan G B (@wildangb)',
+            'Insan (@insan)',
+            'Cici (@cici)'
+        ];
+
+        $('#theBasics').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+        },
+        {
+        name: 'notulent',
+        source: substringMatcher(notulent)
         });
 
     });

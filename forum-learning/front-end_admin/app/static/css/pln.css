@@ -9,6 +9,28 @@ html *
     font-family: Segoe UI, Roboto, Helvetica Neue, sans-serif !important;
 }
 
+/* signin background */
+#bg1
+{
+    background-image: url('/static/img/pln_1.jpg');
+    background-size: cover;
+}
+#bg2
+{
+    background-image: url('/static/img/pln_2.jpg');
+    background-size: cover;
+}
+#bg3
+{
+    background-image: url('/static/img/pln_3.jpg');
+    background-size: cover;
+}
+#bg4
+{
+    background-image: url('/static/img/pln_4.jpg');
+    background-size: cover;
+}
+
 /* color */
 .gr1
 {

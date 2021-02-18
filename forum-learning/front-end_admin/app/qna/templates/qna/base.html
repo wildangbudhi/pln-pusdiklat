@@ -164,7 +164,7 @@
     <!-- append theme customizer -->
     <script src="{{ url_for('static', filename='lib/js-cookie/js.cookie.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dashforge.settings.js') }}"></script>
-
+    <!-- darkmode -->
     <script>
         $(function () {
             'use script'
@@ -191,57 +191,6 @@
             }
         })
     </script>
-        <script>
-            $(function(){
-              'use strict'
-      
-              $('#example1').DataTable({
-                language: {
-                  searchPlaceholder: 'Search...',
-                  sSearch: '',
-                  lengthMenu: '_MENU_ items/page',
-                }
-              });
-      
-              $('#example2').DataTable({
-                responsive: true,
-                language: {
-                  searchPlaceholder: 'Search...',
-                  sSearch: '',
-                  lengthMenu: '_MENU_ items/page',
-                }
-              });
-      
-              $('#example3').DataTable({
-                'ajax': '../assets/data/datatable-arrays.txt',
-                language: {
-                  searchPlaceholder: 'Search...',
-                  sSearch: '',
-                  lengthMenu: '_MENU_ items/page',
-                }
-              });
-      
-              $('#example4').DataTable({
-                'ajax': '../assets/data/datatable-objects.txt',
-                "columns": [
-                  { "data": "name" },
-                  { "data": "position" },
-                  { "data": "office" },
-                  { "data": "extn" },
-                  { "data": "salary" }
-                ],
-                language: {
-                  searchPlaceholder: 'Search...',
-                  sSearch: '',
-                  lengthMenu: '_MENU_ items/page',
-                }
-              });
-      
-              // Select2
-              $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-      
-            });
-          </script>
     {% block jscript %}
     {% endblock %}
 </body>

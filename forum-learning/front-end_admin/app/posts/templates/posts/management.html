@@ -17,41 +17,24 @@
                 Filter
             </button>
             <div class="dropdown-menu tx-13">
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electric Power Supply Business</h6>
-                <a class="dropdown-item active" href="#">Generation</a>
-                <a class="dropdown-item" href="#">Transmission</a>
-                <a class="dropdown-item" href="#">Distribution</a>
-                <a class="dropdown-item" href="#">Commerce &amp; Customer Management</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Corporate Support</h6>
-                <a class="dropdown-item" href="#">Electricity Equipment Production</a>
-                <a class="dropdown-item" href="#">Electric Safety, OHS, Security &amp; Environment</a>
-                <a class="dropdown-item" href="#">Project Management, Engineering &amp; Construction</a>
-                <a class="dropdown-item" href="#">Research &amp; Development</a>
-                <a class="dropdown-item" href="#">Learning</a>
-                <a class="dropdown-item" href="#">Certification</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electricity Support</h6>
-                <a class="dropdown-item" href="#">Supply Chain Management</a>
-                <a class="dropdown-item" href="#">Regulatory &amp; Compliance</a>
-                <a class="dropdown-item" href="#">Information Technology</a>
-                <a class="dropdown-item" href="#">HR</a>
-                <a class="dropdown-item" href="#">Finance</a>
-                <a class="dropdown-item" href="#">Communication, CSR &amp; Office Management</a>
-                <a class="dropdown-item" href="#">Company Management</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Additional</h6>
-                <a class="dropdown-item" href="#">Miscellaneous</a>
+                {% for c, uc in category_dict.items() %}
+                    {% if loop.first %}
+                        <a class="dropdown-item active" href="/posts/management/{{uc}}">{{c}}</a>
+                    {% else %}
+                        <a class="dropdown-item" href="/posts/management/{{uc}}">{{c}}</a>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
 
-    <table id="example2" class="table">
+    <table id="datatable" class="table">
         <thead>
           <tr>
             <th class="wd-20p">Notulent</th>
-            <th class="wd-30p">Category</th>
-            <th class="wd-10p">Rate</th>
+            <th class="wd-15p">Category</th>
+            <th class="wd-10p">Upvote</th>
+            <th class="wd-15p">Downvote</th>
             <th class="wd-20p">Time</th>
             <th class="wd-20p">Actions</th>
           </tr>
@@ -61,6 +44,7 @@
             <td>Tiger Nixon</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>                
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -84,6 +68,7 @@
             <td>Garrett Winters</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -107,6 +92,7 @@
             <td>Ashton Cox</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -130,6 +116,7 @@
             <td>Cedric Kelly</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -153,6 +140,7 @@
             <td>Airi Satou</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -176,6 +164,7 @@
             <td>Brielle Williamson</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -199,6 +188,7 @@
             <td>Herrod Chandler</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -222,6 +212,7 @@
             <td>Rhona Davidson</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -245,6 +236,7 @@
             <td>Colleen Hurst</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -268,6 +260,7 @@
             <td>Sonya Frost</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -291,6 +284,7 @@
             <td>Jena Gaines</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -314,6 +308,7 @@
             <td>Quinn Flynn</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -337,6 +332,7 @@
             <td>Charde Marshall</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -360,6 +356,7 @@
             <td>Haley Kennedy</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -383,6 +380,7 @@
             <td>Tatyana Fitzpatrick</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -406,6 +404,7 @@
             <td>Michael Silva</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -429,6 +428,7 @@
             <td>Paul Byrd</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -452,6 +452,7 @@
             <td>Gloria Little</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -475,6 +476,7 @@
             <td>Bradley Greer</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -498,6 +500,7 @@
             <td>Dai Rios</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -521,6 +524,7 @@
             <td>Jenette Caldwell</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -544,6 +548,7 @@
             <td>Yuri Berry</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -567,6 +572,7 @@
             <td>Caesar Vance</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -590,6 +596,7 @@
             <td>Doris Wilder</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -613,6 +620,7 @@
             <td>Angelica Ramos</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -636,6 +644,7 @@
             <td>Gavin Joyce</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -659,6 +668,7 @@
             <td>Jennifer Chang</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -682,6 +692,7 @@
             <td>Brenden Wagner</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -705,6 +716,7 @@
             <td>Fiona Green</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -728,6 +740,7 @@
             <td>Shou Itou</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -751,6 +764,7 @@
             <td>Michelle House</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -774,6 +788,7 @@
             <td>Suki Burks</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -797,6 +812,7 @@
             <td>Prescott Bartlett</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -820,6 +836,7 @@
             <td>Gavin Cortez</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -843,6 +860,7 @@
             <td>Martena Mccray</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -866,6 +884,7 @@
             <td>Unity Butler</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -889,6 +908,7 @@
             <td>Howard Hatfield</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -912,6 +932,7 @@
             <td>Hope Fuentes</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -935,6 +956,7 @@
             <td>Vivian Harrell</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -958,6 +980,7 @@
             <td>Timothy Mooney</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -981,6 +1004,7 @@
             <td>Jackson Bradshaw</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1004,6 +1028,7 @@
             <td>Olivia Liang</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1027,6 +1052,7 @@
             <td>Bruno Nash</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1050,6 +1076,7 @@
             <td>Sakura Yamamoto</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1073,6 +1100,7 @@
             <td>Thor Walton</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1096,6 +1124,7 @@
             <td>Finn Camacho</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1119,6 +1148,7 @@
             <td>Serge Baldwin</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1142,6 +1172,7 @@
             <td>Zenaida Frank</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1165,6 +1196,7 @@
             <td>Zorita Serrano</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1188,6 +1220,7 @@
             <td>Jennifer Acosta</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1211,6 +1244,7 @@
             <td>Cara Stevens</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1234,6 +1268,7 @@
             <td>Hermione Butler</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1257,6 +1292,7 @@
             <td>Lael Greer</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1280,6 +1316,7 @@
             <td>Jonas Alexander</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1303,6 +1340,7 @@
             <td>Shad Decker</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1326,6 +1364,7 @@
             <td>Michael Bruce</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1349,6 +1388,7 @@
             <td>Donna Snider</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1416,8 +1456,16 @@
                 <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
             </div>
             <div class="form-group">
-                <label>Rate</label>
-                <input type="text" class="form-control" value="100" disabled>
+                <div class="row">
+                    <div class="col-md">
+                        <label>Upvote 👍</label>
+                        <input type="text" class="form-control" value="100" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Downvote 👎</label>
+                        <input type="text" class="form-control" value="10" disabled>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -1532,6 +1580,7 @@
 {% endblock %}
 
 {% block jscript %}
+<!-- text editor -->
 <script>
     $(function(){
         'use strict'
@@ -1558,6 +1607,70 @@
             ]
         },
         theme: 'snow'
+        });
+
+    });
+</script>
+<!-- data table -->
+<script>
+    $(function(){
+        'use strict'
+
+        $('#datatable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search on this page',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        },
+        paging: false
+        });
+
+    });
+</script>
+<!-- typeahead -->
+<script>
+    $(function(){
+        'use strict'
+
+        // Basic Typeahead
+        var substringMatcher = function(strs) {
+        return function findMatches(q, cb) {
+            var matches, substrRegex;
+
+            // an array that will be populated with substring matches
+            matches = [];
+
+            // regex used to determine if a string contains the substring `q`
+            substrRegex = new RegExp(q, 'i');
+
+            // iterate through the pool of strings and for any string that
+            // contains the substring `q`, add it to the `matches` array
+            $.each(strs, function(i, str) {
+            if (substrRegex.test(str)) {
+                matches.push(str);
+            }
+            });
+
+            cb(matches);
+        };
+        };
+
+        var notulent = [
+            'Rangga K D (@ranggakd)',
+            'Wildan G B (@wildangb)',
+            'Insan (@insan)',
+            'Cici (@cici)'
+        ];
+
+        $('#theBasics').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+        },
+        {
+        name: 'notulent',
+        source: substringMatcher(notulent)
         });
 
     });
