@@ -1,0 +1,1424 @@
+{% extends 'discussions/base.html' %}
+
+{% block title %}
+<title>Discussions Request Management by {{filter}} | PLN Forum Learning</title>
+{% endblock %}
+
+{% block nav %}                                
+<a href="/discussions">Admin</a>
+<a href="/discussions/request" class="active">Request</a>
+{% endblock %}
+
+{% block timeline %}
+<div class="media-body mg-t-40 mg-lg-t-0 pd-lg-x-10">
+    <div class="profile-update-option bg-white ht-50 bd d-flex justify-content-end mg-b-20 mg-lg-b-25 rounded">
+        <div class="d-flex align-items-center pd-x-20 mg-r-auto">
+            <span class="d-none d-sm-inline tx-lg-20"><strong>Discussions Request Management</strong> filter by <strong>{{filter}}</strong></span>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="dropdown col-sm offset-sm-8">
+            <button class="btn btn-block btn-secondary dropdown-toggle mg-b-40  tx-black btn-pln-lb" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filter
+            </button>
+            <div class="dropdown-menu tx-13">
+                {% for c, uc in category_dict.items() %}
+                    {% if c == filter %}
+                        <a class="dropdown-item active" href="/discussions/request/{{uc}}">{{c}}</a>
+                    {% else %}
+                        <a class="dropdown-item" href="/discussions/request/{{uc}}">{{c}}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <table id="datatable" class="table">
+        <thead>
+          <tr>
+            <th class="wd-25p">Notulent</th>
+            <th class="wd-25p">Title</th>
+            <th class="wd-25p">Time</th>
+            <th class="wd-15p">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tiger Nixon</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>                
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Garrett Winters</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Ashton Cox</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Cedric Kelly</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Airi Satou</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Brielle Williamson</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Herrod Chandler</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Rhona Davidson</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Colleen Hurst</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Sonya Frost</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jena Gaines</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Quinn Flynn</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Charde Marshall</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Haley Kennedy</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Tatyana Fitzpatrick</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Michael Silva</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Paul Byrd</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Gloria Little</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Bradley Greer</td>
+            <td>Mengapa vaksin harus diedarkan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Dai Rios</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jenette Caldwell</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Yuri Berry</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Caesar Vance</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Doris Wilder</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Angelica Ramos</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Gavin Joyce</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jennifer Chang</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Brenden Wagner</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Fiona Green</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Shou Itou</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Michelle House</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Suki Burks</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Prescott Bartlett</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Gavin Cortez</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Martena Mccray</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Unity Butler</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Howard Hatfield</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Hope Fuentes</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Vivian Harrell</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Timothy Mooney</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jackson Bradshaw</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Olivia Liang</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Bruno Nash</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Sakura Yamamoto</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Thor Walton</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Finn Camacho</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Serge Baldwin</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Zenaida Frank</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Zorita Serrano</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jennifer Acosta</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Cara Stevens</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Hermione Butler</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Lael Greer</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Jonas Alexander</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Shad Decker</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Michael Bruce</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Donna Snider</td>
+            <td>Bagaimana sumber daya terbarukan diberdayakan?</td>
+            <td>23 Feb 2021 13:30:00</td>
+            <td>
+                <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-info btn-icon">
+                        <i data-feather="search"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" class="btn btn-success btn-icon">
+                        <i data-feather="check"></i>
+                    </button>
+                </a>
+                <a href="#modalDelete" data-toggle="modal" data-animation="effect-fall">
+                    <button type="button" class="btn btn-danger btn-icon">
+                        <i data-feather="trash"></i>
+                    </button>                
+                </a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</div><!-- media-body -->
+{% endblock %}
+
+{% block modal %}
+<div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content tx-14">
+        <div class="modal-header">
+          <h6 class="modal-title" id="exampleModalLabel6">Show details</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" value="Mengapa ini XYZ?" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Notulent</label>
+                    <input type="text" class="form-control" value="Rachel V @rachelv" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Expert User</label>
+                    <input type="text" class="form-control" value="Tria Nexon (@trianexon)" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" class="form-control" value="{{filter}}" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <input type="text" class="form-control" value="Requested" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Upvote 👍</label>
+                            <input type="text" class="form-control" value="100" disabled>
+                        </div>
+                        <div class="col-md">
+                            <label>Downvote 👎</label>
+                            <input type="text" class="form-control" value="10" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="text" class="form-control" value="2 hours" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="text" class="form-control" value="Yes" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Join Meeting before Host</label>
+                    <input type="text" class="form-control" value="Yes" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Start Video when Host Join</label>
+                    <input type="text" class="form-control" value="Yes" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Start Video when Participant Join</label>
+                    <input type="text" class="form-control" value="Yes" disabled>
+                </div>
+                <div class="form-group mg-t-20">
+                    <label>Opsi Audio</label>
+                    <input type="text" class="form-control" value="VoIP and Telephony" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn tx-13 btn-pln-gr" data-dismiss="modal">Back</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content tx-14">
+        <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel6">Delete the request</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h5>Are you sure to delete this request?</h5>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary tx-13">Yes</button>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jscript%}
+<!-- datatable -->
+<script>
+    $(function(){
+        'use strict'
+
+        $('#datatable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search on this page',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        },
+        paging: false
+        });
+
+    });
+</script>
+{% endblock %}

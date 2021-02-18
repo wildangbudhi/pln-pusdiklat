@@ -11,68 +11,30 @@
             <span class="d-none d-sm-inline tx-lg-20"><strong>Posts Management</strong></span>
         </div>
     </div>
-    <div class="profile-update-option bg-white ht-50 bd d-flex justify-content-end mg-b-20 mg-lg-b-25 rounded">
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline active">Latest</span></a>
-        </div>
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline">Week</span></a>
-        </div>
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline">Month</span></a>
-        </div>
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline">Year</span></a>
-        </div>
-        <div class="wd-90 bd-l d-flex align-items-center justify-content-center">
-            <a href=""><span class="nav-link d-none d-sm-inline">Top</span></a>
-        </div>
-    </div>
     <div class="row no-gutters">
-        <!-- <div class="d-flex align-items-center pd-x-20 mg-r-auto"> -->
-            <div class="col-sm"></div>
-            <div class="col-sm"></div>
-            <div class="dropdown col-sm">
-                <button class="btn btn-block btn-secondary dropdown-toggle mg-b-40 tx-black btn-pln-lb" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Filter
-                </button>
-                <div class="dropdown-menu tx-13">
-                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electric Power Supply Business</h6>
-                  <a class="dropdown-item active" href="#">Generation</a>
-                  <a class="dropdown-item" href="#">Transmission</a>
-                  <a class="dropdown-item" href="#">Distribution</a>
-                  <a class="dropdown-item" href="#">Commerce &amp; Customer Management</a>
-                  <div class="dropdown-divider"></div>
-                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Corporate Support</h6>
-                  <a class="dropdown-item" href="#">Electricity Equipment Production</a>
-                  <a class="dropdown-item" href="#">Electric Safety, OHS, Security &amp; Environment</a>
-                  <a class="dropdown-item" href="#">Project Management, Engineering &amp; Construction</a>
-                  <a class="dropdown-item" href="#">Research &amp; Development</a>
-                  <a class="dropdown-item" href="#">Learning</a>
-                  <a class="dropdown-item" href="#">Certification</a>
-                  <div class="dropdown-divider"></div>
-                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Electricity Support</h6>
-                  <a class="dropdown-item" href="#">Supply Chain Management</a>
-                  <a class="dropdown-item" href="#">Regulatory &amp; Compliance</a>
-                  <a class="dropdown-item" href="#">Information Technology</a>
-                  <a class="dropdown-item" href="#">HR</a>
-                  <a class="dropdown-item" href="#">Finance</a>
-                  <a class="dropdown-item" href="#">Communication, CSR &amp; Office Management</a>
-                  <a class="dropdown-item" href="#">Company Management</a>
-                  <div class="dropdown-divider"></div>
-                  <h6 class="dropdown-header tx-uppercase tx-11 tx-bold tx-inverse tx-spacing-1">Additional</h6>
-                  <a class="dropdown-item" href="#">Miscellaneous</a>
-                </div>
+        <div class="dropdown col-sm offset-sm-8">
+            <button class="btn btn-block btn-secondary dropdown-toggle mg-b-40 tx-black btn-pln-lb" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Filter
+            </button>
+            <div class="dropdown-menu tx-13">
+                {% for c, uc in category_dict.items() %}
+                    {% if loop.first %}
+                        <a class="dropdown-item active" href="/posts/management/{{uc}}">{{c}}</a>
+                    {% else %}
+                        <a class="dropdown-item" href="/posts/management/{{uc}}">{{c}}</a>
+                    {% endif %}
+                {% endfor %}
             </div>
-            <!-- <a href="" class="link-03 mg-l-10"><span class="d-none d-sm-inline">Write</span> a question</a> -->
-        <!-- </div> -->
+        </div>
     </div>
-    <table id="example2" class="table">
+
+    <table id="datatable" class="table">
         <thead>
           <tr>
             <th class="wd-20p">Notulent</th>
-            <th class="wd-30p">Category</th>
-            <th class="wd-10p">Rate</th>
+            <th class="wd-15p">Category</th>
+            <th class="wd-10p">Upvote</th>
+            <th class="wd-15p">Downvote</th>
             <th class="wd-20p">Time</th>
             <th class="wd-20p">Actions</th>
           </tr>
@@ -82,6 +44,7 @@
             <td>Tiger Nixon</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>                
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -105,6 +68,7 @@
             <td>Garrett Winters</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -128,6 +92,7 @@
             <td>Ashton Cox</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -151,6 +116,7 @@
             <td>Cedric Kelly</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -174,6 +140,7 @@
             <td>Airi Satou</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -197,6 +164,7 @@
             <td>Brielle Williamson</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -220,6 +188,7 @@
             <td>Herrod Chandler</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -243,6 +212,7 @@
             <td>Rhona Davidson</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -266,6 +236,7 @@
             <td>Colleen Hurst</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -289,6 +260,7 @@
             <td>Sonya Frost</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -312,6 +284,7 @@
             <td>Jena Gaines</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -335,6 +308,7 @@
             <td>Quinn Flynn</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -358,6 +332,7 @@
             <td>Charde Marshall</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -381,6 +356,7 @@
             <td>Haley Kennedy</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -404,6 +380,7 @@
             <td>Tatyana Fitzpatrick</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -427,6 +404,7 @@
             <td>Michael Silva</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -450,6 +428,7 @@
             <td>Paul Byrd</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -473,6 +452,7 @@
             <td>Gloria Little</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -496,6 +476,7 @@
             <td>Bradley Greer</td>
             <td>Generation</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -519,6 +500,7 @@
             <td>Dai Rios</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -542,6 +524,7 @@
             <td>Jenette Caldwell</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -565,6 +548,7 @@
             <td>Yuri Berry</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -588,6 +572,7 @@
             <td>Caesar Vance</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -611,6 +596,7 @@
             <td>Doris Wilder</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -634,6 +620,7 @@
             <td>Angelica Ramos</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -657,6 +644,7 @@
             <td>Gavin Joyce</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -680,6 +668,7 @@
             <td>Jennifer Chang</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -703,6 +692,7 @@
             <td>Brenden Wagner</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -726,6 +716,7 @@
             <td>Fiona Green</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -749,6 +740,7 @@
             <td>Shou Itou</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -772,6 +764,7 @@
             <td>Michelle House</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -795,6 +788,7 @@
             <td>Suki Burks</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -818,6 +812,7 @@
             <td>Prescott Bartlett</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -841,6 +836,7 @@
             <td>Gavin Cortez</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -864,6 +860,7 @@
             <td>Martena Mccray</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -887,6 +884,7 @@
             <td>Unity Butler</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -910,6 +908,7 @@
             <td>Howard Hatfield</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -933,6 +932,7 @@
             <td>Hope Fuentes</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -956,6 +956,7 @@
             <td>Vivian Harrell</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -979,6 +980,7 @@
             <td>Timothy Mooney</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1002,6 +1004,7 @@
             <td>Jackson Bradshaw</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1025,6 +1028,7 @@
             <td>Olivia Liang</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1048,6 +1052,7 @@
             <td>Bruno Nash</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1071,6 +1076,7 @@
             <td>Sakura Yamamoto</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1094,6 +1100,7 @@
             <td>Thor Walton</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1117,6 +1124,7 @@
             <td>Finn Camacho</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1140,6 +1148,7 @@
             <td>Serge Baldwin</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1163,6 +1172,7 @@
             <td>Zenaida Frank</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1186,6 +1196,7 @@
             <td>Zorita Serrano</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1209,6 +1220,7 @@
             <td>Jennifer Acosta</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1232,6 +1244,7 @@
             <td>Cara Stevens</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1255,6 +1268,7 @@
             <td>Hermione Butler</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1278,6 +1292,7 @@
             <td>Lael Greer</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1301,6 +1316,7 @@
             <td>Jonas Alexander</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1324,6 +1340,7 @@
             <td>Shad Decker</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1347,6 +1364,7 @@
             <td>Michael Bruce</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1370,6 +1388,7 @@
             <td>Donna Snider</td>
             <td>Distribution</td>
             <td>100</td>
+            <td>10</td>
             <td>23 Feb 2021 13:30:00</td>
             <td>
                 <a href="#modalShow" data-toggle="modal" data-animation="effect-fall">
@@ -1396,7 +1415,7 @@
 
 {% block modal %}
 <div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content tx-14">
         <div class="modal-header">
           <h6 class="modal-title" id="exampleModalLabel6">Show details</h6>
@@ -1406,34 +1425,46 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" value="Mengapa ini XYZ?" disabled>
-                </div>
-                <div class="form-group mg-t-20">
-                    <label>Description</label>
-                    <div class="d-flex flex-column ht-150">
-                        <div id="quillEditorModal" class="flex-1 overflow-y-auto" disabled>
-                            <p><strong>Quill</strong> is a free, open source <a href="https://github.com/quilljs/quill/">WYSIWYG editor</a> built for the modern web. With its <a href="https://quilljs.com/docs/modules/">modular architecture</a> and expressive API, it is completely customizable to fit any need.</p>
-                        </div>
+                <label>Title</label>
+                <input type="text" class="form-control" value="Mengapa ini XYZ?" disabled>
+            </div>
+            <div class="form-group mg-t-20">
+                <label>Description</label>
+                <div class="d-flex flex-column ht-200">
+                    <div id="quillEditorModal" class="flex-1 overflow-y-auto">
+                        <p><strong>Xanax</strong> is a <a href="https://en.wikipedia.org/wiki/Alprazolam">drug</a> used in short-term management of anxiety disorders.</p>
                     </div>
-                    <!-- <textarea class="form-control" rows="4" placeholder="Mengapa banyak OTG di Jawa Timur?"></textarea> -->
                 </div>
-                <div class="form-group">
-                    <label>Notulent</label>
-                    <input type="text" class="form-control" value="Tria Nexon (@trianexon)" disabled>
+                <!-- <textarea class="form-control" rows="4" placeholder="Mengapa banyak OTG di Jawa Timur?"></textarea> -->
+            </div>
+            <div class="form-group">
+                <label>Thumbnail</label>
+                <div>
+                    <img src="{{ url_for('static', filename='img/placehold.jpg') }}" class="img-fluid">
                 </div>
-                <div class="form-group">
-                    <label>Category</label>
-                    <input type="text" class="form-control" value="Generation" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Time</label>
-                    <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Rate</label>
-                    <input type="text" class="form-control" value="100" disabled>
+            </div>
+            <div class="form-group">
+                <label>Notulent</label>
+                <input type="text" class="form-control" value="Tria Nexon (@trianexon)" disabled>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" class="form-control" value="Generation" disabled>
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="text" class="form-control" value="23 February 2021 13:30:00" disabled>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md">
+                        <label>Upvote 👍</label>
+                        <input type="text" class="form-control" value="100" disabled>
+                    </div>
+                    <div class="col-md">
+                        <label>Downvote 👎</label>
+                        <input type="text" class="form-control" value="10" disabled>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1444,7 +1475,7 @@
     </div>
 </div>
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content tx-14">
         <div class="modal-header">
           <h6 class="modal-title" id="exampleModalLabel6">Edit details</h6>
@@ -1454,39 +1485,75 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" value="Mengapa ini XYZ?">
-                </div>
-                <div class="form-group mg-t-20">
-                    <label>Description</label>
-                    <div class="d-flex flex-column ht-100">
-                        <div id="quillEditorModal" class="flex-1 overflow-y-auto">
-                            <p><strong>Quill</strong> is a free, open source <a href="https://github.com/quilljs/quill/">WYSIWYG editor</a> built for the modern web. With its <a href="https://quilljs.com/docs/modules/">modular architecture</a> and expressive API, it is completely customizable to fit any need.</p>
-                        </div>
+                <label>Title</label>
+                <input type="text" class="form-control" value="Mengapa ini XYZ?">
+            </div>
+            <div class="form-group mg-t-20">
+                <label>Description</label>
+                <div class="d-flex flex-column ht-200">
+                    <div id="quillEditorModal2" class="flex-1 overflow-y-auto">
+                        <p><strong>Xanax</strong> is a <a href="https://en.wikipedia.org/wiki/Alprazolam">drug</a> used in short-term management of anxiety disorders.</p>
                     </div>
-                    <!-- <textarea class="form-control" rows="4" placeholder="Mengapa banyak OTG di Jawa Timur?"></textarea> -->
                 </div>
-                <div class="form-group">
-                    <label>Notulent</label>
-                    <input type="text" class="form-control" value="Tria Nexon (@trianexon)">
+                <!-- <textarea class="form-control" rows="4" placeholder="Mengapa banyak OTG di Jawa Timur?"></textarea> -->
+            </div>
+            <div class="form-group">
+                <label>Thumbnail</label>
+                <div class="wd-md mg-b-10">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">thumbnail.jpg</label>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Category</label>
-                    <input type="text" class="form-control" value="Generation">
+                <div>
+                    <img src="{{ url_for('static', filename='img/placehold.jpg') }}" class="img-fluid">
                 </div>
-                <div class="form-group">
-                    <label>Time</label>
-                    <input type="text" class="form-control" value="23 February 2021 13:30:00">
+            </div>
+            <div class="form-group">
+                <label>Notulent</label>
+                <div class="search-form wd-lg">
+                    <input type="search" id="theBasics" class="form-control" value="Tria Nexon (@trianexon)">
                 </div>
-                <div class="form-group">
-                    <label>Rate</label>
-                    <input type="text" class="form-control" value="100">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select class="custom-select">
+                    <option disabled>Open this select menu</option>
+                    <option selected value="Generation">Generation</option>
+                    <option value="Transmission">Transmission</option>
+                    <option value="Distribution">Distribution</option>
+                    <option value="Commerce & Customer Management">Commerce & Customer Management</option>
+                    <option value="Electricity Equipment Production">Electricity Equipment Production</option>
+                    <option value="Electric Safety, OHS, Security & Environment">Electric Safety, OHS, Security & Environment</option>
+                    <option value="Project Management, Engineering &amp; Construction">Project Management, Engineering &amp; Construction</option>
+                    <option value="Research &amp; Development">Research &amp; Development</option>
+                    <option value="Learning">Learning</option>
+                    <option value="Certification">Certification</option>
+                    <option value="Supply Chain Management">Supply Chain Management</option>
+                    <option value="Regulatory &amp; Compliance">Regulatory &amp; Compliance</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Communication, CSR &amp; Office Management">Communication, CSR &amp; Office Management</option>
+                    <option value="Company Management">Company Management</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <div class="row">
+                    <div class="col-md">
+                        <input type="date" class="form-control" value="2021-02-23">
+                    </div>
+                    <div class="col-md">
+                        <input type="time" class="form-control" value="13:00">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn tx-13 btn-pln-gr" data-dismiss="modal">Back</button>
+          <button type="button" class="btn tx-13 btn-primary btn-pln-b">Edit</button>
         </div>
       </div>
     </div>
@@ -1501,7 +1568,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <h5>Are you sure to delete this question?</h5>
+        <h5>Are you sure to delete this post?</h5>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger tx-13" data-dismiss="modal">No</button>
@@ -1513,6 +1580,7 @@
 {% endblock %}
 
 {% block jscript %}
+<!-- text editor -->
 <script>
     $(function(){
         'use strict'
@@ -1528,6 +1596,7 @@
         },
         theme: 'snow'
         });
+        quillModal.enable(false);
         
         var quillModal2 = new Quill('#quillEditorModal2', {
         modules: {
@@ -1542,22 +1611,67 @@
 
     });
 </script>
+<!-- data table -->
 <script>
     $(function(){
-      'use strict'
+        'use strict'
 
-      $('#modalWriting').on('show.bs.modal', function (event) {
-
-        var animation = $(event.relatedTarget).data('animation');
-        $(this).addClass(animation);
-      })
-
-      // hide modal with effect
-      $('#modalWriting').on('hidden.bs.modal', function (e) {
-        $(this).removeClass (function (index, className) {
-            return (className.match (/(^|\s)effect-\S+/g) || []).join(' ');
+        $('#datatable').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search on this page',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        },
+        paging: false
         });
-      });
+
+    });
+</script>
+<!-- typeahead -->
+<script>
+    $(function(){
+        'use strict'
+
+        // Basic Typeahead
+        var substringMatcher = function(strs) {
+        return function findMatches(q, cb) {
+            var matches, substrRegex;
+
+            // an array that will be populated with substring matches
+            matches = [];
+
+            // regex used to determine if a string contains the substring `q`
+            substrRegex = new RegExp(q, 'i');
+
+            // iterate through the pool of strings and for any string that
+            // contains the substring `q`, add it to the `matches` array
+            $.each(strs, function(i, str) {
+            if (substrRegex.test(str)) {
+                matches.push(str);
+            }
+            });
+
+            cb(matches);
+        };
+        };
+
+        var notulent = [
+            'Rangga K D (@ranggakd)',
+            'Wildan G B (@wildangb)',
+            'Insan (@insan)',
+            'Cici (@cici)'
+        ];
+
+        $('#theBasics').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+        },
+        {
+        name: 'notulent',
+        source: substringMatcher(notulent)
+        });
 
     });
 </script>
