@@ -2,7 +2,6 @@ package domain
 
 // ForumUsecase is an Interface for Forum Usecase
 type ForumUsecase interface {
-	UserAuthDataChangesEvent(eventAction string, id int, fullName string, email Email, username string) error
 	FetchCategory() ([]Category, error)
 	CreateForum(title string, question string, requestUserID int, categoryID int) (*UUID, error)
 	GetForum(forumID UUID, requestUserID int) (*Forum, error)

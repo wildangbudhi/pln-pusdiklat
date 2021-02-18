@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain"
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain/event"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain/model"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -55,22 +54,6 @@ func (usecase *authenticationUsecase) Register(fullName string, email domain.Ema
 	}
 
 	userAuthID, err := usecase.userAuthRepository.InsertUserAuth(&userAuth)
-
-	if err != nil {
-		return -1, err
-	}
-
-	userAuthEvent := event.UserAuthEvent{
-		Action: "CREATE",
-		Data: &event.UserAuth{
-			ID:       int(userAuthID),
-			FullName: fullName,
-			Email:    email.GetValue(),
-			Username: username,
-		},
-	}
-
-	err = usecase.userAuthEventRepository.PublishDataChangesEvent(&userAuthEvent)
 
 	if err != nil {
 		return -1, err

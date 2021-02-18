@@ -2,7 +2,7 @@ version: "3.8"
 
 volumes:
   forumlearning-mysqldata:
-  forumlearning-rabbitmqdata:
+  # forumlearning-rabbitmqdata:
 
 services:
   
@@ -12,30 +12,28 @@ services:
     container_name: mysqldb
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      - MYSQL_DATABASE=forum_learning
+      - MYSQL_ROOT_PASSWORD=root
     volumes:
       - forumlearning-mysqldata:/var/lib/mysql
-      # - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./mysqldump-folder/identity_schema.sql:/docker-entrypoint-initdb.d/2.sql
-      - ./mysqldump-folder/identity_test_data.sql:/docker-entrypoint-initdb.d/3.sql
-      - ./mysqldump-folder/forum_schema.sql:/docker-entrypoint-initdb.d/4.sql
-      - ./mysqldump-folder/forum_test_data.sql:/docker-entrypoint-initdb.d/5.sql
+      - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
 
     ports:
       - "3306:3306"     # Do Not Uncomment in Production
   
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: forum_learning-rabbitmq
-    volumes:
-      - forumlearning-rabbitmqdata:/var/lib/rabbitmq
-    ports:
-      - 5672:5672     # Do Not Uncomment in Production
-      - 15672:15672
-    environment:
-      - RABBITMQ_ERLANG_COOKIE=123123
-      - RABBITMQ_DEFAULT_USER=forum_learning
-      - RABBITMQ_DEFAULT_PASS=forum_learning_123
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   container_name: forum_learning-rabbitmq
+  #   volumes:
+  #     - forumlearning-rabbitmqdata:/var/lib/rabbitmq
+  #   ports:
+  #     - 5672:5672     # Do Not Uncomment in Production
+  #     - 15672:15672
+  #   environment:
+  #     - RABBITMQ_ERLANG_COOKIE=123123
+  #     - RABBITMQ_DEFAULT_USER=forum_learning
+  #     - RABBITMQ_DEFAULT_PASS=forum_learning_123
   
   identity:
     container_name: forum_learning-identity
@@ -47,18 +45,18 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=identity
-      - QUEUE_HOST=rabbitmq
-      - QUEUE_PORT=5672
-      - QUEUE_USERNAME=forum_learning
-      - QUEUE_PASSWORD=forum_learning_123
+      - MYSQL_DATABASE=forum_learning
+      # - QUEUE_HOST=rabbitmq
+      # - QUEUE_PORT=5672
+      # - QUEUE_USERNAME=forum_learning
+      # - QUEUE_PASSWORD=forum_learning_123
     volumes: 
       - ./log/identity/:/src/log/
     ports:
-      - "8081:8080"
+      - "8081:8080"     # Do Not Uncomment in Production
     depends_on: 
       - mysqldb
-      - rabbitmq
+      # - rabbitmq
 
   forum:
     container_name: forum_learning-forum
@@ -70,18 +68,18 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=forum
-      - QUEUE_HOST=rabbitmq
-      - QUEUE_PORT=5672
-      - QUEUE_USERNAME=forum_learning
-      - QUEUE_PASSWORD=forum_learning_123
+      - MYSQL_DATABASE=forum_learning
+      # - QUEUE_HOST=rabbitmq
+      # - QUEUE_PORT=5672
+      # - QUEUE_USERNAME=forum_learning
+      # - QUEUE_PASSWORD=forum_learning_123
     volumes: 
       - ./log/forum/:/src/log/
     ports:
-      - "8082:8080"
+      - "8082:8080"     # Do Not Uncomment in Production
     depends_on: 
       - mysqldb
-      - rabbitmq
+      # - rabbitmq
 
   # post:
   #   container_name: forum_learning-post
@@ -108,6 +106,23 @@ services:
     build: ./front-end_client
     restart: always
     volumes: 
-      - "./front-end_client/app:/app/app"
-    ports:
-      - "80:80"
+      - "./front-end_client/app/:/app"
+    # ports: 
+    #   - "80:5000"     # Do Not Uncomment in Production
+    
+  front-end_admin:
+    container_name: forum_learning-front_end_admin
+    build: ./front-end_admin
+    restart: always
+    volumes: 
+      - "./front-end_admin/app/:/app"
+    # ports: 
+    #   - "81:5000"     # Do Not Uncomment in Production
+  
+  nginx:
+    container_name: forum_learning-nginx
+    build: ./nginx
+    restart: always
+    ports: 
+      - "80:80" 
+      - "443:443" 

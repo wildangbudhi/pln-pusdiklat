@@ -64,18 +64,18 @@ func NewServer() (*Server, error) {
 
 	server.DB = dbClient
 
-	queueClient, err := NewMessageQueueServer(
-		server.Config.QueueHost,
-		server.Config.QueuePort,
-		server.Config.QueueUsername,
-		server.Config.QueuePassword,
-	)
+	// queueClient, err := NewMessageQueueServer(
+	// 	server.Config.QueueHost,
+	// 	server.Config.QueuePort,
+	// 	server.Config.QueueUsername,
+	// 	server.Config.QueuePassword,
+	// )
 
-	if err != nil {
-		return nil, err
-	}
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	server.QueueServer = queueClient
+	// server.QueueServer = queueClient
 
 	gin.SetMode(server.Config.State)
 	server.Router = gin.Default()
