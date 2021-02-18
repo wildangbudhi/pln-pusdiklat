@@ -159,7 +159,7 @@ func (repo *forumRepository) FetchWithPagination(requestBody io.Reader, urlQuery
 		return nil, fmt.Errorf("Base URL of Services Not Found")
 	}
 
-	requestURL := endpoint.Host + ":" + endpoint.Port + "/delete"
+	requestURL := endpoint.Host + ":" + endpoint.Port + "/fetch"
 
 	res, err := repo.sendRequest(requestURL, "GET", requestBody, urlQuery, requestHeader)
 
