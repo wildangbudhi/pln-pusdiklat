@@ -17,6 +17,8 @@ services:
       - forumlearning-mysqldata:/var/lib/mysql
       - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
       - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
+    ports:
+      - "3306:3306"
 
   identity:
     container_name: forum_learning-identity
@@ -31,6 +33,8 @@ services:
       - MYSQL_DATABASE=forum_learning
     volumes: 
       - ./log/identity/:/src/log/
+    ports:
+      - "8081:8080"
     depends_on: 
       - mysqldb
 
@@ -47,6 +51,8 @@ services:
       - MYSQL_DATABASE=forum_learning
     volumes: 
       - ./log/forum/:/src/log/
+    ports:
+      - "8082:8080"
     depends_on: 
       - mysqldb
   
@@ -59,6 +65,10 @@ services:
     volumes: 
       - ./log/api_gateway/:/src/log/
       - ./api-gateway-config/:/src/config/
+    ports:
+      - "8083:8080"
+    depends_on: 
+      - mysqldb
       
   front-end_client:
     container_name: forum_learning-front_end_client
@@ -66,6 +76,8 @@ services:
     restart: always
     volumes: 
       - "./front-end_client/app/:/app"
+    ports: 
+      - "80:5000"
     
   front-end_admin:
     container_name: forum_learning-front_end_admin
@@ -73,6 +85,8 @@ services:
     restart: always
     volumes: 
       - "./front-end_admin/app/:/app"
+    ports: 
+      - "81:5000"
   
   nginx:
     container_name: forum_learning-nginx
