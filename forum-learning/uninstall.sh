@@ -8,6 +8,9 @@ uninstall_forum_learning(){
     echo "REMOVE LOG FOLDER"
     sudo rm -r log
 
+    echo "REMOVE EXISITING SSL"
+    sudo rm -r nginx/certbot
+
     echo "FORUM LEARNING APPLICATION COMPLETELY REMOVED"
 
 }

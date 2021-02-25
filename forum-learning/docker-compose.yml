@@ -65,19 +65,32 @@ services:
     build: ./front-end_client
     restart: always
     volumes: 
-      - "./front-end_client/app/:/app"
+      - ./front-end_client/app/:/app
     
   front-end_admin:
     container_name: forum_learning-front_end_admin
     build: ./front-end_admin
     restart: always
     volumes: 
-      - "./front-end_admin/app/:/app"
+      - ./front-end_admin/app/:/app
+  
+  certbot:
+    image: certbot/certbot
+    restart: always
+    volumes: 
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   
   nginx:
-    container_name: forum_learning-nginx
-    build: ./nginx
+    image: nginx
     restart: always
+    volumes: 
+      - ./nginx/config:/etc/nginx/conf.d
+      - ./nginx/snippets:/etc/nginx/snippets
+      - ./nginx/certbot/conf:/etc/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     ports: 
       - "80:80" 
       - "443:443" 

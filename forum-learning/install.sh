@@ -5,12 +5,22 @@ install_forum_learning(){
     echo "REMOVE EXISITING CONTAINER"
     sudo docker-compose down -v
 
+    echo "REMOVE EXISITING LOG FOLDER"
+    sudo rm -r log
+
     echo "CREATE LOG FOLDER"
     mkdir -p log/{api_gateway,forum,identity}
     cd ./log/ && find . -type d -exec touch {}/system.log \;
+    cd ..;
 
     echo "BUILD NEW CONTAINER"
     sudo docker-compose build
+
+    echo "REMOVE EXISITING SSL"
+    sudo rm -r nginx/certbot
+
+    echo "INIT SSL FOR NGINX"
+    bash init-letsencrypt.sh;
 
     echo "RUN CONTAINER IN DETACHED MODE"
     sudo docker-compose up -d
