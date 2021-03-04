@@ -16,12 +16,6 @@ install_forum_learning(){
     echo "BUILD NEW CONTAINER"
     sudo docker-compose build
 
-    echo "REMOVE EXISITING SSL"
-    sudo rm -r nginx/certbot
-
-    echo "INIT SSL FOR NGINX"
-    bash init-letsencrypt.sh;
-
     echo "RUN CONTAINER IN DETACHED MODE"
     sudo docker-compose up -d
 

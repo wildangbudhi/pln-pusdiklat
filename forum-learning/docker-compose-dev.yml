@@ -33,10 +33,10 @@ services:
       - MYSQL_DATABASE=forum_learning
     volumes: 
       - ./log/identity/:/src/log/
-    ports:
-      - "8081:8080"
     depends_on: 
       - mysqldb
+    ports:
+      - "8081:8080"
 
   forum:
     container_name: forum_learning-forum
@@ -51,10 +51,10 @@ services:
       - MYSQL_DATABASE=forum_learning
     volumes: 
       - ./log/forum/:/src/log/
-    ports:
-      - "8082:8080"
     depends_on: 
       - mysqldb
+    ports:
+      - "8082:8080"
   
   api_gateway:
     container_name: forum_learning-api_gateway
@@ -67,15 +67,13 @@ services:
       - ./api-gateway-config/:/src/config/
     ports:
       - "8083:8080"
-    depends_on: 
-      - mysqldb
       
   front-end_client:
     container_name: forum_learning-front_end_client
     build: ./front-end_client
     restart: always
     volumes: 
-      - "./front-end_client/app/:/app"
+      - ./front-end_client/app/:/app
     ports: 
       - "80:5000"
     
@@ -84,14 +82,19 @@ services:
     build: ./front-end_admin
     restart: always
     volumes: 
-      - "./front-end_admin/app/:/app"
+      - ./front-end_admin/app/:/app
     ports: 
       - "81:5000"
   
   nginx:
+    image: nginx
     container_name: forum_learning-nginx
-    build: ./nginx
     restart: always
+    environment: 
+      - NGINX_PORT=80
+      - NGINX_HOST=wildangbudhi.com
+    volumes: 
+      - ./nginx/templates:/etc/nginx/templates
     ports: 
       - "80:80" 
       - "443:443" 

@@ -74,23 +74,15 @@ services:
     volumes: 
       - ./front-end_admin/app/:/app
   
-  certbot:
-    image: certbot/certbot
-    restart: always
-    volumes: 
-      - ./nginx/certbot/conf:/etc/letsencrypt
-      - ./nginx/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-  
   nginx:
     image: nginx
     restart: always
+    container_name: forum_learning-nginx
+    environment: 
+      - NGINX_PORT=80
+      - NGINX_HOST=wildangbudhi.com
     volumes: 
-      - ./nginx/config:/etc/nginx/conf.d
-      - ./nginx/snippets:/etc/nginx/snippets
-      - ./nginx/certbot/conf:/etc/letsencrypt
-      - ./nginx/certbot/www:/var/www/certbot
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+      - ./nginx/templates:/etc/nginx/templates
     ports: 
       - "80:80" 
       - "443:443" 
