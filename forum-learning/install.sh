@@ -15,7 +15,6 @@ install_forum_learning(){
 
     echo "BUILD NEW CONTAINER"
     sudo docker-compose build
-    # sudo bash init-letsencrypt.sh
 
     echo "RUN CONTAINER IN DETACHED MODE"
     sudo docker-compose up -d
