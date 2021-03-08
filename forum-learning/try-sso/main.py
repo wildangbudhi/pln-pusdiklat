@@ -1,6 +1,8 @@
 from flask import Flask, url_for
 from flask_saml2.sp import ServiceProvider
 from flask_saml2.utils import certificate_from_file, private_key_from_file
+from datetime import datetime
+import pytz
 
 IDP_CERTIFICATE = certificate_from_file( "./sso-config/idp.crt" )
 SP_CERTIFICATE = certificate_from_file( "./sso-config/sp.crt" )
@@ -61,7 +63,9 @@ def index():
         message = '<p>You are logged out.</p>'
 
         login_url = url_for('flask_saml2_sp.login')
-        link = f'<p><a href="{login_url}">Log in to continue</a></p> {st}'
+        link = f'<p><a href="{login_url}">Log in to continue</a></p>'
+
+        print( datetime.utcnow().replace(tzinfo=pytz.utc) )
 
         return message + link
 
