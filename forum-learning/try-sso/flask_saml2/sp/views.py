@@ -79,13 +79,13 @@ class SingleLogout(SAML2View):
 class AssertionConsumer(SAML2View):
     def post(self):
         saml_request = request.form['SAMLResponse']
-        relay_state = request.form['RelayState']
+        # relay_state = request.form['RelayState']
 
         for handler in self.sp.get_idp_handlers():
             try:
                 response = handler.get_response_parser(saml_request)
                 auth_data = handler.get_auth_data(response)
-                return self.sp.login_successful(auth_data, relay_state)
+                return self.sp.login_successful(auth_data)
             except CannotHandleAssertion:
                 continue
             except UserNotAuthorized:

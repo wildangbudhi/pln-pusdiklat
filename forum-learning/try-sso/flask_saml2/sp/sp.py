@@ -37,7 +37,7 @@ class ServiceProvider:
     def login_successful(
         self,
         auth_data: AuthData,
-        relay_state: str,
+        relay_state: str = "/",
     ) -> Response:
         """ Called when a user is successfully logged on.
         Subclasses should override this if they want to do more
