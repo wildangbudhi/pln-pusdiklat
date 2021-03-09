@@ -32,7 +32,7 @@ app.config['SAML2_IDENTITY_PROVIDERS'] = [
         'CLASS': 'flask_saml2.sp.idphandler.IdPHandler',
         'OPTIONS': {
             'display_name': "pln-pusdiklat",
-            'entity_id': 'https://elearning.pln-pusdiklat.co.id/sso/saml2/idp/metadata.php',
+            'entity_id': 'https://idp.pln-pusdiklat.co.id',
             'sso_url': 'https://elearning.pln-pusdiklat.co.id/sso/saml2/idp/SSOService.php',
             'slo_url': 'https://elearning.pln-pusdiklat.co.id/sso/saml2/idp/SingleLogoutService.php',
             'certificate': IDP_CERTIFICATE,
@@ -65,7 +65,7 @@ def index():
         login_url = url_for('flask_saml2_sp.login')
         link = f'<p><a href="{login_url}">Log in to continue</a></p>'
 
-        print( datetime.utcnow().replace(tzinfo=pytz.utc) )
+        print( str(datetime.utcnow().replace(tzinfo=pytz.utc)).replace('+00:00', 'Z') )
 
         return message + link
 
