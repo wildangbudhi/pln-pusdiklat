@@ -32,7 +32,7 @@ app.config['SAML2_IDENTITY_PROVIDERS'] = [
         'CLASS': 'flask_saml2.sp.idphandler.IdPHandler',
         'OPTIONS': {
             'display_name': "pln-pusdiklat",
-            'entity_id': 'https://idp.pln-pusdiklat.co.id',
+            'entity_id': 'forumlearning.pln.co.id',
             'sso_url': 'https://elearning.pln-pusdiklat.co.id/sso/saml2/idp/SSOService.php',
             'slo_url': 'https://elearning.pln-pusdiklat.co.id/sso/saml2/idp/SingleLogoutService.php',
             'certificate': IDP_CERTIFICATE,
