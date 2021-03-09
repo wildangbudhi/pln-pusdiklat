@@ -25,6 +25,7 @@ app.config['SERVER_NAME'] = 'wildangbudhi.com:80'
 app.config['SAML2_SP'] = {
     'certificate': SP_CERTIFICATE,
     'private_key': SP_PRIVATE_KEY,
+    'entity_id' : 'forumlearning.pln.co.id'
 }
 
 app.config['SAML2_IDENTITY_PROVIDERS'] = [
@@ -32,7 +33,7 @@ app.config['SAML2_IDENTITY_PROVIDERS'] = [
         'CLASS': 'flask_saml2.sp.idphandler.IdPHandler',
         'OPTIONS': {
             'display_name': "pln-pusdiklat",
-            'entity_id': 'forumlearning.pln.co.id',
+            'entity_id': 'https://idp.pln-pusdiklat.co.id',
             'sso_url': 'https://elearning.pln-pusdiklat.co.id/sso/saml2/idp/SSOService.php',
             'slo_url': 'https://elearning.pln-pusdiklat.co.id/sso/saml2/idp/SingleLogoutService.php',
             'certificate': IDP_CERTIFICATE,

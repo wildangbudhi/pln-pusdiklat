@@ -83,7 +83,8 @@ class ServiceProvider:
 
         See :func:`get_metadata_url`.
         """
-        return self.get_metadata_url()
+        # return self.get_metadata_url()
+        return current_app.config['SAML2_SP']['entity_id']
 
     def get_sp_certificate(self) -> Optional[X509]:
         """Get the public certificate for this SP."""
