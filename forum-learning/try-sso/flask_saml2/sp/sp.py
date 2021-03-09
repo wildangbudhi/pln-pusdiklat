@@ -318,9 +318,9 @@ class ServiceProvider:
             'login_idp', sp=self))
         idp_bp.add_url_rule('/logout/', view_func=Logout.as_view(
             'logout', sp=self))
-        idp_bp.add_url_rule('/acs/', view_func=AssertionConsumer.as_view(
+        idp_bp.add_url_rule('/acs', view_func=AssertionConsumer.as_view(
             'acs', sp=self))
-        idp_bp.add_url_rule('/sls/', view_func=SingleLogout.as_view(
+        idp_bp.add_url_rule('/sls', view_func=SingleLogout.as_view(
             'sls', sp=self))
         idp_bp.add_url_rule('/metadata.xml', view_func=Metadata.as_view(
             'metadata', sp=self))
