@@ -145,7 +145,7 @@ func (repo *forumRepository) GetForumByIDWithUserReaction(id domain.UUID, userID
 
 }
 
-func (repo *forumRepository) FetchForumWithUserReaction(offset int, limit int, userID int, topForumSort bool) ([]domain.Forum, error) {
+func (repo *forumRepository) FetchForumWithUserReaction(offset int, limit int, userID int, topForumSort bool, timelineTimeFrame *domain.TimelineTimeFrame) ([]domain.Forum, error) {
 
 	var err error
 	var queryString string
@@ -186,8 +186,19 @@ func (repo *forumRepository) FetchForumWithUserReaction(offset int, limit int, u
 		FROM forum_reaction fr 
 		WHERE fr.user_id = ?
 		GROUP BY fr.forum_id 
-	) ufr ON ufr.forum_id = f.id 
-	ORDER BY f.created_at DESC`
+	) ufr ON ufr.forum_id = f.id`
+
+	timeFrameQueryMap := map[string]string{
+		"year":  "YEAR( f.created_at ) = YEAR( CURDATE() )",
+		"month": "YEAR( f.created_at ) = YEAR( CURDATE() ) AND MONTH( f.created_at ) = MONTH( CURDATE() )",
+		"week":  "YEAR( f.created_at ) = YEAR( CURDATE() ) AND MONTH( f.created_at ) = MONTH( CURDATE() ) AND YEARWEEK( f.created_at, 1 ) = YEARWEEK( CURDATE(), 1 )",
+	}
+
+	if timelineTimeFrame != nil {
+		queryString += "\nWHERE " + timeFrameQueryMap[timelineTimeFrame.GetValue()]
+	}
+
+	queryString += "\nORDER BY f.created_at DESC"
 
 	if topForumSort {
 		queryString += `, up_vote DESC, replies_count DESC`
@@ -360,7 +371,7 @@ func (repo *forumRepository) FetchForumByAuthorIDWithUserReaction(authorID int, 
 
 }
 
-func (repo *forumRepository) FetchForumByCategoryIDWithUserReaction(categoryID int, offset int, limit int, userID int, topForumSort bool) ([]domain.Forum, error) {
+func (repo *forumRepository) FetchForumByCategoryIDWithUserReaction(categoryID int, offset int, limit int, userID int, topForumSort bool, timelineTimeFrame *domain.TimelineTimeFrame) ([]domain.Forum, error) {
 
 	var err error
 	var queryString string
@@ -402,8 +413,19 @@ func (repo *forumRepository) FetchForumByCategoryIDWithUserReaction(categoryID i
 		WHERE fr.user_id = ?
 		GROUP BY fr.forum_id 
 	) ufr ON ufr.forum_id = f.id 
-	WHERE f.category_id = ?
-	ORDER BY f.created_at DESC`
+	WHERE f.category_id = ? `
+
+	timeFrameQueryMap := map[string]string{
+		"year":  "YEAR( f.created_at ) = YEAR( CURDATE() )",
+		"month": "YEAR( f.created_at ) = YEAR( CURDATE() ) AND MONTH( f.created_at ) = MONTH( CURDATE() )",
+		"week":  "YEAR( f.created_at ) = YEAR( CURDATE() ) AND MONTH( f.created_at ) = MONTH( CURDATE() ) AND YEARWEEK( f.created_at, 1 ) = YEARWEEK( CURDATE(), 1 )",
+	}
+
+	if timelineTimeFrame != nil {
+		queryString += "AND " + timeFrameQueryMap[timelineTimeFrame.GetValue()]
+	}
+
+	queryString += "\nORDER BY f.created_at DESC"
 
 	if topForumSort {
 		queryString += `, up_vote DESC, replies_count DESC`
