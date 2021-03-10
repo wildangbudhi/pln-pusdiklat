@@ -2,6 +2,7 @@ from flask import url_for
 from flask_saml2.sp import ServiceProvider
 from jwt import encode
 from typing import Tuple
+from datetime import datetime, timedelta
 
 class Auth(ServiceProvider):
 
@@ -25,6 +26,8 @@ class Auth(ServiceProvider):
         else:
             auth_data = self.get_auth_data_in_session()
             payload = auth_data.to_dict()
+
+            payload[ 'exp' ] = datetime.utcnow() + timedelta( days=1 )
 
             self.api_access_token = encode( payload=payload, key=self.api_secret_key, algorithm="HS512" )
 
