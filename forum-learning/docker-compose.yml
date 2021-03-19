@@ -6,21 +6,21 @@ volumes:
 
 services:
   
-  mysqldb:
-    restart: always
-    image: mysql
-    container_name: mysqldb
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
-    environment:
-      - MYSQL_DATABASE=forum_learning
-      - MYSQL_ROOT_PASSWORD=root
-    volumes:
-      - forumlearning-mysqldata:/var/lib/mysql
-      - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
+  # mysqldb:
+  #   restart: always
+  #   image: mysql
+  #   container_name: mysqldb
+  #   command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
+  #   environment:
+  #     - MYSQL_DATABASE=forum_learning
+  #     - MYSQL_ROOT_PASSWORD=root
+  #   volumes:
+  #     - forumlearning-mysqldata:/var/lib/mysql
+  #     - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
+  #     - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
 
-    ports:
-      - "3306:3306"     # Do Not Uncomment in Production
+  #   ports:
+  #     - "3306:3306"     # Do Not Uncomment in Production
   
   # rabbitmq:
   #   image: rabbitmq:3-management
@@ -35,51 +35,51 @@ services:
   #     - RABBITMQ_DEFAULT_USER=forum_learning
   #     - RABBITMQ_DEFAULT_PASS=forum_learning_123
   
-  identity:
-    container_name: forum_learning-identity
-    build: ./identity/
-    restart: always
-    environment: 
-      - GIN_MODE=debug
-      - MYSQL_HOST=mysqldb
-      - MYSQL_PORT=3306
-      - MYSQL_USERNAME=root
-      - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=forum_learning
-      # - QUEUE_HOST=rabbitmq
-      # - QUEUE_PORT=5672
-      # - QUEUE_USERNAME=forum_learning
-      # - QUEUE_PASSWORD=forum_learning_123
-    volumes: 
-      - ./log/identity/:/src/log/
-    ports:
-      - "8081:8080"     # Do Not Uncomment in Production
-    depends_on: 
-      - mysqldb
-      # - rabbitmq
+  # identity:
+  #   container_name: forum_learning-identity
+  #   build: ./identity/
+  #   restart: always
+  #   environment: 
+  #     - GIN_MODE=debug
+  #     - MYSQL_HOST=mysqldb
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_USERNAME=root
+  #     - MYSQL_PASSWORD=root
+  #     - MYSQL_DATABASE=forum_learning
+  #     # - QUEUE_HOST=rabbitmq
+  #     # - QUEUE_PORT=5672
+  #     # - QUEUE_USERNAME=forum_learning
+  #     # - QUEUE_PASSWORD=forum_learning_123
+  #   volumes: 
+  #     - ./log/identity/:/src/log/
+  #   ports:
+  #     - "8081:8080"     # Do Not Uncomment in Production
+  #   depends_on: 
+  #     - mysqldb
+  #     # - rabbitmq
 
-  forum:
-    container_name: forum_learning-forum
-    build: ./forum/
-    restart: always
-    environment: 
-      - GIN_MODE=debug
-      - MYSQL_HOST=mysqldb
-      - MYSQL_PORT=3306
-      - MYSQL_USERNAME=root
-      - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=forum_learning
-      # - QUEUE_HOST=rabbitmq
-      # - QUEUE_PORT=5672
-      # - QUEUE_USERNAME=forum_learning
-      # - QUEUE_PASSWORD=forum_learning_123
-    volumes: 
-      - ./log/forum/:/src/log/
-    ports:
-      - "8082:8080"     # Do Not Uncomment in Production
-    depends_on: 
-      - mysqldb
-      # - rabbitmq
+  # forum:
+  #   container_name: forum_learning-forum
+  #   build: ./forum/
+  #   restart: always
+  #   environment: 
+  #     - GIN_MODE=debug
+  #     - MYSQL_HOST=mysqldb
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_USERNAME=root
+  #     - MYSQL_PASSWORD=root
+  #     - MYSQL_DATABASE=forum_learning
+  #     # - QUEUE_HOST=rabbitmq
+  #     # - QUEUE_PORT=5672
+  #     # - QUEUE_USERNAME=forum_learning
+  #     # - QUEUE_PASSWORD=forum_learning_123
+  #   volumes: 
+  #     - ./log/forum/:/src/log/
+  #   ports:
+  #     - "8082:8080"     # Do Not Uncomment in Production
+  #   depends_on: 
+  #     - mysqldb
+  #     # - rabbitmq
 
   # post:
   #   container_name: forum_learning-post
@@ -119,10 +119,10 @@ services:
     # ports: 
     #   - "81:5000"     # Do Not Uncomment in Production
   
-  nginx:
-    container_name: forum_learning-nginx
-    build: ./nginx
-    restart: always
-    ports: 
-      - "80:80" 
-      - "443:443" 
+  # nginx:
+  #   container_name: forum_learning-nginx
+  #   build: ./nginx
+  #   restart: always
+  #   ports: 
+  #     - "80:80" 
+  #     - "443:443" 
