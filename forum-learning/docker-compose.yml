@@ -73,7 +73,7 @@ services:
     restart: always
     volumes: 
       - ./front-end_admin/app/:/app
-  
+      
   nginx:
     image: nginx
     restart: always
