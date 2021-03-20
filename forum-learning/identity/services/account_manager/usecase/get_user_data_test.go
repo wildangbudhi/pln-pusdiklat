@@ -15,7 +15,7 @@ func TestGetUserDataSuccess(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAccountManagerUsecase(mockUserAuthRepository, nil)
+	testService := usecase.NewAccountManagerUsecase(mockUserAuthRepository)
 
 	userAuthMockData := &model.UserAuth{
 		ID:         1,
@@ -47,7 +47,7 @@ func TestGetUserDataUserNotFound(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAccountManagerUsecase(mockUserAuthRepository, nil)
+	testService := usecase.NewAccountManagerUsecase(mockUserAuthRepository)
 
 	mockUserAuthRepository.On("GetUserAuthByID").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 

@@ -1,0 +1,100 @@
+version: "3.8"
+
+volumes:
+  forumlearning-mysqldata:
+
+services:
+  
+  mysqldb:
+    restart: always
+    image: mysql
+    container_name: mysqldb
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
+    environment:
+      - MYSQL_DATABASE=forum_learning
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - forumlearning-mysqldata:/var/lib/mysql
+      - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
+    ports:
+      - "3306:3306"
+
+  identity:
+    container_name: forum_learning-identity
+    build: ./identity/
+    restart: always
+    environment: 
+      - GIN_MODE=release
+      - MYSQL_HOST=mysqldb
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=forum_learning
+    volumes: 
+      - ./log/identity/:/src/log/
+    depends_on: 
+      - mysqldb
+    ports:
+      - "8081:8080"
+
+  forum:
+    container_name: forum_learning-forum
+    build: ./forum/
+    restart: always
+    environment: 
+      - GIN_MODE=release
+      - MYSQL_HOST=mysqldb
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=forum_learning
+    volumes: 
+      - ./log/forum/:/src/log/
+    depends_on: 
+      - mysqldb
+    ports:
+      - "8082:8080"
+  
+  api_gateway:
+    container_name: forum_learning-api_gateway
+    build: ./api-gateway/
+    restart: always
+    environment: 
+      - GIN_MODE=debug
+    volumes: 
+      - ./log/api_gateway/:/src/log/
+      - ./api-gateway-config/:/src/config/
+    ports:
+      - "8083:8080"
+      
+  front-end_client:
+    container_name: forum_learning-front_end_client
+    build: ./front-end_client
+    restart: always
+    volumes: 
+      - ./front-end_client/app/:/app
+    ports: 
+      - "81:5000"
+    
+  front-end_admin:
+    container_name: forum_learning-front_end_admin
+    build: ./front-end_admin
+    restart: always
+    volumes: 
+      - ./front-end_admin/app/:/app
+    ports: 
+      - "82:5000"
+  
+  nginx:
+    image: nginx
+    container_name: forum_learning-nginx
+    restart: always
+    environment: 
+      - NGINX_PORT=80
+      - NGINX_HOST=wildangbudhi.com
+    volumes: 
+      - ./nginx/templates:/etc/nginx/templates
+    ports: 
+      - "80:80" 
+      - "443:443" 

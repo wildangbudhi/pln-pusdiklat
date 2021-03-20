@@ -2,127 +2,86 @@ version: "3.8"
 
 volumes:
   forumlearning-mysqldata:
-  # forumlearning-rabbitmqdata:
 
 services:
   
-  # mysqldb:
-  #   restart: always
-  #   image: mysql
-  #   container_name: mysqldb
-  #   command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
-  #   environment:
-  #     - MYSQL_DATABASE=forum_learning
-  #     - MYSQL_ROOT_PASSWORD=root
-  #   volumes:
-  #     - forumlearning-mysqldata:/var/lib/mysql
-  #     - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
-  #     - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
+  mysqldb:
+    restart: always
+    image: mysql
+    container_name: mysqldb
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4
+    environment:
+      - MYSQL_DATABASE=forum_learning
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - forumlearning-mysqldata:/var/lib/mysql
+      - ./mysqldump-folder/schema.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./mysqldump-folder/test_data.sql:/docker-entrypoint-initdb.d/2.sql
 
-  #   ports:
-  #     - "3306:3306"     # Do Not Uncomment in Production
+  identity:
+    container_name: forum_learning-identity
+    build: ./identity/
+    restart: always
+    environment: 
+      - GIN_MODE=release
+      - MYSQL_HOST=mysqldb
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=forum_learning
+    volumes: 
+      - ./log/identity/:/src/log/
+    depends_on: 
+      - mysqldb
+
+  forum:
+    container_name: forum_learning-forum
+    build: ./forum/
+    restart: always
+    environment: 
+      - GIN_MODE=release
+      - MYSQL_HOST=mysqldb
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=forum_learning
+    volumes: 
+      - ./log/forum/:/src/log/
+    depends_on: 
+      - mysqldb
   
-  # rabbitmq:
-  #   image: rabbitmq:3-management
-  #   container_name: forum_learning-rabbitmq
-  #   volumes:
-  #     - forumlearning-rabbitmqdata:/var/lib/rabbitmq
-  #   ports:
-  #     - 5672:5672     # Do Not Uncomment in Production
-  #     - 15672:15672
-  #   environment:
-  #     - RABBITMQ_ERLANG_COOKIE=123123
-  #     - RABBITMQ_DEFAULT_USER=forum_learning
-  #     - RABBITMQ_DEFAULT_PASS=forum_learning_123
-  
-  # identity:
-  #   container_name: forum_learning-identity
-  #   build: ./identity/
-  #   restart: always
-  #   environment: 
-  #     - GIN_MODE=debug
-  #     - MYSQL_HOST=mysqldb
-  #     - MYSQL_PORT=3306
-  #     - MYSQL_USERNAME=root
-  #     - MYSQL_PASSWORD=root
-  #     - MYSQL_DATABASE=forum_learning
-  #     # - QUEUE_HOST=rabbitmq
-  #     # - QUEUE_PORT=5672
-  #     # - QUEUE_USERNAME=forum_learning
-  #     # - QUEUE_PASSWORD=forum_learning_123
-  #   volumes: 
-  #     - ./log/identity/:/src/log/
-  #   ports:
-  #     - "8081:8080"     # Do Not Uncomment in Production
-  #   depends_on: 
-  #     - mysqldb
-  #     # - rabbitmq
-
-  # forum:
-  #   container_name: forum_learning-forum
-  #   build: ./forum/
-  #   restart: always
-  #   environment: 
-  #     - GIN_MODE=debug
-  #     - MYSQL_HOST=mysqldb
-  #     - MYSQL_PORT=3306
-  #     - MYSQL_USERNAME=root
-  #     - MYSQL_PASSWORD=root
-  #     - MYSQL_DATABASE=forum_learning
-  #     # - QUEUE_HOST=rabbitmq
-  #     # - QUEUE_PORT=5672
-  #     # - QUEUE_USERNAME=forum_learning
-  #     # - QUEUE_PASSWORD=forum_learning_123
-  #   volumes: 
-  #     - ./log/forum/:/src/log/
-  #   ports:
-  #     - "8082:8080"     # Do Not Uncomment in Production
-  #   depends_on: 
-  #     - mysqldb
-  #     # - rabbitmq
-
-  # post:
-  #   container_name: forum_learning-post
-  #   build: ./post/
-  #   restart: always
-  #   command: "php artisan serve --host=0.0.0.0 --port=8000"
-  #   environment: 
-  #     - APP_NAME=forum_learning-post
-  #     - APP_ENV=local
-  #     - APP_KEY=
-  #     - APP_DEBUG=true
-  #     - APP_URL=http://localhost:8000
-  #     - DB_CONNECTION=mysql
-  #     - DB_HOST=db
-  #     - DB_PORT=3306
-  #     - DB_DATABASE=forum_learning
-  #     - DB_USERNAME=forum_learning
-  #     - DB_PASSWORD=forum_learning_123
-  #   ports:
-  #     - 8082:8000
+  api_gateway:
+    container_name: forum_learning-api_gateway
+    build: ./api-gateway/
+    restart: always
+    environment: 
+      - GIN_MODE=debug
+    volumes: 
+      - ./log/api_gateway/:/src/log/
+      - ./api-gateway-config/:/src/config/
       
   front-end_client:
     container_name: forum_learning-front_end_client
     build: ./front-end_client
     restart: always
     volumes: 
-      - "./front-end_client/app/:/app"
-    # ports: 
-    #   - "80:5000"     # Do Not Uncomment in Production
+      - ./front-end_client/app/:/app
     
   front-end_admin:
     container_name: forum_learning-front_end_admin
     build: ./front-end_admin
     restart: always
     volumes: 
-      - "./front-end_admin/app/:/app"
-    # ports: 
-    #   - "81:5000"     # Do Not Uncomment in Production
-  
-  # nginx:
-  #   container_name: forum_learning-nginx
-  #   build: ./nginx
-  #   restart: always
-  #   ports: 
-  #     - "80:80" 
-  #     - "443:443" 
+      - ./front-end_admin/app/:/app
+      
+  nginx:
+    image: nginx
+    restart: always
+    environment: 
+      - NGINX_HOST_MAIN=wildangbudhi.com
+      - NGINX_HOST_ADMIN=admin.wildangbudhi.com
+    volumes: 
+      - ./nginx/templates:/etc/nginx/templates
+    ports: 
+      - "80:80" 
+      - "443:443"

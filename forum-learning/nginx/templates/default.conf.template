@@ -1,0 +1,33 @@
+upstream frontend-client-host {
+  	server        front-end_client:5000;
+}
+
+upstream frontend-admin-host {
+  	server        front-end_admin:5000;
+}
+
+upstream api-gateway-host {
+  	server        api_gateway:8080;
+}
+
+server {
+	listen        80;
+	server_name   ${NGINX_HOST_MAIN};
+	
+	location / {
+		proxy_pass  http://frontend-client-host;
+	}
+
+	location /api {
+		proxy_pass  http://api-gateway-host;
+	}
+}
+
+server {
+	listen        80;
+	server_name   ${NGINX_HOST_ADMIN};
+
+	location / {
+		proxy_pass  http://frontend-admin-host;
+	}
+}

@@ -2,46 +2,63 @@ package main
 
 import (
 	"log"
-	"sync"
+	"os"
 
+	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/api-gateway/depedencyinjection"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/api-gateway/utils"
 )
 
 func main() {
-	server, err := utils.NewServer()
+	var server *utils.Server
+	var err error
+	var filePointer *os.File
+
+	server, err = utils.NewServer()
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error Initiate Server: %v", err)
 	}
 
-	defer server.DB.Disconnect(*server.DBContext)
+	depedencyInjection(server)
+	setLogToFile("./log/system.log", filePointer)
+	defer filePointer.Close()
 
-	serverAdmin, err := utils.NewServer()
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer serverAdmin.DB.Disconnect(*serverAdmin.DBContext)
-
-	var wg sync.WaitGroup
-
-	wg.Add(2)
-
-	go func() {
-		defer wg.Done()
-		server.Router.Run(":8080")
-	}()
-
-	go func() {
-		defer wg.Done()
-		serverAdmin.Router.Run(":8081")
-	}()
-
-	wg.Wait()
+	server.Router.Run(":8080")
 
 }
 
-// func depedencyInjection(server *utils.Server) {
-// 	dependecyinjection.Authentication(server)
-// }
+func depedencyInjection(server *utils.Server) {
+	depedencyinjection.ApiV1(server)
+}
+
+func setLogToFile(filePath string, filePointer *os.File) {
+
+	_, err := os.Stat(filePath)
+
+	// create file if not exists
+	if os.IsNotExist(err) {
+		var file, err = os.Create(filePath)
+
+		if err != nil {
+			log.Fatalf("Error Creating Log File: %v", err)
+		}
+
+		defer file.Close()
+	}
+
+	filePointer, err = os.OpenFile(filePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+
+	if err != nil {
+		log.Fatalf("Error Opening Log File: %v", err)
+	}
+
+	log.SetOutput(filePointer)
+
+	filePointer, err = os.OpenFile(filePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+
+	if err != nil {
+		log.Fatalf("Error Opening Log File: %v", err)
+	}
+
+	log.SetOutput(filePointer)
+}

@@ -8,10 +8,11 @@ import (
 )
 
 type fetchWithPaginationRequestQuery struct {
-	Offest       *int `form:"offset" json:"offset" binding:"required"`
-	Limit        int  `form:"limit" json:"limit" binding:"required"`
-	CategoryID   *int `form:"category_id" json:"category_id"`
-	TopForumSort bool `form:"top_forum_sort" json:"top_forum_sort"`
+	Offest       *int   `form:"offset" json:"offset" binding:"required"`
+	Limit        int    `form:"limit" json:"limit" binding:"required"`
+	CategoryID   *int   `form:"category_id" json:"category_id"`
+	TopForumSort bool   `form:"top_forum_sort" json:"top_forum_sort"`
+	TimeFrame    string `form:"time_frame" json:"time_frame"`
 }
 
 type fetchWithPaginationRequestHeader struct {
@@ -46,7 +47,20 @@ func (handler *ForumHTTPHandler) FetchWithPagination(c *gin.Context) {
 		return
 	}
 
-	forumData, err = handler.forumUsecase.FetchWithPagination(requestHeader.XAuthID, *requestQuery.Offest, requestQuery.Limit, requestQuery.CategoryID, requestQuery.TopForumSort)
+	var timelineTimeFrame *domain.TimelineTimeFrame = nil
+
+	if requestQuery.TimeFrame != "" {
+
+		timelineTimeFrame, err = domain.NewTimelineTimeFrame(requestQuery.TimeFrame)
+
+		if err != nil {
+			c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
+			return
+		}
+
+	}
+
+	forumData, err = handler.forumUsecase.FetchWithPagination(requestHeader.XAuthID, *requestQuery.Offest, requestQuery.Limit, requestQuery.CategoryID, requestQuery.TopForumSort, timelineTimeFrame)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})

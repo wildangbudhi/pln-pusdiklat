@@ -1,7 +1,25 @@
 
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
-INSERT INTO `activities` VALUES (1,'API','GET','/api/v1/roles/','/api/v1/roles/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),(2,'API','POST','/api/v2/roles/','/api/v2/roles/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),(3,'API 2','GET','/api/v3/roles/','/api/v3/roles/[^/?#]+','2021-01-06 08:03:48','2021-01-06 08:03:48');
+INSERT INTO `activities` VALUES 
+(1,'Identity','GET','/api/v1/identity/user/:id','/api/v1/identity/user/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(2,'Identity','POST','/api/v1/identity/user/update/:id','/api/v1/identity/user/update/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(3,'Forum','GET','/api/v1/forum/category','/api/v1/forum/category','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(4,'Forum','POST','/api/v1/forum/create','/api/v1/forum/create','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(5,'Forum','POST','/api/v1/forum/update/:forum_id','/api/v1/forum/update/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(6,'Forum','GET','/api/v1/forum/close/:forum_id','/api/v1/forum/close/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(7,'Forum','GET','/api/v1/forum/delete/:forum_id','/api/v1/forum/delete/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(8,'Forum','GET','/api/v1/forum/fetch','/api/v1/forum/fetch','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(9,'Forum','GET','/api/v1/forum/get/:forum_id','/api/v1/forum/get/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(10,'Forum','GET','/api/v1/forum/author/:author_id','/api/v1/forum/author/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(11,'Forum','GET','/api/v1/forum/search','/api/v1/forum/search','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(12,'Forum','GET','/api/v1/forum/react/:forum_id','/api/v1/forum/react/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(13,'Forum','POST','/api/v1/forum/reply/create/:forum_id','/api/v1/forum/reply/create/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(14,'Forum','POST','/api/v1/forum/reply/update/:forum_reply_id','/api/v1/forum/reply/update/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(15,'Forum','GET','/api/v1/forum/reply/delete/:forum_reply_id','/api/v1/forum/reply/delete/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(16,'Forum','GET','/api/v1/forum/reply/react/:forum_reply_id','/api/v1/forum/reply/react/[^/?#]+','2021-01-06 07:55:46','2021-01-06 07:55:46'),
+(17,'Forum','GET','/api/v1/forum/get/:forum_id/replies','/api/v1/forum/get/[^/?#]+/replies','2021-01-06 07:55:46','2021-01-06 07:55:46');
+
 /*!40000 ALTER TABLE `activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -19,7 +37,25 @@ UNLOCK TABLES;
 
 LOCK TABLES `role_activities` WRITE;
 /*!40000 ALTER TABLE `role_activities` DISABLE KEYS */;
-INSERT INTO `role_activities` VALUES (1,1),(1,2),(2,3);
+INSERT INTO `role_activities` VALUES
+(1, 1),
+(1, 2),
+(1, 3), (2, 3),
+(1, 4), (2, 4),
+(1, 5), (2, 5),
+(1, 6), (2, 6),
+(1, 7), (2, 7),
+(1, 8), (2, 8),
+(1, 9), (2, 9),
+(1, 10), (2, 10),
+(1, 11), (2, 11),
+(1, 12), (2, 12),
+(1, 13), (2, 13),
+(1, 14), (2, 14),
+(1, 15), (2, 15),
+(1, 16), (2, 16),
+(1, 17), (2, 17);
+
 /*!40000 ALTER TABLE `role_activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -31,7 +67,25 @@ UNLOCK TABLES;
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'Pembangkitan'),(2,'Transmisi'),(3,'Distribusi'),(4,'Niaga dan Manajemen Pelanggan'),(5,'Produksi Peralatan Ketenagalistrikan'),(6,'K2, K3, Keamanan dan Lingkungan'),(7,'Manajemen Proyek, Enjiniring (Engineering) dan Konstruksi'),(8,'Penelitian dan Pengembangan'),(9,'Pembelajaran'),(10,'Sertifikasi'),(11,'Supply Chain Management'),(12,'Regulatory and Compliance'),(13,'Teknologi Informasi'),(14,'SDM'),(15,'Keuangan'),(16,'Komunikasi, CSR dan Pengelolaan Kantor'),(17,'Manajemen Perusahaan'),(18,'Bebas');
+INSERT INTO `category` VALUES 
+(1,'Generation'),
+(2,'Transmission'),
+(3,'Distribution'),
+(4,'Commerce & Customer Management'),
+(5,'Electricity Equipment Production'),
+(6,'Electric Safety, OHS, Security & Environment'),
+(7,'Project Management, Engineering & Construction'),
+(8,'Research & Development'),
+(9,'Learning'),
+(10,'Certification'),
+(11,'Supply Chain Management'),
+(12,'Regulatory and Compliance'),
+(13,'Information Technology'),
+(14,'SDM'),
+(15,'Finance'),
+(16,'Communication, CSR & Office Management'),
+(17,'Company Management'),
+(18,'Miscellaneous');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
