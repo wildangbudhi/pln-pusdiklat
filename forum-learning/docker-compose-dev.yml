@@ -75,7 +75,7 @@ services:
     volumes: 
       - ./front-end_client/app/:/app
     ports: 
-      - "80:5000"
+      - "81:5000"
     
   front-end_admin:
     container_name: forum_learning-front_end_admin
@@ -84,7 +84,7 @@ services:
     volumes: 
       - ./front-end_admin/app/:/app
     ports: 
-      - "81:5000"
+      - "82:5000"
   
   nginx:
     image: nginx

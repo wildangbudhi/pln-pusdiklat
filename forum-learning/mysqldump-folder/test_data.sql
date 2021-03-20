@@ -67,7 +67,25 @@ UNLOCK TABLES;
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'Pembangkitan'),(2,'Transmisi'),(3,'Distribusi'),(4,'Niaga dan Manajemen Pelanggan'),(5,'Produksi Peralatan Ketenagalistrikan'),(6,'K2, K3, Keamanan dan Lingkungan'),(7,'Manajemen Proyek, Enjiniring (Engineering) dan Konstruksi'),(8,'Penelitian dan Pengembangan'),(9,'Pembelajaran'),(10,'Sertifikasi'),(11,'Supply Chain Management'),(12,'Regulatory and Compliance'),(13,'Teknologi Informasi'),(14,'SDM'),(15,'Keuangan'),(16,'Komunikasi, CSR dan Pengelolaan Kantor'),(17,'Manajemen Perusahaan'),(18,'Bebas');
+INSERT INTO `category` VALUES 
+(1,'Generation'),
+(2,'Transmission'),
+(3,'Distribution'),
+(4,'Commerce & Customer Management'),
+(5,'Electricity Equipment Production'),
+(6,'Electric Safety, OHS, Security & Environment'),
+(7,'Project Management, Engineering & Construction'),
+(8,'Research & Development'),
+(9,'Learning'),
+(10,'Certification'),
+(11,'Supply Chain Management'),
+(12,'Regulatory and Compliance'),
+(13,'Information Technology'),
+(14,'SDM'),
+(15,'Finance'),
+(16,'Communication, CSR & Office Management'),
+(17,'Company Management'),
+(18,'Miscellaneous');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
