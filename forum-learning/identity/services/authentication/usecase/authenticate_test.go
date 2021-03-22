@@ -42,7 +42,7 @@ func TestAuthenticateValid(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, secretKey)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, secretKey, nil)
 
 	userAuthMockData := &model.UserAuth{
 		ID:       1,
@@ -88,7 +88,7 @@ func TestAuthenticatePasswordInValid(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, secretKey)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, secretKey, nil)
 
 	userAuthMockData := &model.UserAuth{
 		ID:       1,
@@ -116,7 +116,7 @@ func TestAuthenticateUserWithUsernameDoesNotExist(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, secretKey)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, secretKey, nil)
 
 	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 

@@ -8,28 +8,9 @@ import (
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain"
 )
 
-func verifyToken(stringToken string, secretKey []byte) (*jwt.Token, error) {
-	token, err := jwt.Parse(stringToken, func(token *jwt.Token) (interface{}, error) {
-
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected Signing Method")
-		}
-
-		return secretKey, nil
-
-	})
-
-	if err != nil {
-		return nil, err
-	}
-
-	return token, nil
-
-}
-
 func (usecase *authenticationUsecase) Verify(token string) (*domain.VerifyUsecaseResponse, error) {
 
-	jwtTokenObject, err := verifyToken(token, usecase.secretKey)
+	jwtTokenObject, err := usecase.VerifyToken(token, usecase.secretKey)
 
 	if err != nil {
 		return nil, err

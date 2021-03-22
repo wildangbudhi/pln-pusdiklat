@@ -14,7 +14,7 @@ func TestEnpointAuthorizeAuthorized(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
 	userAuthMockData := &model.UserAuth{
 		Roles: []model.Roles{
@@ -41,7 +41,7 @@ func TestEnpointAuthorizeUnauthorized(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
 	userAuthMockData := &model.UserAuth{
 		Roles: []model.Roles{
@@ -68,7 +68,7 @@ func TestEnpointAuthorizeUserNotFound(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
 	mockUserAuthRepository.On("GetUserAuthByID").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 

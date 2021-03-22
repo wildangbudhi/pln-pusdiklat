@@ -23,14 +23,18 @@ class Auth(ServiceProvider):
 
         if( self.api_access_token ):
             return self.api_access_token
+            print( self.api_access_token )
         else:
             auth_data = self.get_auth_data_in_session()
-            payload = auth_data.to_dict()
+            payload = auth_data.to_dict()["data"]["attributes"]
+
+            print(payload)
 
             payload[ 'exp' ] = datetime.utcnow() + timedelta( days=1 )
 
             self.api_access_token = encode( payload=payload, key=self.api_secret_key, algorithm="HS512" )
 
+            print( self.api_access_token )
             return self.api_access_token
 
 

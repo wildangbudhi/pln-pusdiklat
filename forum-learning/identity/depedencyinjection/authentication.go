@@ -13,7 +13,7 @@ func AuthenticationDI(server *utils.Server) {
 
 	userAuthRepository := mysql.NewUserAuthRepository(server.DB)
 
-	usecase := usecase.NewAuthenticationUsecase(userAuthRepository, server.Config.SecretKey)
+	usecase := usecase.NewAuthenticationUsecase(userAuthRepository, server.Config.SecretKey, server.Config.APISecretKet)
 
 	http.NewAuthenticationHTTPHandler(authenticationRoute, usecase)
 
