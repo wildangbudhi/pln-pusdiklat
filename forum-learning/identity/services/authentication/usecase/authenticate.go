@@ -14,12 +14,11 @@ func checkPasswordHash(password, hash string) bool {
 	return err == nil
 }
 
-func createJWTToken(userID int, userEmail string, expirationDate time.Time, secretKey []byte) (string, error) {
+func createJWTToken(userID int, expirationDate time.Time, secretKey []byte) (string, error) {
 
 	aksesTokenClaims := jwt.MapClaims{
-		"id":    strconv.Itoa(userID),
-		"email": userEmail,
-		"exp":   expirationDate.Unix(),
+		"id":  strconv.Itoa(userID),
+		"exp": expirationDate.Unix(),
 	}
 
 	aksesToken := jwt.NewWithClaims(jwt.SigningMethodHS512, aksesTokenClaims)
@@ -48,7 +47,7 @@ func (usecase *authenticationUsecase) Authenticate(username string, password str
 
 	expirationDate := time.Now().Add(time.Hour * 24)
 
-	token, err := createJWTToken(userAuth.ID, userAuth.Email, expirationDate, usecase.secretKey)
+	token, err := createJWTToken(userAuth.ID, expirationDate, usecase.secretKey)
 
 	if err != nil {
 		return "", fmt.Errorf("Failed To Create Authentication Token")

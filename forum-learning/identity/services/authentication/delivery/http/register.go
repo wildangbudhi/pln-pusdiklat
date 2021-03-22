@@ -2,7 +2,6 @@ package http
 
 import (
 	"net/http"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain"
@@ -10,7 +9,6 @@ import (
 
 type registerRequestBody struct {
 	FullName string `json:"full_name" binding:"required"`
-	Email    string `json:"email" binding:"required"`
 	Username string `json:"username" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
@@ -28,11 +26,6 @@ func (handler *AuthenticationHTTPHandler) Register(c *gin.Context) {
 
 	c.BindJSON(requestBodyData)
 
-	if requestBodyData.Email == "" {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Email Cannot Be Empty"})
-		return
-	}
-
 	if requestBodyData.Username == "" {
 		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: "Username Cannot Be Empty"})
 		return
@@ -43,16 +36,7 @@ func (handler *AuthenticationHTTPHandler) Register(c *gin.Context) {
 		return
 	}
 
-	requestBodyData.Email = strings.ToLower(requestBodyData.Email)
-
-	email, err := domain.NewEmail(requestBodyData.Email)
-
-	if err != nil {
-		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})
-		return
-	}
-
-	userAuthID, err := handler.authenticationUsecase.Register(requestBodyData.FullName, *email, requestBodyData.Username, requestBodyData.Password)
+	userAuthID, err := handler.authenticationUsecase.Register(requestBodyData.FullName, requestBodyData.Username, requestBodyData.Password)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.HTTPErrorResponse{Error: err.Error()})

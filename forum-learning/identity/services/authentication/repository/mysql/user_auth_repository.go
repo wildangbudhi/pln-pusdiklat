@@ -27,10 +27,12 @@ func (repo *userAuthRepository) GetUserAuthByID(id int) (*model.UserAuth, error)
 	userAuth := &model.UserAuth{}
 	userAuth.Roles = make([]model.Roles, 0)
 
-	queryString = "SELECT id, full_name, email, username, password FROM user_auth WHERE id=?"
+	queryString = "SELECT id, full_name, username, password, employee_no, is_employee FROM user_auth WHERE id=?"
 	userAuthQueryResult := repo.db.QueryRow(queryString, id)
 
-	err = userAuthQueryResult.Scan(&userAuth.ID, &userAuth.FullName, &userAuth.Email, &userAuth.Username, &userAuth.Password)
+	var isEmployeeInt int = 0
+
+	err = userAuthQueryResult.Scan(&userAuth.ID, &userAuth.FullName, &userAuth.Username, &userAuth.Password, &userAuth.EmployeeNo, &isEmployeeInt)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -38,53 +40,14 @@ func (repo *userAuthRepository) GetUserAuthByID(id int) (*model.UserAuth, error)
 		}
 
 		return nil, err
+	}
+
+	if isEmployeeInt > 0 {
+		userAuth.IsEmployee = true
 	}
 
 	queryString = "SELECT r.id, r.roles_name FROM user_roles ur JOIN roles r on r.id = ur.role_id WHERE ur.user_id = ?"
 	rolesQueryResult, err := repo.db.Query(queryString, id)
-	defer rolesQueryResult.Close()
-
-	if err != nil {
-		return nil, err
-	}
-
-	for rolesQueryResult.Next() {
-		role := model.Roles{}
-		err := rolesQueryResult.Scan(&role.ID, &role.RoleName)
-
-		if err != nil {
-			return nil, err
-		}
-
-		userAuth.Roles = append(userAuth.Roles, role)
-	}
-
-	return userAuth, nil
-
-}
-
-func (repo *userAuthRepository) GetUserAuthByEmail(email string) (*model.UserAuth, error) {
-
-	var err error
-	var queryString string
-	userAuth := &model.UserAuth{}
-	userAuth.Roles = make([]model.Roles, 0)
-
-	queryString = "SELECT id, full_name, email, username, password FROM user_auth WHERE email=?"
-	userAuthQueryResult := repo.db.QueryRow(queryString, email)
-
-	err = userAuthQueryResult.Scan(&userAuth.ID, &userAuth.FullName, &userAuth.Email, &userAuth.Username, &userAuth.Password)
-
-	if err != nil {
-		if err == sql.ErrNoRows {
-			return nil, fmt.Errorf("User Not Found")
-		}
-
-		return nil, err
-	}
-
-	queryString = "SELECT r.id, r.roles_name FROM user_roles ur JOIN roles r on r.id = ur.role_id WHERE ur.user_id = ?"
-	rolesQueryResult, err := repo.db.Query(queryString, userAuth.ID)
 	defer rolesQueryResult.Close()
 
 	if err != nil {
@@ -113,10 +76,12 @@ func (repo *userAuthRepository) GetUserAuthByUsername(username string) (*model.U
 	userAuth := &model.UserAuth{}
 	userAuth.Roles = make([]model.Roles, 0)
 
-	queryString = "SELECT id, full_name, email, username, password FROM user_auth WHERE username=?"
+	queryString = "SELECT id, full_name, username, password, employee_no, is_employee FROM user_auth WHERE username=?"
 	userAuthQueryResult := repo.db.QueryRow(queryString, username)
 
-	err = userAuthQueryResult.Scan(&userAuth.ID, &userAuth.FullName, &userAuth.Email, &userAuth.Username, &userAuth.Password)
+	var isEmployeeInt int = 0
+
+	err = userAuthQueryResult.Scan(&userAuth.ID, &userAuth.FullName, &userAuth.Username, &userAuth.Password, &userAuth.EmployeeNo, &isEmployeeInt)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -124,6 +89,10 @@ func (repo *userAuthRepository) GetUserAuthByUsername(username string) (*model.U
 		}
 
 		return nil, err
+	}
+
+	if isEmployeeInt > 0 {
+		userAuth.IsEmployee = true
 	}
 
 	queryString = "SELECT r.id, r.roles_name FROM user_roles ur JOIN roles r on r.id = ur.role_id WHERE ur.user_id = ?"
@@ -158,7 +127,7 @@ func (repo *userAuthRepository) InsertUserAuth(userAuth *model.UserAuth) (int64,
 		return -1, fmt.Errorf("Roles Cannot Be Empty")
 	}
 
-	queryString = "INSERT INTO user_auth( full_name, email, username, password ) VALUES( ?, ?, ?, ? )"
+	queryString = "INSERT INTO user_auth( full_name, username, password, employee_no, is_employee ) VALUES( ?, ?, ?, ?, ?)"
 
 	statement, err := repo.db.Prepare(queryString)
 
@@ -166,7 +135,13 @@ func (repo *userAuthRepository) InsertUserAuth(userAuth *model.UserAuth) (int64,
 		return -1, err
 	}
 
-	res, err := statement.Exec(userAuth.FullName, userAuth.Email, userAuth.Username, userAuth.Password)
+	var isEmployeeInt int = 0
+
+	if userAuth.IsEmployee {
+		isEmployeeInt = 1
+	}
+
+	res, err := statement.Exec(userAuth.FullName, userAuth.Username, userAuth.Password, userAuth.EmployeeNo, isEmployeeInt)
 
 	if err != nil {
 		return -1, err

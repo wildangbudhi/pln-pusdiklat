@@ -2,11 +2,9 @@ package usecase_test
 
 import (
 	"fmt"
-	"log"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain/mocks/mysql"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain/model"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/usecase"
@@ -16,7 +14,7 @@ func TestRegisterSuccess(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
 	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
@@ -25,13 +23,8 @@ func TestRegisterSuccess(t *testing.T) {
 	fullName := "Test Name"
 	username := "test_username"
 	password := "password123"
-	email, err := domain.NewEmail("test@gmail.com")
 
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	userAuthID, err := testService.Register(fullName, *email, username, password)
+	userAuthID, err := testService.Register(fullName, username, password)
 
 	mockUserAuthRepository.AssertExpectations(t)
 	// mockUserAuthEventRepository.AssertExpectations(t)
@@ -48,20 +41,15 @@ func TestRegisterEmailAlreadyUsed(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
 	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, nil)
 
 	fullName := "Test Name"
 	username := "test_username"
 	password := "password123"
-	email, err := domain.NewEmail("test@gmail.com")
 
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	_, err = testService.Register(fullName, *email, username, password)
+	_, err := testService.Register(fullName, username, password)
 
 	mockUserAuthRepository.AssertExpectations(t)
 
@@ -74,7 +62,7 @@ func TestRegisterUsernamelAlreadyUsed(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
 	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, nil)
@@ -82,13 +70,8 @@ func TestRegisterUsernamelAlreadyUsed(t *testing.T) {
 	fullName := "Test Name"
 	username := "test_username"
 	password := "password123"
-	email, err := domain.NewEmail("test@gmail.com")
 
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	_, err = testService.Register(fullName, *email, username, password)
+	_, err := testService.Register(fullName, username, password)
 
 	mockUserAuthRepository.AssertExpectations(t)
 
@@ -101,7 +84,7 @@ func TestRegisterFailedToInsert(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil)
+	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
 	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
@@ -110,13 +93,8 @@ func TestRegisterFailedToInsert(t *testing.T) {
 	fullName := "Test Name"
 	username := "test_username"
 	password := "password123"
-	email, err := domain.NewEmail("test@gmail.com")
 
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	_, err = testService.Register(fullName, *email, username, password)
+	_, err := testService.Register(fullName, username, password)
 
 	mockUserAuthRepository.AssertExpectations(t)
 

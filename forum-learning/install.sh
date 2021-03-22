@@ -1,9 +1,18 @@
 #!/bin/sh
 
+MODE="prod"
+
 install_forum_learning(){
 
     echo "REMOVE EXISITING CONTAINER"
-    sudo docker-compose down -v
+    if [ "$MODE" = "prod" ]; then
+        sudo docker-compose down -v
+    elif [ "$MODE" = "dev" ]; then
+        docker-compose -f docker-compose-dev.yml down -v
+    else 
+        echo "MODE NOT VALID";
+        exit;
+    fi
 
     echo "REMOVE EXISITING LOG FOLDER"
     sudo rm -r log
@@ -14,17 +23,40 @@ install_forum_learning(){
     cd ..;
 
     echo "BUILD NEW CONTAINER"
-    sudo docker-compose build
+    if [ "$MODE" = "prod" ]; then
+        sudo docker-compose build
+    elif [ "$MODE" = "dev" ]; then
+        docker-compose -f docker-compose-dev.yml build
+    else 
+        echo "MODE NOT VALID";
+        exit;
+    fi
 
     echo "RUN CONTAINER IN DETACHED MODE"
-    sudo docker-compose up -d
+    if [ "$MODE" = "prod" ]; then
+        sudo docker-compose up -d
+    elif [ "$MODE" = "dev" ]; then
+        docker-compose -f docker-compose-dev.yml up -d
+    else 
+        echo "MODE NOT VALID";
+        exit;
+    fi
 
     echo "FORUM LEARNING APPLICATION INSTALLED"
 
 }
 
+while getopts m: flag
+do
+    case "${flag}" in
+        m) MODE=${OPTARG};;
+    esac
+done
+
+echo $mode;
+
 echo "============================================================="
-echo "=== Welcome to Forum Learning Installer from WildanGBudhi ==="
+echo "=== Welcome to Forum Learning Installer By WildanGBudhi ==="
 echo "============================================================="
 echo "Please Make Sure You Are Inside Directory That Contains"
 echo "docker-compose.yaml File of Forum Learning Application"

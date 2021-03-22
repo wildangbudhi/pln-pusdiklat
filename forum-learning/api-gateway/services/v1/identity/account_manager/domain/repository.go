@@ -11,11 +11,12 @@ type Roles struct {
 }
 
 type VerifyResponse struct {
-	ID       int     `json:"id" binding:"required"`
-	FullName string  `json:"full_name" binding:"required"`
-	Email    string  `json:"email" binding:"required"`
-	Username string  `json:"username" binding:"required"`
-	Roles    []Roles `json:"roles" binding:"required"`
+	ID         int     `json:"id"`
+	FullName   string  `json:"full_name"`
+	Username   string  `json:"username"`
+	Roles      []Roles `json:"roles"`
+	EmployeeNo string  `json:"employee_no"`
+	IsEmployee bool    `json:"is_employee"`
 }
 
 type EndpointAuthorizeResponse struct {
@@ -30,6 +31,7 @@ type EndpointAuthorizeParameter struct {
 
 type AuthenticationRepository interface {
 	Verify(token string) (*VerifyResponse, error)
+	VerifySSOPLN(token string) (*VerifyResponse, error)
 	EndpointAuthorize(data *EndpointAuthorizeParameter) (*EndpointAuthorizeResponse, error)
 }
 

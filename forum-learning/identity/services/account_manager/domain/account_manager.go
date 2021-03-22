@@ -10,6 +10,7 @@ type GetUserDataUsecaseResponse struct {
 	ID         int    `json:"id"`
 	FullName   string `json:"full_name"`
 	AvatarFile string `json:"avatar_file"`
-	Email      string `json:"email"`
 	Username   string `json:"username"`
+	EmployeeNo string `json:"employee_no"`
+	IsEmployee bool   `json:"is_employee"`
 }

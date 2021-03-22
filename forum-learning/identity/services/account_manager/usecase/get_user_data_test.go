@@ -21,8 +21,9 @@ func TestGetUserDataSuccess(t *testing.T) {
 		ID:         1,
 		FullName:   sql.NullString{Valid: true, String: "Test Name"},
 		AvatarFile: sql.NullString{Valid: true, String: "http://test.com/img.jpg"},
-		Email:      "test@gmail.com",
 		Username:   "05111740000184",
+		EmployeeNo: sql.NullString{String: "05111740000184", Valid: true},
+		IsEmployee: true,
 	}
 
 	mockUserAuthRepository.On("GetUserAuthByID").Return(userAuthMockData, nil)
@@ -38,8 +39,9 @@ func TestGetUserDataSuccess(t *testing.T) {
 	assert.Equal(t, userAuthMockData.ID, userAuthData.ID)
 	assert.Equal(t, userAuthMockData.FullName.String, userAuthData.FullName)
 	assert.Equal(t, userAuthMockData.AvatarFile.String, userAuthData.AvatarFile)
-	assert.Equal(t, userAuthMockData.Email, userAuthData.Email)
 	assert.Equal(t, userAuthMockData.Username, userAuthData.Username)
+	assert.Equal(t, userAuthMockData.EmployeeNo.String, userAuthData.EmployeeNo)
+	assert.Equal(t, userAuthMockData.IsEmployee, userAuthData.IsEmployee)
 
 }
 

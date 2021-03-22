@@ -1,9 +1,18 @@
 #!/bin/sh
 
+MODE="prod"
+
 uninstall_forum_learning(){
 
     echo "REMOVE CONTAINER"
-    sudo docker-compose down -v
+    if [ "$MODE" = "prod" ]; then
+        sudo docker-compose down -v
+    elif [ "$MODE" = "dev" ]; then
+        docker-compose -f docker-compose-dev.yml down -v
+    else 
+        echo "MODE NOT VALID";
+        exit;
+    fi
 
     echo "REMOVE LOG FOLDER"
     sudo rm -r log
@@ -12,8 +21,15 @@ uninstall_forum_learning(){
 
 }
 
+while getopts m: flag
+do
+    case "${flag}" in
+        m) MODE=${OPTARG};;
+    esac
+done
+
 echo "==============================================================="
-echo "=== Welcome to Forum Learning Uninstaller from WildanGBudhi ==="
+echo "=== Welcome to Forum Learning Uninstaller By WildanGBudhi ==="
 echo "==============================================================="
 echo "Please Make Sure You Are Inside Directory That Contains"
 echo "docker-compose.yaml File of Forum Learning Application"
