@@ -70,7 +70,7 @@ func TestVerifyTokenValid(t *testing.T) {
 	assert.Equal(t, userAuthMockData.FullName.String, response.FullName)
 	assert.Equal(t, userAuthMockData.Username, response.Username)
 	assert.Equal(t, userAuthMockData.Roles, response.Roles)
-	assert.Equal(t, userAuthMockData.EmployeeNo, response.EmployeeNo)
+	assert.Equal(t, userAuthMockData.EmployeeNo.String, response.EmployeeNo)
 	assert.Equal(t, userAuthMockData.IsEmployee, response.IsEmployee)
 
 }
