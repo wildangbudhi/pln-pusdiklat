@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain"
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/domain/model"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -21,15 +20,9 @@ func hashPassword(password string) (string, error) {
 
 }
 
-func (usecase *authenticationUsecase) Register(fullName string, email domain.Email, username string, password string) (int64, error) {
+func (usecase *authenticationUsecase) Register(fullName string, username string, password string) (int64, error) {
 
 	var err error
-
-	_, err = usecase.userAuthRepository.GetUserAuthByEmail(email.GetValue())
-
-	if err == nil {
-		return -1, fmt.Errorf("Email Has Been Used")
-	}
 
 	_, err = usecase.userAuthRepository.GetUserAuthByUsername(username)
 
@@ -45,12 +38,12 @@ func (usecase *authenticationUsecase) Register(fullName string, email domain.Ema
 
 	userAuth := model.UserAuth{
 		FullName: sql.NullString{Valid: true, String: fullName},
-		Email:    email.GetValue(),
 		Username: username,
 		Password: hashedPassword,
 		Roles: []model.Roles{
 			{ID: 1, RoleName: "Client"},
 		},
+		IsEmployee: false,
 	}
 
 	userAuthID, err := usecase.userAuthRepository.InsertUserAuth(&userAuth)

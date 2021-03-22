@@ -46,7 +46,6 @@ func TestAuthenticateValid(t *testing.T) {
 
 	userAuthMockData := &model.UserAuth{
 		ID:       1,
-		Email:    "test@gmail.com",
 		Username: "05111740000184",
 		Password: "$2a$14$JC4.1C0npGNHT8E03/O54.Clq5a/pAthGEnI01wbYFWU8p7KPqaG2",
 	}
@@ -81,11 +80,6 @@ func TestAuthenticateValid(t *testing.T) {
 	// Test if ID same with Mock Data
 	assert.Equal(t, userAuthMockData.ID, userIDInt)
 
-	// Test if Email in JWT Token Data and Same with Mock Data
-	email, ok := jwtTokenClaims["email"].(string)
-	assert.Equal(t, true, ok)
-	assert.Equal(t, userAuthMockData.Email, email)
-
 }
 
 func TestAuthenticatePasswordInValid(t *testing.T) {
@@ -98,7 +92,6 @@ func TestAuthenticatePasswordInValid(t *testing.T) {
 
 	userAuthMockData := &model.UserAuth{
 		ID:       1,
-		Email:    "test@gmail.com",
 		Username: "05111740000184",
 		Password: "$2a$14$JC4.1C0npGNHT8E03/O54.Clq5a/pAthGEnI01wbYFWU8p7KPqaG2",
 	}

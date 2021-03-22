@@ -31,6 +31,7 @@ services:
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=forum_learning
+      - API_SECRET_KEY=oLHXrfYyie-npLidoqc6jW5_l4fthb08wtw4lPQ2e67ZUH9yvg7XBrTXQzhElFWKZYSYd18kqs5wB6_18t1y0Pq0Ug1OSSnFTTsepSwuxenoacwb2_iebidmx5_MbQsAdiXBYZ4B4zg9IhqEtKhQv6kGJXu1Ai-UarPqpMOFnuxiwLJ1XGQCfQPHieXj-afKiPdXmcqfMx2krHSILTn-9ZErQtOijNM1LS7am-Gpn3RTY29LHXPSayrfdsQQ2UidjB6GttP4LmePA75kXy2hZsA2iilTrSY43FsQCxrgWRbmAhmw65YKP_mVyQhan0lvfS0a6GCOfFoJWSB_BJc8Ft1shtDa2lqJqxuajFwfHUU4yzemvl0UUJ3yLlHrCm8pAwiR7zeih53FIsLl_gz6uhICO3Q0qDjYgDK7_GEeGw9OHb_rkA52fHq_rwVlectvgCWY9_DCNXZVUcWz5y7i9evzCDoXgafDUwWq3-QjnEcl7LuyaASOR666Er9CcIhQxAtqK0DFfVtNM4gxE3aGWb8jdvv4oijGkenP2_wqkP8Sd7A7a6YAAZvueqNlK_mRGChgZ6Tg9He4jKvgKEExpdtPekuNWLUnrN0nfVy06Ab11QP4wjiBEh8zWGe5vuQlNUzpEI2vJt2ofGwC6XdgaS0cCmc_C9EnxLypq8NUTck
     volumes: 
       - ./log/identity/:/src/log/
     depends_on: 

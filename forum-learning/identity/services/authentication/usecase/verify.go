@@ -60,11 +60,12 @@ func (usecase *authenticationUsecase) Verify(token string) (*domain.VerifyUsecas
 	}
 
 	response := &domain.VerifyUsecaseResponse{
-		ID:       userAuth.ID,
-		FullName: userAuth.FullName.String,
-		Email:    userAuth.Email,
-		Username: userAuth.Username,
-		Roles:    userAuth.Roles,
+		ID:         userAuth.ID,
+		FullName:   userAuth.FullName.String,
+		Username:   userAuth.Username,
+		Roles:      userAuth.Roles,
+		EmployeeNo: userAuth.EmployeeNo.String,
+		IsEmployee: userAuth.IsEmployee,
 	}
 
 	return response, nil

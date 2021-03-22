@@ -14,12 +14,11 @@ import (
 	"github.com/wildangbudhi/pln-pusdiklat/forum-learning/identity/services/authentication/usecase"
 )
 
-func createJWTToken(userID int, userEmail string, expirationDate time.Time, secretKey []byte) (string, error) {
+func createJWTToken(userID int, expirationDate time.Time, secretKey []byte) (string, error) {
 
 	aksesTokenClaims := jwt.MapClaims{
-		"id":    strconv.Itoa(userID),
-		"email": userEmail,
-		"exp":   expirationDate.Unix(),
+		"id":  strconv.Itoa(userID),
+		"exp": expirationDate.Unix(),
 	}
 
 	aksesToken := jwt.NewWithClaims(jwt.SigningMethodHS512, aksesTokenClaims)
@@ -45,18 +44,19 @@ func TestVerifyTokenValid(t *testing.T) {
 	userAuthMockData := &model.UserAuth{
 		ID:       1,
 		FullName: sql.NullString{Valid: true, String: "Test Name"},
-		Email:    "test@gmail.com",
 		Username: "05111740000184",
 		Roles: []model.Roles{
 			{1, "Client"},
 		},
+		EmployeeNo: sql.NullString{String: "05111740000184", Valid: true},
+		IsEmployee: false,
 	}
 
 	mockUserAuthRepository.On("GetUserAuthByID").Return(userAuthMockData, nil)
 
 	expirationDate := time.Now().Add(time.Hour * 24)
 
-	jwtToken, err := createJWTToken(userAuthMockData.ID, userAuthMockData.Email, expirationDate, secretKey)
+	jwtToken, err := createJWTToken(userAuthMockData.ID, expirationDate, secretKey)
 
 	response, err := testService.Verify(jwtToken)
 
@@ -68,9 +68,10 @@ func TestVerifyTokenValid(t *testing.T) {
 	// Test Usecase Response
 	assert.Equal(t, userAuthMockData.ID, response.ID)
 	assert.Equal(t, userAuthMockData.FullName.String, response.FullName)
-	assert.Equal(t, userAuthMockData.Email, response.Email)
 	assert.Equal(t, userAuthMockData.Username, response.Username)
 	assert.Equal(t, userAuthMockData.Roles, response.Roles)
+	assert.Equal(t, userAuthMockData.EmployeeNo, response.EmployeeNo)
+	assert.Equal(t, userAuthMockData.IsEmployee, response.IsEmployee)
 
 }
 
@@ -82,7 +83,7 @@ func TestVerifyTokenExpired(t *testing.T) {
 
 	expirationDate := time.Now().Add(-time.Second)
 
-	jwtToken, err := createJWTToken(1, "test@gmail.com", expirationDate, secretKey)
+	jwtToken, err := createJWTToken(1, expirationDate, secretKey)
 
 	_, err = testService.Verify(jwtToken)
 
@@ -102,7 +103,7 @@ func TestVerifyUserNotFound(t *testing.T) {
 
 	expirationDate := time.Now().Add(time.Hour * 24)
 
-	jwtToken, err := createJWTToken(1, "test@gmail.com", expirationDate, secretKey)
+	jwtToken, err := createJWTToken(1, expirationDate, secretKey)
 
 	_, err = testService.Verify(jwtToken)
 
