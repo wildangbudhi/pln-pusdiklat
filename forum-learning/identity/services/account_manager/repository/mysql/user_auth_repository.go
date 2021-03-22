@@ -24,10 +24,12 @@ func (repo *userAuthRepository) GetUserAuthByID(id int) (*model.UserAuth, error)
 	var queryString string
 	userAuth := &model.UserAuth{}
 
-	queryString = "SELECT id, full_name, avatar_file, email, username FROM user_auth WHERE id=?"
+	queryString = "SELECT id, full_name, avatar_file, username, employee_no, is_employee FROM user_auth WHERE id=?"
 	userAuthQueryResult := repo.db.QueryRow(queryString, id)
 
-	err = userAuthQueryResult.Scan(&userAuth.ID, &userAuth.FullName, &userAuth.AvatarFile, &userAuth.Email, &userAuth.Username)
+	var IsEmployee int = 0
+
+	err = userAuthQueryResult.Scan(&userAuth.ID, &userAuth.FullName, &userAuth.AvatarFile, &userAuth.Username, &userAuth.EmployeeNo, &IsEmployee)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -35,6 +37,10 @@ func (repo *userAuthRepository) GetUserAuthByID(id int) (*model.UserAuth, error)
 		}
 
 		return nil, err
+	}
+
+	if IsEmployee > 0 {
+		userAuth.IsEmployee = true
 	}
 
 	return userAuth, nil

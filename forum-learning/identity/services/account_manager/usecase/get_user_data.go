@@ -16,8 +16,9 @@ func (usecase *accountManagerUsecase) GetUserData(userID int) (*domain.GetUserDa
 		ID:         userAuthData.ID,
 		FullName:   userAuthData.FullName.String,
 		AvatarFile: userAuthData.AvatarFile.String,
-		Email:      userAuthData.Email,
 		Username:   userAuthData.Username,
+		EmployeeNo: userAuthData.EmployeeNo.String,
+		IsEmployee: userAuthData.IsEmployee,
 	}
 
 	return response, nil

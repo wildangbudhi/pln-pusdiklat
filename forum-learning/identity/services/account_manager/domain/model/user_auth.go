@@ -7,8 +7,9 @@ type UserAuth struct {
 	ID         int            `json:"id"`
 	FullName   sql.NullString `json:"full_name"`
 	AvatarFile sql.NullString `json:"avatar_file"`
-	Email      string         `json:"email"`
 	Username   string         `json:"username"`
+	EmployeeNo sql.NullString `json:"employee_no"`
+	IsEmployee bool           `json:"is_employee"`
 }
 
 // UserAuthRepository Interface is a contract of Repository for User Auth Table
