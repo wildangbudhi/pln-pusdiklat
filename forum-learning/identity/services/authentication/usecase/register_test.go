@@ -16,7 +16,6 @@ func TestRegisterSuccess(t *testing.T) {
 
 	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
-	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("InsertUserAuth").Return(int64(1), nil)
 
@@ -37,34 +36,12 @@ func TestRegisterSuccess(t *testing.T) {
 
 }
 
-func TestRegisterEmailAlreadyUsed(t *testing.T) {
-
-	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
-
-	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
-
-	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, nil)
-
-	fullName := "Test Name"
-	username := "test_username"
-	password := "password123"
-
-	_, err := testService.Register(fullName, username, password)
-
-	mockUserAuthRepository.AssertExpectations(t)
-
-	// Test Usecase Error is Nil
-	assert.NotNil(t, err)
-
-}
-
 func TestRegisterUsernamelAlreadyUsed(t *testing.T) {
 
 	mockUserAuthRepository := new(mysql.UserAuthRepositoryMock)
 
 	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
-	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, nil)
 
 	fullName := "Test Name"
@@ -86,7 +63,6 @@ func TestRegisterFailedToInsert(t *testing.T) {
 
 	testService := usecase.NewAuthenticationUsecase(mockUserAuthRepository, nil, nil)
 
-	mockUserAuthRepository.On("GetUserAuthByEmail").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("GetUserAuthByUsername").Return(&model.UserAuth{}, fmt.Errorf("User Not Found"))
 	mockUserAuthRepository.On("InsertUserAuth").Return(int64(-1), fmt.Errorf("Failed to Insert User"))
 
