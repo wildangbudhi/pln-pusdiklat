@@ -1,13 +1,8 @@
 from flask import Flask, render_template
-from homepage.routes import homepage
-from qna.routes import qna
-from discussions.routes import discussions
-from posts.routes import posts
+from setup.server import Server
+from connector import depedency_injection
 
-app = Flask(__name__)
+app = Server( __name__ )
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+depedency_injection( app )
 
-app.register_blueprint(homepage)
-app.register_blueprint(qna)
-app.register_blueprint(discussions)
-app.register_blueprint(posts)
