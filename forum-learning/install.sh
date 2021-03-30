@@ -56,6 +56,7 @@ install_forum_learning(){
         sudo export NGINX_HOST_MAIN=$basedomain
         sudo export NGINX_HOST_MAIN=$admindomain
         sudo envsubst < ./nginx/templates/default.conf.template > /etc/nginx/sites-available/forumlearning.conf
+        sudo ln -s /etc/nginx/sites-available/forumlearning.conf /etc/nginx/sites-enabled
         sudo nginx -t
         sudo systemctl restart nginx
 
