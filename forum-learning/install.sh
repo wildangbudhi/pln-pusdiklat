@@ -45,28 +45,27 @@ install_forum_learning(){
     if [ "$MODE" = "prod" ]; then
 
         echo "SETTING UP NGINX"
-        sudo apt -y install nginx;
-        sudo ufw allow 'Nginx HTTP';
-        sudo ufw allow 'Nginx HTTPS';
+        apt -y install nginx;
+        ufw allow 'Nginx HTTP';
+        ufw allow 'Nginx HTTPS';
 
         echo "SETTING UP CONFIG FOR FORUM LEARNING"
-        sudo cp ./nginx/template/default.conf.template /etc/nginx/sites-available/forumlearning.conf
         read -p "NGINX Base Domain: " basedomain
         read -p "NGINX Admin Domain: " admindomain
-        sudo export NGINX_HOST_MAIN=$basedomain
-        sudo export NGINX_HOST_MAIN=$admindomain
-        sudo envsubst < ./nginx/templates/default.conf.template > /etc/nginx/sites-available/forumlearning.conf
-        sudo ln -s /etc/nginx/sites-available/forumlearning.conf /etc/nginx/sites-enabled
-        sudo nginx -t
-        sudo systemctl restart nginx
+        export NGINX_HOST_MAIN=$basedomain
+        export NGINX_HOST_MAIN=$admindomain
+        envsubst < ./nginx/templates/default.conf.template > /etc/nginx/sites-available/forumlearning.conf
+        ln -s /etc/nginx/sites-available/forumlearning.conf /etc/nginx/sites-enabled
+        nginx -t
+        systemctl restart nginx
 
         echo "SETTING UP SSL"
-        sudo apt -y update
-        sudo apt -y install snapd
-        sudo snap install core; sudo snap refresh core
-        sudo snap install --classic certbot
-        sudo ln -s /snap/bin/certbot /usr/bin/certbot
-        sudo certbot --nginx
+        apt -y update
+        apt -y install snapd
+        snap install core; snap refresh core
+        snap install --classic certbot
+        ln -s /snap/bin/certbot /usr/bin/certbot
+        certbot --nginx
         
     fi
 
