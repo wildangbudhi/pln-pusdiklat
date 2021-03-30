@@ -67,7 +67,7 @@ install_forum_learning(){
         sudo ln -s /snap/bin/certbot /usr/bin/certbot
         sudo certbot --nginx
         
-    if
+    fi
 
     echo "FORUM LEARNING APPLICATION INSTALLED"
 
