@@ -45,8 +45,7 @@ install_forum_learning(){
     if [ "$MODE" = "prod" ]; then
 
         echo "SETTING UP NGINX"
-        apt -y install nginx
-        apt-get -y install ufw
+        apt -y install nginx && apt-get -y install ufw
         ufw enable
         ufw allow 'Nginx HTTP'
         ufw allow 'Nginx HTTPS'
