@@ -60,6 +60,8 @@ services:
     volumes: 
       - ./log/api_gateway/:/src/log/
       - ./api-gateway-config/:/src/config/
+    ports:
+      - "8080:8080"
       
   front-end_client:
     container_name: forum_learning-front_end_client
@@ -71,6 +73,8 @@ services:
       - API_BASE_URL=wildangbudhi.com
     volumes: 
       - ./front-end_client/app/:/app
+    ports: 
+      - "81:5000"
     
   front-end_admin:
     container_name: forum_learning-front_end_admin
@@ -78,15 +82,17 @@ services:
     restart: always
     volumes: 
       - ./front-end_admin/app/:/app
-      
-  nginx:
-    image: nginx
-    restart: always
-    environment: 
-      - NGINX_HOST_MAIN=wildangbudhi.com
-      - NGINX_HOST_ADMIN=admin.wildangbudhi.com
-    volumes: 
-      - ./nginx/templates:/etc/nginx/templates
     ports: 
-      - "80:80" 
-      - "443:443"
+      - "82:5000"
+      
+  # nginx:
+  #   image: nginx
+  #   restart: always
+  #   environment: 
+  #     - NGINX_HOST_MAIN=wildangbudhi.com
+  #     - NGINX_HOST_ADMIN=admin.wildangbudhi.com
+  #   volumes: 
+  #     - ./nginx/templates:/etc/nginx/templates
+  #   ports: 
+  #     - "80:80" 
+  #     - "443:443"

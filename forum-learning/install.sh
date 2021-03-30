@@ -42,6 +42,33 @@ install_forum_learning(){
         exit;
     fi
 
+    if [ "$MODE" = "prod" ]; then
+
+        echo "SETTING UP NGINX"
+        sudo apt -y install nginx;
+        sudo ufw allow 'Nginx HTTP';
+        sudo ufw allow 'Nginx HTTPS';
+
+        echo "SETTING UP CONFIG FOR FORUM LEARNING"
+        sudo cp ./nginx/template/default.conf.template /etc/nginx/sites-available/forumlearning.conf
+        read -p "NGINX Base Domain: " basedomain
+        read -p "NGINX Admin Domain: " admindomain
+        sudo export NGINX_HOST_MAIN=$basedomain
+        sudo export NGINX_HOST_MAIN=$admindomain
+        sudo envsubst < ./nginx/templates/default.conf.template > /etc/nginx/sites-available/forumlearning.conf
+        sudo nginx -t
+        sudo systemctl restart nginx
+
+        echo "SETTING UP SSL"
+        sudo apt -y update
+        sudo apt -y install snapd
+        sudo snap install core; sudo snap refresh core
+        sudo snap install --classic certbot
+        sudo ln -s /snap/bin/certbot /usr/bin/certbot
+        sudo certbot --nginx
+        
+    if
+
     echo "FORUM LEARNING APPLICATION INSTALLED"
 
 }
