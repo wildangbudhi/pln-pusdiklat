@@ -46,6 +46,8 @@ install_forum_learning(){
 
         echo "SETTING UP NGINX"
         apt -y install nginx;
+        apt-get -y install ufw;
+        ufw enable;
         ufw allow 'Nginx HTTP';
         ufw allow 'Nginx HTTPS';
 
@@ -60,7 +62,7 @@ install_forum_learning(){
         systemctl restart nginx
 
         echo "SETTING UP SSL"
-        apt -y update
+        apt-get -y update
         apt-get -y install snapd
         snap install core; snap refresh core
         snap install --classic certbot
