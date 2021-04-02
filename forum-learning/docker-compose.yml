@@ -2,6 +2,7 @@ version: "3.8"
 
 volumes:
   forumlearning-mysqldata:
+  letsencrypt:
 
 services:
   
@@ -85,14 +86,17 @@ services:
     ports: 
       - "82:5000"
       
-  # nginx:
-  #   image: nginx
-  #   restart: always
-  #   environment: 
-  #     - NGINX_HOST_MAIN=wildangbudhi.com
-  #     - NGINX_HOST_ADMIN=admin.wildangbudhi.com
-  #   volumes: 
-  #     - ./nginx/templates:/etc/nginx/templates
-  #   ports: 
-  #     - "80:80" 
-  #     - "443:443"
+  nginx:
+    image: staticfloat/nginx-certbot
+    restart: always
+    environment: 
+      - CERTBOT_EMAIL=wildangb@gmail.com
+      - NGINX_HOST_MAIN=wildangbudhi.com
+      - NGINX_HOST_ADMIN=admin.wildangbudhi.com
+    volumes: 
+      - ./nginx/templates/dev.conf.template:/etc/nginx/user.conf.d:ro
+      - letsencrypt:/etc/letsencrypt
+      - ./nginx/templates:/etc/nginx/templates
+    ports: 
+      - "80:80" 
+      - "443:443"

@@ -40,35 +40,7 @@ install_forum_learning(){
     else 
         echo "MODE NOT VALID";
         exit;
-    fi
-
-    if [ "$MODE" = "prod" ]; then
-
-        echo "SETTING UP NGINX"
-        apt install nginx && apt-get install ufw
-        ufw enable
-        ufw allow 'Nginx HTTP'
-        ufw allow 'Nginx HTTPS'
-
-        echo "SETTING UP CONFIG FOR FORUM LEARNING"
-        read -p "NGINX Base Domain: " basedomain
-        read -p "NGINX Admin Domain: " admindomain
-        export NGINX_HOST_MAIN=$basedomain
-        export NGINX_HOST_MAIN=$admindomain
-        envsubst < ./nginx/templates/default.conf.template > /etc/nginx/sites-available/forumlearning.conf
-        ln -s /etc/nginx/sites-available/forumlearning.conf /etc/nginx/sites-enabled
-        nginx -t
-        systemctl restart nginx
-
-        echo "SETTING UP SSL"
-        apt-get -y update
-        apt-get -y install snapd
-        snap install core; snap refresh core
-        snap install --classic certbot
-        ln -s /snap/bin/certbot /usr/bin/certbot
-        certbot --nginx
-        
-    fi
+    fiß
 
     echo "FORUM LEARNING APPLICATION INSTALLED"
 
