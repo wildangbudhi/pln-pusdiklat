@@ -99,7 +99,7 @@ services:
       - NGINX_PORT=80
       - NGINX_HOST=wildangbudhi.com
     volumes: 
-      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/templates/dev.conf.template:/etc/nginx/templates/dev.conf.template
     ports: 
       - "80:80" 
       - "443:443" 
