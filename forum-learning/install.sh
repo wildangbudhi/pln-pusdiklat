@@ -40,7 +40,7 @@ install_forum_learning(){
     else 
         echo "MODE NOT VALID";
         exit;
-    fiß
+    fi
 
     echo "FORUM LEARNING APPLICATION INSTALLED"
 
