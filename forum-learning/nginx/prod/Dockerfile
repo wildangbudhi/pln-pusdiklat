@@ -13,10 +13,8 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./templates /etc/nginx/templates
-RUN envsubst < /etc/nginx/templates/prod.conf.template > /etc/nginx/sites-available/default
-RUN rm /etc/nginx/sites-enabled/default
-RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+COPY ./init.sh .
 
 STOPSIGNAL SIGTERM
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
