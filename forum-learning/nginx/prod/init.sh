@@ -4,4 +4,4 @@ envsubst < /etc/nginx/templates/prod.conf.template > /etc/nginx/sites-available/
 rm /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
-nginx -g daemon off;
+nginx -g daemon off
