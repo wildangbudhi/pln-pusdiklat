@@ -11,10 +11,10 @@ RUN apt update -y \
 EXPOSE 80
 
 RUN mkdir /etc/nginx/templates
-
 COPY ./templates/prod.conf.template /etc/nginx/templates/prod.conf.template
-
 RUN envsubst < ./nginx/templates/prod.conf.template > /etc/nginx/sites-available/default.conf
+RUN rm etc/nginx/sites-enabled/default.conf
+RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/
 
 STOPSIGNAL SIGTERM
 
