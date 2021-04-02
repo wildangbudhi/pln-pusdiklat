@@ -13,7 +13,7 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./templates /etc/nginx/templates
-COPY ./init.sh .
+COPY ./init.sh ./root/
 
 STOPSIGNAL SIGTERM
 
