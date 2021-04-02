@@ -8,10 +8,12 @@ RUN apt update -y \
     && apt-get install python-certbot-nginx -y \
     && apt-get clean
 
-EXPOSE 80
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends gettext \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY ./templates /etc/nginx/templates
-RUN source ~/.bashrc && envsubst < /etc/nginx/templates/prod.conf.template > /etc/nginx/sites-available/default.conf
+RUN envsubst < /etc/nginx/templates/prod.conf.template > /etc/nginx/sites-available/default.conf
 RUN rm etc/nginx/sites-enabled/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/
 
