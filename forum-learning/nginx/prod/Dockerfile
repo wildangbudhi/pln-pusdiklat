@@ -14,6 +14,7 @@ RUN apt-get update -y \
 
 COPY ./templates /etc/nginx/templates
 COPY ./init.sh ./root/
+RUN ["chmod", "+x", "/root/init.sh"]
 
 STOPSIGNAL SIGTERM
 
