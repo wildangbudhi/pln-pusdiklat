@@ -100,7 +100,7 @@ services:
       - NGINX_HOST_MAIN=wildangbudhi.com
       - NGINX_HOST_ADMIN=admin.wildangbudhi.com
     volumes: 
-      - ./nginx/templates/dev.conf.template:/etc/nginx/templates/dev.conf.template
+      - ./nginx/dev:/etc/nginx/templates
     ports: 
       - "80:80" 
       - "443:443" 

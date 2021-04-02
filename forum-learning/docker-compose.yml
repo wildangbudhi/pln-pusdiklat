@@ -87,16 +87,14 @@ services:
       - "82:5000"
       
   nginx:
-    image: staticfloat/nginx-certbot
+    container_name: forum_learning-nginx
+    build: ./nginx/prod
     restart: always
     environment: 
-      - CERTBOT_EMAIL=wildangb@gmail.com
       - NGINX_HOST_MAIN=wildangbudhi.com
       - NGINX_HOST_ADMIN=admin.wildangbudhi.com
     volumes: 
-      - ./nginx/templates/dev.conf.template:/etc/nginx/user.conf.d:ro
-      - letsencrypt:/etc/letsencrypt
-      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/prod/templates:/etc/nginx/templates
     ports: 
       - "80:80" 
       - "443:443"
