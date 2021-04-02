@@ -11,7 +11,7 @@ RUN apt update -y \
 EXPOSE 80
 
 COPY ./templates /etc/nginx/templates
-RUN envsubst < /etc/nginx/templates/prod.conf.template > /etc/nginx/sites-available/default.conf
+RUN source ~/.bashrc && envsubst < /etc/nginx/templates/prod.conf.template > /etc/nginx/sites-available/default.conf
 RUN rm etc/nginx/sites-enabled/default.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/
 
