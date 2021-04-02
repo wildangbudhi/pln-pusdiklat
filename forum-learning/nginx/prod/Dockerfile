@@ -10,6 +10,10 @@ RUN apt update -y \
 
 EXPOSE 80
 
+COPY ./templates/prod.conf.template /etc/nginx/templates/prod.conf.template
+
+RUN envsubst < ./nginx/templates/prod.conf.template > /etc/nginx/sites-available/default.conf
+
 STOPSIGNAL SIGTERM
 
 CMD ["nginx", "-g", "daemon off;"]

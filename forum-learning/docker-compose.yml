@@ -93,8 +93,6 @@ services:
     environment: 
       - NGINX_HOST_MAIN=wildangbudhi.com
       - NGINX_HOST_ADMIN=admin.wildangbudhi.com
-    volumes: 
-      - ./nginx/prod/templates:/etc/nginx/templates
     ports: 
       - "80:80" 
       - "443:443"
