@@ -10,6 +10,8 @@ RUN apt update -y \
 
 EXPOSE 80
 
+RUN mkdir /etc/nginx/templates
+
 COPY ./templates/prod.conf.template /etc/nginx/templates/prod.conf.template
 
 RUN envsubst < ./nginx/templates/prod.conf.template > /etc/nginx/sites-available/default.conf
