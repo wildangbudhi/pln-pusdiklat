@@ -97,7 +97,8 @@ services:
     restart: always
     environment: 
       - NGINX_PORT=80
-      - NGINX_HOST=wildangbudhi.com
+      - NGINX_HOST_MAIN=wildangbudhi.com
+      - NGINX_HOST_ADMIN=admin.wildangbudhi.com
     volumes: 
       - ./nginx/templates/dev.conf.template:/etc/nginx/templates/dev.conf.template
     ports: 
